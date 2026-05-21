@@ -1,66 +1,35 @@
 # layanemoura.com
 
-Site institucional / portfólio de **Layane Moura**, publicado em [layanemoura.com](https://layanemoura.com).
+Portfólio de **Layane Moura** — Nuxt 4 + Tailwind CSS 4.
 
-Repositório mantido por [Gabriel Stroligo](https://github.com/stroligo) — [stroligo/layanemoura.com](https://github.com/stroligo/layanemoura.com).
+## Páginas
 
----
+| Rota | Conteúdo |
+| --- | --- |
+| `/` | **Home** — galeria orgânica (só imagens), filtro no topo, modal com detalhes do projeto |
+| `/get-in-touch` | Foto, about, contactos e formulário |
 
-## Status
+Página interna: `/uikit` (design system).
 
-Projeto em fase inicial: repositório configurado, código-fonte ainda a ser adicionado.
-
----
-
-## Objetivo
-
-Apresentar o trabalho, informações de contacto e conteúdo relevante de Layane Moura num site rápido, acessível e fácil de manter.
-
----
-
-## Stack (a definir)
-
-A stack técnica será documentada aqui assim que o projeto for iniciado (por exemplo, a partir de um dos templates locais **Nuxt + Tailwind** ou **PHP + Tailwind**).
-
----
-
-## Pré-requisitos
-
-- **Node.js 20+** (se o projeto usar build front-end)
-- **npm**
-- Servidor local ou ambiente de desenvolvimento conforme a stack escolhida
-
----
-
-## Instalação e desenvolvimento
+## Comandos
 
 ```bash
-git clone https://github.com/stroligo/layanemoura.com.git
-cd layanemoura.com
-# npm install   # quando package.json existir
-# npm run dev   # comando de desenvolvimento
+npm install
+npm run dev
+npm run build
 ```
 
-Os comandos concretos (`install`, `dev`, `build`, etc.) serão atualizados nesta secção quando a estrutura do projeto estiver definida.
+## Imagens dos projetos
 
----
+Capas dos projetos estão em `public/images/projects/` (baixadas do Behance; ver `scripts/fetch-behance-covers.sh`). Referenciadas em `data/projects.ts` via `image: '/images/projects/{slug}.jpg'`. Sem `image`, a grelha usa gradiente placeholder.
 
-## Estrutura prevista
+Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato final).
 
-```text
-layanemoura.com/
-├── README.md
-└── (código-fonte a adicionar)
-```
+## Tokens
 
----
+`src/css/tokens.css` — cores e tipografia (**Delius**, **Cormorant Garamond**, **Inter** via Google Fonts).
 
-## Deploy
+## Documentação
 
-Instruções de build e publicação serão incluídas após a configuração do ambiente de produção (hosting, domínio e pipeline, se aplicável).
-
----
-
-## Licença
-
-Uso privado / todos os direitos reservados, salvo indicação em contrário.
+- [Cliente.md](./Cliente.md)
+- [manual_identidade_visual_layane_moura_base.md](./manual_identidade_visual_layane_moura_base.md)

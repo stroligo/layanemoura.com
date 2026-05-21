@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "homeTitle": "Layane Moura — Ilustradora & Map Maker",
+    "homeDescription": "Portfólio de Layane Moura — mapas de fantasia, ilustração de viagem, capas de livros e trabalho editorial.",
+    "contactTitle": "Contato — Layane Moura",
+    "contactDescription": "Entre em contato com Layane Moura para comissões de ilustração, mapas, capas de livros e colaborações."
+  },
+  "site": {
+    "tagline": "Ilustradora & Map Maker",
+    "description": "Ilustradora brasileira que transforma lugares reais e imaginários em narrativas sensíveis e orgânicas — mapas de fantasia, arte de viagem, capas de livros e trabalho editorial.",
+    "photoAlt": "{name} — ilustradora",
+    "about": {
+      "p1": "Olá! Eu sou uma curiosa ilustradora, nascida no Brasil, mas vivendo pelo mundo em uma campervan há mais de 1 ano! Trabalho tanto com o digital, como também com mídias tradicionais, como a aquarela, mas na maior parte do tempo misturando tudo em uma coisa só.",
+      "p2": "Sou apaixonada por novos lugares, pessoas e culturas, o que sem dúvida se reflete no meu trabalho! E isso vale tanto para 'mundos reais', quanto para os que existem apenas na nossa imaginação. Sendo assim, também produzo bastante coisas no universo da fantasia e do lúdico.",
+      "p3": "Meu trabalho permite aplicações nos mais diversos tipos de media, principalmente capas de livros infantis e YA, revistas, design de produto, peças publicitárias e estamparia.",
+      "p4": "Por que não nos mantemos em contato? :)"
+    }
+  },
+  "nav": {
+    "home": "Início",
+    "homeAria": "{name} — início",
+    "getInTouch": "Contato",
+    "langAria": "Idioma",
+    "breadcrumbAria": "Navegação estrutural"
+  },
+  "categories": {
+    "fantasy-maps": "Mapas de fantasia",
+    "travel": "Viagem",
+    "book-covers": "Capas de livros",
+    "editorial": "Editorial",
+    "patterns": "Padrões",
+    "commercial": "Comercial"
+  },
+  "gallery": {
+    "filterAria": "Reordenar seções da galeria",
+    "tagChipsAria": "Destacar por tag",
+    "tags": {
+      "all": "Todos"
+    },
+    "sortAria": "Ordenar projetos",
+    "groups": {
+      "maps": "Mapas",
+      "more": "Mais"
+    },
+    "sortBy": "Ordenar por",
+    "sortOption": "{field}: {direction}",
+    "sort": {
+      "date": "Data",
+      "tag": "Tag",
+      "views": "Visualizações",
+      "title": "Título"
+    },
+    "sortDirection": {
+      "date": { "desc": "Mais recentes", "asc": "Mais antigos" },
+      "tag": { "desc": "Z → A", "asc": "A → Z" },
+      "views": { "desc": "Mais vistos", "asc": "Menos vistos" },
+      "title": { "desc": "Z → A", "asc": "A → Z" }
+    },
+    "noProjects": "Nenhum projeto nesta categoria ainda.",
+    "seenAll": "Você viu todos os {count} projetos desta visualização.",
+    "changeSortOrder": "Alterar ordem: {order}"
+  },
+  "reviews": {
+    "eyebrow": "Palavras gentis",
+    "title": "O que clientes dizem",
+    "carouselLabel": "Depoimento {current} de {total}",
+    "prev": "Depoimento anterior",
+    "next": "Próximo depoimento",
+    "choose": "Escolher depoimento",
+    "by": "Depoimento de {name}",
+    "items": [
+      {
+        "id": "review-1",
+        "text": "A Layane capturou o espírito do nosso destino com um mapa informativo e cheio de alma. Nossos viajantes ainda compartilham nas redes meses depois.",
+        "clientName": "Sarah Mitchell",
+        "clientRole": "Diretora criativa",
+        "clientCompany": "Horizon Travel Co.",
+        "projectType": "Ilustração de viagem"
+      },
+      {
+        "id": "review-2",
+        "text": "O mapa de fantasia que ela criou para o livro do meu filho é o coração da história. Cada canto esconde um detalhe que ele redescobre — mágico sem ser infantil.",
+        "clientName": "Daniela Ribeiro",
+        "clientRole": "Autora",
+        "projectType": "Mapa para livro infantil"
+      },
+      {
+        "id": "review-3",
+        "text": "Trabalhar com a Layane foi colaborar com alguém que realmente escuta. A capa equilibra calor e mistério exatamente como imaginávamos.",
+        "clientName": "James Whitmore",
+        "clientRole": "Diretor de arte",
+        "clientCompany": "Northlight Editions",
+        "projectType": "Capa de livro"
+      },
+      {
+        "id": "review-4",
+        "text": "Seus pôsteres vintage deram à campanha uma qualidade artesanal e atemporal. O traço e a paleta se destacaram num mar de imagens de banco.",
+        "clientName": "Elena Costa",
+        "clientRole": "Estrategista de marca",
+        "clientCompany": "Wander Studio",
+        "projectType": "Editorial e pôsteres"
+      },
+      {
+        "id": "review-5",
+        "text": "Precisávamos de um mapa turístico acolhedor, não clínico. A Layane entregou algo que nossos visitantes guardam — claro, belo e inconfundivelmente toscano.",
+        "clientName": "Marco Bellini",
+        "clientRole": "Coordenador de turismo",
+        "clientCompany": "Regione Toscana — Projeto parceiro",
+        "projectType": "Mapa de viagem"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contato",
+    "title": "Vamos criar algo juntos.",
+    "heading": "Contato",
+    "basedIn": "Base",
+    "basedInValue": "Europa (nômade)",
+    "languages": "Idiomas",
+    "languagesValue": "PT · EN · FR (básico)",
+    "availability": "Disponibilidade",
+    "availabilityValue": "Freela e remoto em tempo integral",
+    "formTitle": "Enviar mensagem",
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "submit": "Enviar por e-mail",
+    "aboutEmail": "Fale comigo pelo {email}!",
+    "mailSubject": "Consulta de projeto de {name}",
+    "mailBody": "Nome: {name}\nE-mail: {email}\n\n{message}"
+  },
+  "modal": {
+    "close": "Fechar",
+    "tools": "Ferramentas:",
+    "views": "Visualizações:",
+    "behance": "Ver no Behance",
+    "getInTouch": "Contato"
+  },
+  "footer": {
+    "nomad": "Europa · estúdio nômade",
+    "rights": "© {year} {name}. Todos os direitos reservados."
+  },
+  "projects": {
+    "desmenia-treasure-map": {
+      "description": "Mapa do tesouro de fantasia para o livro infantil Arthur, The Treasure Hunter — um mundo de monstros marinhos, florestas, praias e aventura sem fim."
+    },
+    "simbionte-fantasy-map": {
+      "description": "Mapa de fantasia ilustrado para universo narrativo de RPG — texturas orgânicas e narrativa cartográfica."
+    },
+    "meronte-fantasy-map": {
+      "description": "Peça de atlas de fantasia contemporânea que mistura referências de mapas antigos com traço jovem e legível."
+    },
+    "where-i-have-been": {
+      "description": "Pôsteres e adesivos de viagem em estilo vintage celebrando lugares, memória e a alegria de descobrir."
+    },
+    "toscana-travel-map": {
+      "description": "Mapa turístico da Toscana com marcos iconográficos — mídia digital e tradicional entrelaçadas."
+    },
+    "lithgow-touristic-map": {
+      "description": "Ilustração de mapa de destino com paleta vintage suave e geografia clara e convidativa."
+    },
+    "south-africa-sticker": {
+      "description": "Adesivo encomendado para agência de viagens — lúdico, colecionável e cheio de lugar."
+    },
+    "lets-be-friends-book-cover": {
+      "description": "Ilustração de capa com calor narrativo — acolhedora, gentil e guiada pela história."
+    },
+    "hands-of-time-poster": {
+      "description": "Pôster editorial com clima contemplativo e composição refinada."
+    },
+    "cowboy-camp-sticker": {
+      "description": "Adesivo lúdico com charme western e traço artesanal."
+    },
+    "vila-pattern": {
+      "description": "Padrão de superfície inspirado em lugar e ritmo — repetível, orgânico e poeticamente discreto."
+    }
+  }
+}
