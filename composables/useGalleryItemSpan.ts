@@ -40,6 +40,8 @@ export function useGalleryItemSpan(
   layout: GalleryLayout,
 ) {
   const gridRowEnd = ref<string | undefined>();
+  /** Proporção do cartão na grelha (largura / altura visível, com max-height). */
+  const displayAspect = ref<string | null>(null);
   const isPortrait = ref(false);
 
   function getGridMetrics(grid: HTMLElement) {
@@ -101,6 +103,7 @@ export function useGalleryItemSpan(
     );
 
     gridRowEnd.value = `span ${span}`;
+    displayAspect.value = `${Math.round(itemWidth)} / ${Math.round(displayHeight)}`;
   }
 
   function measureFromImage(img: HTMLImageElement) {
@@ -111,6 +114,7 @@ export function useGalleryItemSpan(
 
   function measureFromLayout() {
     const { w, h } = LAYOUT_SIZE[layout];
+    displayAspect.value = `${w} / ${h}`;
     applySpan(w, h);
   }
 
@@ -146,6 +150,7 @@ export function useGalleryItemSpan(
 
   return {
     gridRowEnd,
+    displayAspect,
     isPortrait,
     onImageLoad,
     remeasure,

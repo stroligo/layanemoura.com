@@ -111,7 +111,7 @@ useHead(() => ({
   })),
 }));
 
-/** Pré-carrega capas em segundo plano (a grelha já mostra skeletons). */
+/** Pré-carrega capas em segundo plano. */
 const { waitForGalleryCovers } = useGalleryImageLoading();
 
 watch(

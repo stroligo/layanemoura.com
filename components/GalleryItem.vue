@@ -8,7 +8,6 @@
       {
         'gallery-item--dimmed': dimmed,
         'gallery-item--portrait': isPortrait,
-        'gallery-item--loaded': imageLoaded,
       },
     ]"
     :style="gridRowEnd ? { gridRowEnd } : undefined"
@@ -23,12 +22,6 @@
     @click="$emit('select', project)"
   >
     <div class="gallery-item-visual" :style="visualAspectStyle">
-      <div
-        v-if="coverImage"
-        class="gallery-item-skeleton"
-        :style="skeletonStyle"
-        aria-hidden="true"
-      />
       <img
         v-if="coverImage"
         :src="coverImage"
@@ -41,12 +34,6 @@
         decoding="async"
         :fetchpriority="priority ? 'high' : 'auto'"
         @load="onImageReady"
-      />
-      <div
-        v-else
-        class="gallery-item-placeholder"
-        :style="placeholderStyle"
-        aria-hidden="true"
       />
     </div>
   </button>
@@ -83,13 +70,9 @@ defineEmits<{
 
 const coverImage = computed(() => projectCoverImage(props.project));
 
-const imageLoaded = ref(false);
-
 const root = ref<HTMLElement | null>(null);
-const { gridRowEnd, isPortrait, onImageLoad, remeasure } = useGalleryItemSpan(
-  root,
-  props.project.layout,
-);
+const { gridRowEnd, displayAspect, isPortrait, onImageLoad, remeasure } =
+  useGalleryItemSpan(root, props.project.layout);
 
 const layoutAspect = computed(() => {
   switch (props.project.layout) {
@@ -102,39 +85,17 @@ const layoutAspect = computed(() => {
   }
 });
 
-/** Proporção real da imagem quando carregada; até lá usa o layout da grelha. */
-const imageAspect = ref<string | null>(null);
-
 const visualAspectStyle = computed(() => ({
-  aspectRatio: imageAspect.value ?? layoutAspect.value,
-}));
-
-const skeletonStyle = computed(() => ({
-  aspectRatio: layoutAspect.value,
-  ...projectPlaceholderStyle(props.project.slug, 'card'),
-}));
-
-const placeholderStyle = computed(() => ({
-  aspectRatio: layoutAspect.value,
-  ...projectPlaceholderStyle(props.project.slug, 'card'),
+  aspectRatio: displayAspect.value ?? layoutAspect.value,
 }));
 
 function onImageReady(event: Event) {
-  const img = event.target as HTMLImageElement;
-  imageLoaded.value = true;
-  if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-    imageAspect.value = `${img.naturalWidth} / ${img.naturalHeight}`;
-  }
   onImageLoad(event);
 }
 
 watch(
   () => coverImage.value,
-  () => {
-    imageLoaded.value = false;
-    imageAspect.value = null;
-    nextTick(remeasure);
-  },
+  () => nextTick(remeasure),
 );
 
 watch(
@@ -149,9 +110,7 @@ onMounted(() => {
 
   const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
   if (img?.complete && img.naturalWidth > 0) {
-    imageLoaded.value = true;
-    imageAspect.value = `${img.naturalWidth} / ${img.naturalHeight}`;
-    onImageLoad({ target: img } as Event);
+    remeasure();
   }
 });
 </script>

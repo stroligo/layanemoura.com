@@ -78,13 +78,6 @@
         </button>
       </div>
     </div>
-
-    <div
-      v-else
-      class="project-detail-carousel-placeholder"
-      :style="placeholderStyle"
-      aria-hidden="true"
-    />
   </div>
 </template>
 
@@ -92,7 +85,6 @@
 const props = defineProps<{
   images: string[];
   alt: string;
-  placeholderStyle?: Record<string, string>;
 }>();
 
 const { t } = useI18n();

@@ -2,7 +2,7 @@ import { preloadAll } from '~/utils/imageLoading';
 
 let activeRun = 0;
 
-/** Pré-carrega capas da galeria sem bloquear o layout (skeletons mantêm o grid). */
+/** Pré-carrega capas da galeria sem bloquear o layout. */
 export function useGalleryImageLoading() {
   async function waitForGalleryCovers(coverUrls: string[]) {
     if (!import.meta.client) return;

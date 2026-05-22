@@ -81,7 +81,7 @@ export type ProjectInput = Omit<Project, 'images' | 'links'> & {
   images?: ProjectImageInput[];
   /** @deprecated Use `images`. Mantido para migração. */
   image?: string;
-  /** @deprecated Gradiente gerado em runtime (`projectPlaceholderStyle`). */
+  /** @deprecated Ignorado — removido placeholder por gradiente. */
   thumbFrom?: string;
   thumbTo?: string;
   /** @deprecated Use `highlight` */

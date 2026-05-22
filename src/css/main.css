@@ -1226,6 +1226,7 @@
     .gallery-cards-enter-from {
       transform: none;
     }
+
   }
 
   .gallery-organic {
@@ -1249,6 +1250,8 @@
 
   .gallery-item {
     @apply relative block w-full min-w-0 cursor-pointer overflow-hidden rounded-[var(--radius-ui)] border-0 p-0;
+    align-self: start;
+    height: fit-content;
     grid-column: span 1;
     transition:
       transform 0.45s var(--ease-organic),
@@ -1280,31 +1283,12 @@
   }
 
   .gallery-item-visual {
-    @apply relative w-full overflow-hidden bg-surface leading-none;
-  }
-
-  .gallery-item-skeleton {
-    @apply absolute inset-0 block w-full animate-pulse;
-    min-height: 0;
+    @apply relative w-full overflow-hidden bg-paper leading-none;
+    isolation: isolate;
   }
 
   .gallery-item-img {
-    @apply absolute inset-0 block h-full w-full object-contain object-center opacity-0;
-    transition: opacity 0.45s var(--ease-organic);
-  }
-
-  .gallery-item--loaded .gallery-item-img {
-    @apply opacity-100;
-  }
-
-  .gallery-item--loaded .gallery-item-skeleton {
-    @apply opacity-0;
-    transition: opacity 0.35s var(--ease-organic);
-  }
-
-  .gallery-item-placeholder {
-    @apply block h-full w-full;
-    min-height: 12rem;
+    @apply relative block h-full w-full object-contain object-center;
   }
 
   .gallery-item--wide:not(.gallery-item--portrait) {
@@ -1428,10 +1412,6 @@
 
   .project-detail-carousel-img {
     @apply absolute inset-0 m-auto block h-full max-h-full w-full max-w-full object-contain object-center;
-  }
-
-  .project-detail-carousel-placeholder {
-    @apply block min-h-[180px] flex-1 md:min-h-0;
   }
 
   .project-detail-carousel-nav {

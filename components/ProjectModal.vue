@@ -45,7 +45,6 @@
                 :key="project.slug"
                 :images="project.images"
                 :alt="`${project.title} — ${project.subtitle}`"
-                :placeholder-style="placeholderStyle"
                 class="project-modal-visual"
               />
 
@@ -175,11 +174,6 @@ function projectLinkLabel(
 ): string {
   return projectDescriptionForLocale(label, locale.value);
 }
-
-const placeholderStyle = computed(() => {
-  if (!props.project) return {};
-  return projectPlaceholderStyle(props.project.slug, 'modal');
-});
 
 function onKeydown(e: KeyboardEvent) {
   if (!props.project || !props.showProjectNav) return;
