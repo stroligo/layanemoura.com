@@ -9,32 +9,25 @@
       @update:highlight-tag="setHighlightTag"
     />
 
-    <section
-      class="home-gallery__projects !py-0 !pb-6 md:!pb-10"
-      aria-labelledby="gallery-heading"
-    >
+    <section class="home-gallery__projects py-4!" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" class="sr-only">
         {{ t('gallery.sectionTitle') }}
       </h2>
       <div class="container-fluid wrap">
-        <div class="gallery-loading-host">
-          <GalleryLoadingOverlay v-if="projectsPending" />
+        <ErrorState
+          v-if="projectsLoadFailed"
+          :status-code="500"
+          :message="t('error.galleryLoad')"
+          @retry="refreshProjects"
+        />
 
-          <ErrorState
-            v-else-if="projectsLoadFailed"
-            :status-code="500"
-            :message="t('error.galleryLoad')"
-            @retry="refreshProjects"
-          />
-
-          <GalleryGrouped
-            v-else-if="galleryGroups.length"
-            :groups="galleryGroups"
-            :active-group="activeGroup"
-            :highlight-tag="highlightTag"
-            @select="openProject"
-          />
-        </div>
+        <GalleryGrouped
+          v-else-if="galleryGroups.length"
+          :groups="galleryGroups"
+          :active-group="activeGroup"
+          :highlight-tag="highlightTag"
+          @select="openProject"
+        />
       </div>
     </section>
 
@@ -55,11 +48,7 @@ import { site } from '~/data/site';
 import { GALLERY_HEAD_PRELOAD_COUNT } from '~/data/performance';
 import { projectCoverImage } from '~/types/project';
 import { resolveSiteUrl } from '~/utils/seo';
-import {
-  buildPersonJsonLd,
-  buildWebSiteJsonLd,
-  useSiteSeo,
-} from '~/composables/useSiteSeo';
+import { buildPersonJsonLd, buildWebSiteJsonLd, useSiteSeo } from '~/composables/useSiteSeo';
 
 const { t } = useI18n();
 const runtimeConfig = useRuntimeConfig();
@@ -73,10 +62,7 @@ const {
 } = useProjectCollection();
 
 const projectsLoadFailed = computed(
-  () =>
-    !projectsPending.value &&
-    Boolean(projectsError.value) &&
-    projects.value.length === 0,
+  () => !projectsPending.value && Boolean(projectsError.value) && projects.value.length === 0,
 );
 
 const {
@@ -97,9 +83,7 @@ const {
 const galleryCoverUrls = computed(() => {
   const group = galleryGroups.value[0];
   if (!group) return [];
-  return group.projects
-    .map((p) => projectCoverImage(p))
-    .filter((url): url is string => Boolean(url));
+  return group.projects.map((p) => projectCoverImage(p)).filter((url): url is string => Boolean(url));
 });
 
 useHead(() => ({
@@ -111,26 +95,12 @@ useHead(() => ({
   })),
 }));
 
-/** Pré-carrega capas em segundo plano. */
-const { waitForGalleryCovers } = useGalleryImageLoading();
-
-watch(
-  [galleryCoverUrls, projectsPending],
-  ([covers, pending]) => {
-    if (!import.meta.client || pending || !covers.length) return;
-    waitForGalleryCovers(covers);
-  },
-  { immediate: true },
-);
-
 const highlightOgImage = computed(() => {
   const cover = highlightProjects.value[0];
   return cover ? projectCoverImage(cover) : undefined;
 });
 
-const publicSiteUrl = computed(() =>
-  resolveSiteUrl(runtimeConfig.public.siteUrl as string | undefined),
-);
+const publicSiteUrl = computed(() => resolveSiteUrl(runtimeConfig.public.siteUrl as string | undefined));
 
 useSiteSeo(() => ({
   title: t('meta.homeTitle'),
