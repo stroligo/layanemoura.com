@@ -98,7 +98,9 @@ Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato fi
 - **Build:** `npm run build` (SSR — não use só `generate` nem pasta `build` como output)
 - **Output Directory:** deixe em branco no painel da Vercel (o Nitro usa `.output/`)
 - **Node:** 20.x (`.nvmrc`)
+- **Git:** ligue o repositório GitHub ao projeto Vercel (o Studio detecta `owner/repo` no build)
 - **Env:** `NUXT_PUBLIC_SITE_URL` + SMTP (ver `.env.example`); Nuxt Content usa SQLite em `/tmp` na Vercel automaticamente
+- **Nuxt Studio (`/_studio`):** `STUDIO_GITHUB_CLIENT_ID` + `STUDIO_GITHUB_CLIENT_SECRET` (OAuth App com callback `https://layanemoura.com/_studio/auth/github/callback`). Sem estes, o build até pode correr, mas o editor em produção não autentica.
 - Não defina `Output Directory` como `build` — isso quebra CSS/JS
 
 ## SEO

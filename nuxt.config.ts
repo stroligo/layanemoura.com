@@ -7,8 +7,12 @@ const studioRepositoryRepo = process.env.STUDIO_REPOSITORY_REPO;
 const studioRepositoryConfigured = Boolean(
   studioRepositoryOwner && studioRepositoryRepo,
 );
+/** Vercel injeta VERCEL_GIT_* — o nuxt-studio detecta owner/repo no build. */
+const isVercel = Boolean(process.env.VERCEL);
 const studioModuleEnabled =
-  process.env.NODE_ENV === 'development' || studioRepositoryConfigured;
+  process.env.NODE_ENV === 'development' ||
+  studioRepositoryConfigured ||
+  isVercel;
 
 const siteUrl =
   process.env.NUXT_PUBLIC_SITE_URL?.trim() || 'https://layanemoura.com';
@@ -103,6 +107,10 @@ export default defineNuxtConfig({
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
+    // Studio usa /_studio (rota Nitro) — não prefixar com /pt
+    pages: {
+      _studio: false,
+    },
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'lm_locale',
