@@ -9,14 +9,7 @@
         aria-busy="true"
         :aria-label="t('loading.aria')"
       >
-        <img
-          src="/loading.png"
-          alt=""
-          class="page-loading-spinner"
-          width="50"
-          height="50"
-          decoding="async"
-        />
+        <div class="page-loading-spinner" aria-hidden="true" />
       </div>
     </Transition>
   </Teleport>

@@ -7,7 +7,7 @@ const studioRepositoryRepo = process.env.STUDIO_REPOSITORY_REPO;
 const studioRepositoryConfigured = Boolean(
   studioRepositoryOwner && studioRepositoryRepo,
 );
-/** Produção (Hostinger, etc.): owner + repo obrigatórios no build — ver .env.example */
+/** Em produção o módulo entra no build só com repo no .env (Hostinger: definir ANTES de npm run build). */
 const studioModuleEnabled =
   process.env.NODE_ENV === 'development' || studioRepositoryConfigured;
 
@@ -39,6 +39,8 @@ export default defineNuxtConfig({
       siteUrl,
       /** Indica modo dev do Studio (botão local); não é segredo. */
       studioDev: process.env.NODE_ENV === 'development',
+      /** false = build sem nuxt-studio → /_studio mostra guia de configuração */
+      studioInBuild: studioModuleEnabled && studioRepositoryConfigured,
     },
   },
 
@@ -55,6 +57,7 @@ export default defineNuxtConfig({
   css: ['~/src/css/main.css'],
 
   modules: [
+    '@nuxt/image',
     '@nuxt/content',
     'nuxt-svgo',
     '@nuxt/eslint',
@@ -67,7 +70,6 @@ export default defineNuxtConfig({
         studio: {
           route: '/_studio',
           dev: process.env.NODE_ENV === 'development',
-          // UI do Studio (não confundir com @nuxtjs/i18n do site). Use 'en' ou 'pt-BR'.
           i18n: {
             defaultLocale: 'en',
           },
@@ -76,21 +78,31 @@ export default defineNuxtConfig({
               messagePrefix: 'content:',
             },
           },
-          ...(studioRepositoryConfigured
+          repository: studioRepositoryConfigured
             ? {
-                repository: {
-                  provider: 'github' as const,
-                  owner: studioRepositoryOwner!,
-                  repo: studioRepositoryRepo!,
-                  branch: process.env.STUDIO_REPOSITORY_BRANCH || 'main',
-                },
+                provider: 'github' as const,
+                owner: studioRepositoryOwner!,
+                repo: studioRepositoryRepo!,
+                branch: process.env.STUDIO_REPOSITORY_BRANCH || 'main',
               }
-            : {}),
+            : undefined,
         },
       }
     : {}),
 
   content: {},
+
+  image: {
+    format: ['webp', 'jpeg'],
+    quality: 80,
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
 
   i18n: {
     baseUrl: siteUrl,
@@ -204,6 +216,7 @@ export default defineNuxtConfig({
     '/pt/get-in-touch': { swr: 3600 },
     '/uikit': { index: false },
     '/_studio/**': { ssr: true, index: false },
+    '/studio-setup': { index: false },
     '/robots.txt': { headers: { 'cache-control': 'public, max-age=3600' } },
     '/sitemap.xml': { headers: { 'cache-control': 'public, max-age=3600' } },
     '/images/**': {
@@ -235,6 +248,11 @@ export default defineNuxtConfig({
       headers: { 'cache-control': 'public, max-age=86400' },
     },
     '/_nuxt/**': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/_ipx/**': {
       headers: {
         'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
       },

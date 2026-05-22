@@ -29,13 +29,15 @@
         :style="skeletonStyle"
         aria-hidden="true"
       />
-      <img
+      <NuxtImg
         v-if="coverImage"
         :src="coverImage"
         alt=""
         class="gallery-item-img"
         :width="imageWidth"
         :height="imageHeight"
+        format="webp"
+        :quality="priority ? 82 : 75"
         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
         :loading="priority ? 'eager' : 'lazy'"
         decoding="async"
@@ -102,11 +104,9 @@ const layoutAspect = computed(() => {
   }
 });
 
-/** Proporção real da imagem quando carregada; até lá usa o layout da grelha. */
-const imageAspect = ref<string | null>(null);
-
+/** Caixa fixa pelo layout — evita CLS quando a imagem carrega (object-contain dentro). */
 const visualAspectStyle = computed(() => ({
-  aspectRatio: imageAspect.value ?? layoutAspect.value,
+  aspectRatio: layoutAspect.value,
 }));
 
 const skeletonStyle = computed(() => ({
@@ -122,9 +122,6 @@ const placeholderStyle = computed(() => ({
 function onImageReady(event: Event) {
   const img = event.target as HTMLImageElement;
   imageLoaded.value = true;
-  if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-    imageAspect.value = `${img.naturalWidth} / ${img.naturalHeight}`;
-  }
   onImageLoad(event);
 }
 
@@ -132,7 +129,6 @@ watch(
   () => coverImage.value,
   () => {
     imageLoaded.value = false;
-    imageAspect.value = null;
     nextTick(remeasure);
   },
 );
@@ -150,7 +146,6 @@ onMounted(() => {
   const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
   if (img?.complete && img.naturalWidth > 0) {
     imageLoaded.value = true;
-    imageAspect.value = `${img.naturalWidth} / ${img.naturalHeight}`;
     onImageLoad({ target: img } as Event);
   }
 });

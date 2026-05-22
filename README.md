@@ -73,7 +73,9 @@ Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato fi
 ## Performance
 
 - Fontes Google carregadas de forma **assíncrona** (`plugins/fonts-async.client.ts`) — primeiro paint com fallbacks do sistema
-- Galeria: **8 primeiras capas** com prioridade (`eager` / `preload`); restantes `lazy`
+- Galeria: **`@nuxt/image`** (WebP + tamanho por `sizes`); **4 primeiras** capas `eager`, **2** preloads no `<head>`
+- Comprimir capas: `npm run images:optimize` (máx. 1200px, JPEG ~82%; mantém `.jpg` nos YAML)
+- Spinner de loading em **CSS** (sem `loading.png` de 400 KB)
 - Cache longo em `/images/**`, favicons e `/_nuxt/**` (ver `routeRules` em `nuxt.config.ts`)
 - Páginas públicas com **SWR** (revalidação ~1 h)
 - Assets públicos comprimidos no build (`nitro.compressPublicAssets`)
@@ -105,11 +107,10 @@ Este site é **Nuxt SSR** (não é só HTML estático). Precisa de plano com **N
 | 4 | Variáveis de ambiente: copiar `.env.example` (SMTP, `NUXT_PUBLIC_SITE_URL`, Studio) |
 | 5 | DNS do domínio `layanemoura.com`: registo **A** ou nameservers apontando para a **Hostinger** (não Locaweb) |
 
-**Nuxt Studio (`/_studio`)** — no servidor, antes do `npm run build`, defina:
+**Nuxt Studio (`/_studio`)** — ver [Projeto/studio-hostinger.md](./Projeto/studio-hostinger.md). Resumo:
 
-- `STUDIO_REPOSITORY_OWNER` + `STUDIO_REPOSITORY_REPO` (senão o módulo não entra no build e `/_studio` → 404)
-- `STUDIO_GITHUB_CLIENT_ID` + `STUDIO_GITHUB_CLIENT_SECRET`
-- Callback OAuth: `https://layanemoura.com/_studio/auth/github/callback`
+- Defina `STUDIO_REPOSITORY_*` e `STUDIO_GITHUB_*` **antes** de `npm run build`
+- Diagnóstico: `/api/studio-status` · ajuda se falhar: `/studio-setup`
 
 **SMTP:** `SMTP_HOST=smtp.hostinger.com` (ou o que o painel indicar para o domínio).
 

@@ -18,7 +18,8 @@
     "content:sync-reviews": "tsx scripts/sync-reviews-to-content.ts",
     "content:sync-contact": "tsx scripts/sync-get-in-touch-to-content.ts",
     "content:sync-social": "tsx scripts/sync-social-to-content.ts",
-    "content:reset": "rm -rf .data && nuxt prepare"
+    "content:reset": "rm -rf .data && nuxt prepare",
+    "images:optimize": "tsx scripts/optimize-project-images.ts"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^3.14.0",
+    "@nuxt/image": "^2.0.0",
     "@nuxtjs/i18n": "^10.3.0",
     "better-sqlite3": "^12.10.0",
     "nodemailer": "^8.0.7",

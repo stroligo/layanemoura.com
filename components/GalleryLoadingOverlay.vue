@@ -6,14 +6,7 @@
     aria-busy="true"
     :aria-label="t('loading.aria')"
   >
-    <img
-      src="/loading.png"
-      alt=""
-      class="gallery-loading-spinner"
-      width="50"
-      height="50"
-      decoding="async"
-    />
+    <div class="gallery-loading-spinner" aria-hidden="true" />
   </div>
 </template>
 
