@@ -30,17 +30,19 @@ export default defineEventHandler((event) => {
   const lastmod = new Date().toISOString().slice(0, 10);
 
   const urlBlocks = PUBLIC_PAGES.map((page) => {
-    const alternates = LOCALES.map((loc) => {
-      const path = localePath(loc.prefix, page.path);
-      const href = toAbsoluteUrl(path, base);
-      return `    <xhtml:link rel="alternate" hreflang="${xmlEscape(loc.hreflang)}" href="${xmlEscape(href)}" />`;
-    }).join('\n');
-
     const defaultHref = toAbsoluteUrl(
       localePath(LOCALES[0].prefix, page.path),
       base,
     );
-    alternates += `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(defaultHref)}" />`;
+
+    const alternates = [
+      ...LOCALES.map((loc) => {
+        const path = localePath(loc.prefix, page.path);
+        const href = toAbsoluteUrl(path, base);
+        return `    <xhtml:link rel="alternate" hreflang="${xmlEscape(loc.hreflang)}" href="${xmlEscape(href)}" />`;
+      }),
+      `    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(defaultHref)}" />`,
+    ].join('\n');
 
     const locEntries = LOCALES.map((loc) => {
       const path = localePath(loc.prefix, page.path);

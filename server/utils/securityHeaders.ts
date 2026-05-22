@@ -12,13 +12,18 @@ export function buildContentSecurityPolicy(options?: {
   if (options?.nonce) scriptSrc.push(`'nonce-${options.nonce}'`);
 
   const connectSrc = ["'self'"];
+  const frameSrc = ["'none'"];
   if (options?.relaxForStudio) {
     scriptSrc.push("'unsafe-eval'", "'wasm-unsafe-eval'");
     connectSrc.push(
       'https://api.iconify.design',
       'https://api.unisvg.com',
       'https://api.simplesvg.com',
+      'https://github.com',
+      'https://api.github.com',
     );
+    frameSrc.length = 0;
+    frameSrc.push("'self'", 'https://github.com');
   }
 
   const directives = [
@@ -32,6 +37,7 @@ export function buildContentSecurityPolicy(options?: {
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: https: blob:",
     `connect-src ${connectSrc.join(' ')}`,
+    `frame-src ${frameSrc.join(' ')}`,
     "media-src 'self'",
     "worker-src 'self' blob:",
     "manifest-src 'self'",
@@ -50,10 +56,12 @@ export function buildSecurityHeaders(options?: {
 }) {
   const headers: Record<string, string> = {
     'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
+    'X-Frame-Options': options?.relaxForStudio ? 'SAMEORIGIN' : 'DENY',
     'X-Permitted-Cross-Domain-Policies': 'none',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Cross-Origin-Opener-Policy': options?.relaxForStudio
+      ? 'same-origin-allow-popups'
+      : 'same-origin',
     'Cross-Origin-Resource-Policy': 'same-site',
     'Permissions-Policy':
       'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()',

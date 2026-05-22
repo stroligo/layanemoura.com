@@ -53,7 +53,7 @@ Um projeto pode ter **várias tags** (ex.: `tags: [travel, fantasy-maps]` só se
 
 1. `npm run dev` e `npm run content:reset` se a galeria estiver vazia
 2. Abra **http://localhost:3000** (ou a porta do terminal) e use o **botão flutuante** no canto inferior esquerdo
-3. Em desenvolvimento, `/_studio` redireciona para a home — OAuth não é necessário no modo dev
+3. Em desenvolvimento, `/_studio` redireciona para a home (middleware) — OAuth não é necessário no modo dev
 4. Em produção: configure `STUDIO_GITHUB_*` no `.env` (ver `.env.example`), deploy com SSR (`nuxt build`), e aceda a `/_studio`
 
 ### Sincronizar a partir do mock legado
