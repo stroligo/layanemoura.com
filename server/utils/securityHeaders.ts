@@ -3,9 +3,23 @@ function isProduction() {
 }
 
 /** Content-Security-Policy alinhada com fontes Google, imagens locais/remotas e Nuxt. */
-export function buildContentSecurityPolicy(nonce?: string) {
+export function buildContentSecurityPolicy(options?: {
+  nonce?: string;
+  /** Nuxt Studio (editor): ícones Iconify + WASM/SQLite no cliente. */
+  relaxForStudio?: boolean;
+}) {
   const scriptSrc = ["'self'", "'unsafe-inline'"];
-  if (nonce) scriptSrc.push(`'nonce-${nonce}'`);
+  if (options?.nonce) scriptSrc.push(`'nonce-${options.nonce}'`);
+
+  const connectSrc = ["'self'"];
+  if (options?.relaxForStudio) {
+    scriptSrc.push("'unsafe-eval'", "'wasm-unsafe-eval'");
+    connectSrc.push(
+      'https://api.iconify.design',
+      'https://api.unisvg.com',
+      'https://api.simplesvg.com',
+    );
+  }
 
   const directives = [
     "default-src 'self'",
@@ -17,7 +31,7 @@ export function buildContentSecurityPolicy(nonce?: string) {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' data: https: blob:",
-    "connect-src 'self'",
+    `connect-src ${connectSrc.join(' ')}`,
     "media-src 'self'",
     "worker-src 'self' blob:",
     "manifest-src 'self'",
@@ -30,7 +44,10 @@ export function buildContentSecurityPolicy(nonce?: string) {
   return directives.join('; ');
 }
 
-export function buildSecurityHeaders(options?: { siteOrigin?: string }) {
+export function buildSecurityHeaders(options?: {
+  siteOrigin?: string;
+  relaxForStudio?: boolean;
+}) {
   const headers: Record<string, string> = {
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
@@ -40,7 +57,9 @@ export function buildSecurityHeaders(options?: { siteOrigin?: string }) {
     'Cross-Origin-Resource-Policy': 'same-site',
     'Permissions-Policy':
       'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()',
-    'Content-Security-Policy': buildContentSecurityPolicy(),
+    'Content-Security-Policy': buildContentSecurityPolicy({
+      relaxForStudio: options?.relaxForStudio,
+    }),
   };
 
   if (isProduction()) {

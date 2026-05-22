@@ -41,10 +41,17 @@
   --font-sans: var(--font-inter);
 
   /* ——— Layout & motion ——— */
+  --height-top-bar-pad-y: 4px;
   --height-logo-nav-max: 80px;
   --height-logo-nav-compact: 44px;
-  --height-nav: var(--height-logo-nav-max);
-  --height-nav-compact: var(--height-logo-nav-compact);
+  --height-top-bar-max: calc(
+    var(--height-logo-nav-max) + 2 * var(--height-top-bar-pad-y)
+  );
+  --height-top-bar-compact: calc(
+    var(--height-logo-nav-compact) + 2 * var(--height-top-bar-pad-y)
+  );
+  --height-nav: var(--height-top-bar-max);
+  --height-nav-compact: var(--height-top-bar-compact);
   --height-nav-md: var(--height-nav);
 
   --radius-ui: 6px;

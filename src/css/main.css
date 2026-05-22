@@ -90,18 +90,17 @@
   }
 
   html.nav-compact {
-    --height-nav: var(--height-logo-nav-compact);
-    --height-logo-nav-max: var(--height-logo-nav-compact);
-    --height-nav-md: var(--height-logo-nav-compact);
+    --height-nav: var(--height-top-bar-compact);
+    --height-nav-md: var(--height-top-bar-compact);
   }
 
   .main-with-nav {
-    padding-top: var(--height-logo-nav-max);
+    padding-top: var(--height-top-bar-max);
     transition: padding-top 0.4s var(--ease-organic);
   }
 
   html.nav-compact .main-with-nav {
-    padding-top: var(--height-logo-nav-compact);
+    padding-top: var(--height-top-bar-compact);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -149,11 +148,12 @@
   .top-bar {
     @apply fixed top-0 left-0 z-50 w-full border-b border-border bg-paper/95 backdrop-blur-sm;
     box-shadow: var(--shadow-elevation-1);
-    height: var(--height-logo-nav-max);
+    height: var(--height-top-bar-max);
     transition: height 0.4s var(--ease-organic);
 
     .top-bar-nav {
       @apply grid h-full min-h-0 w-full items-center gap-2;
+      padding-block: var(--height-top-bar-pad-y);
       grid-template-columns: 1fr auto 1fr;
     }
 
@@ -206,7 +206,7 @@
 
   html.nav-compact .top-bar,
   .top-bar.top-bar--compact {
-    height: var(--height-logo-nav-compact);
+    height: var(--height-top-bar-compact);
   }
 
   html.nav-compact .top-bar .site-logo .site-logo-svg,
@@ -740,7 +740,7 @@
 
   .gallery-toolbar {
     @apply fixed left-0 right-0 z-40 border-b border-border bg-paper/95 backdrop-blur-sm;
-    top: var(--height-logo-nav-max);
+    top: var(--height-top-bar-max);
     transform: translateY(0);
     transition:
       transform 0.4s var(--ease-organic),
@@ -754,7 +754,7 @@
   }
 
   html.nav-compact .gallery-toolbar {
-    top: var(--height-logo-nav-compact);
+    top: var(--height-top-bar-compact);
   }
 
   .home-gallery__projects {
@@ -877,13 +877,13 @@
   @media (min-width: 1024px) {
     .contact-photo {
       position: sticky;
-      top: calc(var(--height-logo-nav-max) + 1.25rem);
+      top: calc(var(--height-top-bar-max) + 1.25rem);
       align-self: start;
       transition: top 0.4s var(--ease-organic);
     }
 
     html.nav-compact .contact-photo {
-      top: calc(var(--height-logo-nav-compact) + 1.25rem);
+      top: calc(var(--height-top-bar-compact) + 1.25rem);
     }
   }
 

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <title>Guia de conteúdo — layanemoura.com</title>
+  <style>
+    @page { margin: 2cm; size: A4; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: #3d2e24;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 20pt;
+      color: #c45a2a;
+      margin: 0 0 0.25em;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 13pt;
+      color: #5a3e2b;
+      margin: 1.4em 0 0.5em;
+      padding-bottom: 0.2em;
+      border-bottom: 1px solid #ddd6c7;
+      page-break-after: avoid;
+    }
+    h3 { font-size: 11pt; margin: 1em 0 0.4em; color: #5a3e2b; }
+    p { margin: 0.4em 0 0.6em; }
+    .meta { font-size: 9.5pt; color: #7a6558; margin-bottom: 1.2em; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.6em 0 1em;
+      font-size: 9.5pt;
+    }
+    th, td {
+      border: 1px solid #ddd6c7;
+      padding: 0.45em 0.55em;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f2e8da; font-weight: 600; }
+    pre, code {
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 8pt;
+      background: #faf8f4;
+    }
+    pre {
+      border: 1px solid #ddd6c7;
+      border-radius: 4px;
+      padding: 0.65em 0.75em;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0.5em 0 1em;
+      page-break-inside: avoid;
+    }
+    ul, ol { margin: 0.4em 0 0.8em; padding-left: 1.4em; }
+    li { margin: 0.2em 0; }
+    .folder {
+      font-family: monospace;
+      font-size: 8.5pt;
+      background: #faf8f4;
+      border: 1px solid #ddd6c7;
+      padding: 0.65em 0.85em;
+      line-height: 1.35;
+      margin: 0.5em 0 1em;
+    }
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li::before { content: '☐ '; }
+    .footer-note {
+      margin-top: 2em;
+      padding-top: 0.8em;
+      border-top: 1px solid #ddd6c7;
+      font-size: 9pt;
+      color: #7a6558;
+      font-style: italic;
+    }
+    .page-break { page-break-before: always; }
+  </style>
+</head>
+<body>
+
+<h1>Guia de conteúdo — layanemoura.com</h1>
+<p class="meta">
+  <strong>Para:</strong> Layane Moura &nbsp;·&nbsp;
+  <strong>De:</strong> Stroligo (desenvolvimento do site) &nbsp;·&nbsp;
+  <strong>Objetivo:</strong> Reunir textos, imagens e depoimentos para o portfólio
+</p>
+
+<h2>1. O que precisamos de si</h2>
+
+<h3>Projetos (obras da galeria)</h3>
+<p>Para <strong>cada obra</strong> que quiser publicar:</p>
+<table>
+  <tr><th>Item</th><th>Descrição</th></tr>
+  <tr><td>Título</td><td>Nome curto (ex.: <em>Bruma</em>)</td></tr>
+  <tr><td>Subtítulo</td><td>Tipo de trabalho (ex.: <em>Archipelago Map</em>)</td></tr>
+  <tr><td>Secção</td><td><strong>Mapas</strong> ou <strong>Mais</strong> (ilustração, capas, editorial…)</td></tr>
+  <tr><td>Tags</td><td>2–4 palavras para filtro (ex.: travel, fantasy-maps)</td></tr>
+  <tr><td>Ano</td><td>Ano de conclusão (ex.: 2025)</td></tr>
+  <tr><td>Descrição</td><td>Texto do modal — <strong>inglês e português</strong></td></tr>
+  <tr><td>Imagens</td><td>Capa + fotos extra (opcional)</td></tr>
+  <tr><td>Links</td><td>Behance, site do cliente, etc. (opcional)</td></tr>
+  <tr><td>Destaque</td><td>Obra principal no topo da secção (sim/não)</td></tr>
+</table>
+
+<h3>Depoimentos (carousel)</h3>
+<table>
+  <tr><th>Item</th><th>Descrição</th></tr>
+  <tr><td>Citação</td><td>Texto — <strong>inglês e português</strong></td></tr>
+  <tr><td>Nome</td><td>Quem escreveu</td></tr>
+  <tr><td>Cargo</td><td>EN e PT</td></tr>
+  <tr><td>Empresa</td><td>Opcional</td></tr>
+  <tr><td>Tipo de projeto</td><td>Frase curta sob o nome (opcional)</td></tr>
+  <tr><td>Ordem</td><td>Qual aparece primeiro (1.º, 2.º…)</td></tr>
+  <tr><td>Autorização</td><td>Confirmar publicação no site</td></tr>
+</table>
+
+<h3>Imagens — regras</h3>
+<ul>
+  <li>Formato: <strong>JPG</strong> ou <strong>PNG</strong>, boa resolução (~1200 px de largura ou mais).</li>
+  <li>Nomes: sem espaços, sem acentos, palavras com hífen.</li>
+  <li>Capa: <code>nome-do-projeto.jpg</code> (ex.: <code>cedar-lane-atlas.jpg</code>)</li>
+  <li>Extras: pasta <code>nome-do-projeto/02.jpg</code>, <code>03.jpg</code>…</li>
+</ul>
+
+<h2>2. Como enviar</h2>
+
+<h3>Opção A — Editar no site (recomendado)</h3>
+<p>Formulário no browser (acesso configurado pela Stroligo). Basta textos EN/PT, imagens com nomes corretos e indicação de destaques.</p>
+
+<h3>Opção B — Pasta (Drive / Dropbox / e-mail)</h3>
+<div class="folder">layanemoura-conteudo/<br>
+├── projetos/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(um ficheiro .yml por obra)<br>
+├── depoimentos/ &nbsp;&nbsp;(um ficheiro .yml por pessoa)<br>
+└── imagens/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(JPG com nomes corretos)</div>
+<p>Pode enviar Word ou Google Docs com os mesmos campos — nós convertemos.</p>
+
+<h2 class="page-break">3. Modelo — projeto</h2>
+<p><strong>Nome do ficheiro:</strong> <code>nome-do-projeto.yml</code> (ex.: <code>bruma-archipelago.yml</code>)</p>
+<pre>published: true
+highlight: false
+
+title: Bruma
+subtitle: Archipelago Map
+
+category: maps
+tags:
+  - fantasy-maps
+  - travel
+
+year: 2023
+layout: tall
+
+description:
+  en: |
+    English description. **Bold** and *italic* allowed.
+    Blank line = new paragraph.
+  pt: |
+    Descrição em português. **Negrito** e *itálico*.
+    Linha em branco = novo parágrafo.
+
+images:
+  - src: /images/projects/bruma-archipelago.jpg
+  - src: /images/projects/bruma-archipelago/02.jpg
+
+links:
+  - label:
+      en: View on Behance
+      pt: Ver no Behance
+    url: https://www.behance.net/layanemds</pre>
+
+<table>
+  <tr><th>Campo</th><th>Valores</th></tr>
+  <tr><td>published</td><td>true = publicado · false = rascunho</td></tr>
+  <tr><td>highlight</td><td>true = destaque no topo</td></tr>
+  <tr><td>category</td><td>maps ou more</td></tr>
+  <tr><td>layout</td><td>normal · tall · wide (ajustamos se precisar)</td></tr>
+  <tr><td>images</td><td>1.ª imagem = capa na grelha</td></tr>
+</table>
+
+<h2>4. Modelo — depoimento</h2>
+<p><strong>Nome do ficheiro:</strong> <code>nome-da-pessoa.yml</code> (ex.: <code>sarah-mitchell.yml</code>)</p>
+<pre>published: true
+order: 10
+
+quote:
+  en: English testimonial text…
+  pt: Texto do depoimento em português…
+
+clientName: Sarah Mitchell
+
+clientRole:
+  en: Creative Director
+  pt: Diretora criativa
+
+clientCompany: Horizon Travel Co.
+
+projectType:
+  en: Travel illustration
+  pt: Ilustração de viagem</pre>
+
+<table>
+  <tr><th>Campo</th><th>Notas</th></tr>
+  <tr><td>order</td><td>Número menor = aparece primeiro (10, 20, 30…)</td></tr>
+  <tr><td>clientCompany / projectType</td><td>Opcionais</td></tr>
+</table>
+
+<h2>5. Checklist</h2>
+<h3>Por projeto</h3>
+<ul class="checklist">
+  <li>Título e subtítulo</li>
+  <li>Secção: mapas ou mais</li>
+  <li>Tags e ano</li>
+  <li>Descrição EN + PT</li>
+  <li>Capa + fotos extra</li>
+  <li>Links (se houver)</li>
+  <li>Destaque (sim/não)</li>
+</ul>
+<h3>Por depoimento</h3>
+<ul class="checklist">
+  <li>Citação EN + PT</li>
+  <li>Nome e cargo EN/PT</li>
+  <li>Ordem e autorização</li>
+</ul>
+
+<h2>6. Dúvidas frequentes</h2>
+<p><strong>Preciso escrever em YAML?</strong> Não. Word, Docs ou tabela servem.</p>
+<p><strong>Quantos projetos?</strong> Quantos quiser; pode começar com 12–20 e acrescentar depois.</p>
+<p><strong>Só um idioma?</strong> Envie o que tiver; ajudamos no segundo ou publicamos temporariamente um só.</p>
+<p><strong>layout?</strong> Pode deixar <code>normal</code> ou indicar vertical/horizontal na pasta.</p>
+<p><strong>Contacto e bio?</strong> Tratamos noutro passo (ou no editor do site).</p>
+
+<p class="footer-note">Documento para layanemoura.com — Stroligo · maio 2026</p>
+
+</body>
+</html>

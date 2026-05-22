@@ -9,7 +9,10 @@ export default defineEventHandler((event) => {
     setHeader(event, 'Cache-Control', 'no-store');
   }
 
-  const headers = buildSecurityHeaders();
+  const relaxForStudio =
+    process.env.NODE_ENV === 'development' || path.startsWith('/_studio');
+
+  const headers = buildSecurityHeaders({ relaxForStudio });
   for (const [name, value] of Object.entries(headers)) {
     setHeader(event, name, value);
   }

@@ -6,10 +6,7 @@
     :aria-label="t('nav.homeAria', { name: site.name })"
     @click="onLogoClick"
   >
-    <LogoSignatureDraw
-      :animate="variant === 'default'"
-      :inverted="variant === 'footer'"
-    />
+    <LogoSignatureDraw :animate="variant === 'default'" :inverted="variant === 'footer'" />
   </NuxtLink>
 </template>
 

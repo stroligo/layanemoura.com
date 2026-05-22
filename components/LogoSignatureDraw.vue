@@ -62,10 +62,7 @@ let resetTimer: ReturnType<typeof window.setTimeout> | undefined;
 let drawTimer: ReturnType<typeof window.setTimeout> | undefined;
 
 function prefersReducedMotion() {
-  return (
-    import.meta.client &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
+  return import.meta.client && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 function setReveal(scale: number, animate: boolean) {
