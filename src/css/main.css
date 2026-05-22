@@ -1047,7 +1047,7 @@
   }
 
   .gallery-groups {
-    @apply relative md:pt-6! pt-2!;
+    @apply relative md:pt-4! pt-2!;
   }
 
   .gallery-group-switch-enter-active,
