@@ -12,7 +12,7 @@ export default defineEventHandler((event) => {
     githubClientIdSet: hasGithubId,
     siteUrl: config.public.siteUrl,
     studioUrl: `${config.public.siteUrl}/_studio`,
-    oauthCallbackHint: `${config.public.siteUrl}/_studio/auth/github/callback`,
+    oauthCallbackHint: `${config.public.siteUrl}/__nuxt_studio/auth/github`,
     nextSteps: config.public.studioInBuild
       ? hasGithubId && hasGithubSecret
         ? 'Abra /_studio e inicie sessão com GitHub. Confirme o callback no OAuth App.'

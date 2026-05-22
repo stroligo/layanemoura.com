@@ -5,6 +5,7 @@ definePageMeta({
 });
 
 const config = useRuntimeConfig();
+const oauthCallback = `${config.public.siteUrl}/__nuxt_studio/auth/github`;
 
 if (config.public.studioInBuild) {
   await navigateTo('/_studio', { replace: true });
@@ -35,8 +36,8 @@ if (config.public.studioInBuild) {
           <li><code>STUDIO_GITHUB_CLIENT_ID</code></li>
           <li><code>STUDIO_GITHUB_CLIENT_SECRET</code></li>
           <li>
-            Callback no GitHub:
-            <code>https://layanemoura.com/_studio/auth/github/callback</code>
+            Callback no GitHub (copiar exactamente):
+            <code>{{ oauthCallback }}</code>
           </li>
         </ul>
       </li>

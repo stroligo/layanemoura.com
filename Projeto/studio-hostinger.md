@@ -21,7 +21,8 @@ Sem `STUDIO_REPOSITORY_*` o comando `npm run build` **não inclui** o Studio →
 
 1. https://github.com/settings/developers → **New OAuth App**
 2. **Homepage URL:** `https://layanemoura.com`
-3. **Authorization callback URL:** `https://layanemoura.com/_studio/auth/github/callback`
+3. **Authorization callback URL:** `https://layanemoura.com/__nuxt_studio/auth/github`  
+   (não use `/_studio/auth/...` — o GitHub rejeita se o URL não coincidir byte a byte)
 4. Copie Client ID e Client Secret para as variáveis acima.
 
 O utilizador GitHub que edita precisa de **acesso de escrita** ao repositório.
