@@ -5,15 +5,35 @@
     "contactTitle": "Get in touch — Layane Moura",
     "contactDescription": "Contact Layane Moura for illustration commissions, maps, book covers and collaborations."
   },
+  "seo": {
+    "homeH1": "{name} — Illustrator & Map Maker",
+    "ogImageAlt": "{name} — illustrator and map maker",
+    "uikitTitle": "UI Kit — Layane Moura",
+    "uikitDescription": "Internal design system reference. Not indexed."
+  },
   "site": {
     "tagline": "Illustrator & Map Maker",
     "description": "Brazilian illustrator turning real and imaginary places into sensitive, organic narratives — fantasy maps, travel art, book covers and editorial work.",
-    "photoAlt": "{name} — illustrator",
-    "about": {
-      "p1": "Hi, I'm a curious illustrator, born in Brazil, but living around the world in a campervan for over a year now! I work with both digital and traditional media, like watercolor, most of the time mixing everything together.",
-      "p2": "I'm passionate about new places, people and cultures, which definitely reflects in my work! And this goes for 'real worlds' as well as those that exist only in our imagination. So, I produce a lot of things in the universe of fantasy and ludic as well.",
-      "p3": "My work allows applications in the most diverse types of media, mainly children's book covers, magazines, product design and advertising pieces.",
-      "p4": "Why don't we keep in contact? :)"
+    "photoAlt": "{name} — illustrator"
+  },
+  "loading": {
+    "aria": "Loading images"
+  },
+  "error": {
+    "retry": "Try again",
+    "home": "Back to home",
+    "galleryLoad": "We couldn't load the gallery. Please try again.",
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist or may have moved."
+    },
+    "server": {
+      "title": "Something went wrong",
+      "description": "A server error occurred. Please try again in a moment."
+    },
+    "generic": {
+      "title": "Unexpected error",
+      "description": "Something went wrong while loading this page."
     }
   },
   "nav": {
@@ -21,19 +41,29 @@
     "homeAria": "{name} — home",
     "getInTouch": "Get in touch",
     "langAria": "Language",
-    "breadcrumbAria": "Breadcrumb"
+    "breadcrumbAria": "Breadcrumb",
+    "mainAria": "Main navigation"
   },
-  "categories": {
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "opensNewTab": "(opens in new tab)",
+    "externalLink": "{label} (opens in new tab)"
+  },
+  "tags": {
     "fantasy-maps": "Fantasy Maps",
     "travel": "Travel",
+    "touristic": "Touristic",
     "book-covers": "Book Covers",
     "editorial": "Editorial",
     "patterns": "Patterns",
     "commercial": "Commercial"
   },
   "gallery": {
-    "filterAria": "Reorder gallery sections",
+    "sectionTitle": "Portfolio gallery",
+    "filterAria": "Gallery filters",
+    "sectionGroupAria": "Gallery section",
     "tagChipsAria": "Highlight by tag",
+    "viewProject": "View project: {title} — {subtitle}",
     "tags": {
       "all": "All"
     },
@@ -47,13 +77,11 @@
     "sort": {
       "date": "Date",
       "tag": "Tag",
-      "views": "Views",
       "title": "Title"
     },
     "sortDirection": {
       "date": { "desc": "Newest first", "asc": "Oldest first" },
       "tag": { "desc": "Z → A", "asc": "A → Z" },
-      "views": { "desc": "Most viewed", "asc": "Least viewed" },
       "title": { "desc": "Z → A", "asc": "A → Z" }
     },
     "noProjects": "No projects in this category yet.",
@@ -63,82 +91,54 @@
   "reviews": {
     "eyebrow": "Kind words",
     "title": "What clients say",
-    "carouselLabel": "Review {current} of {total}",
-    "prev": "Previous review",
-    "next": "Next review",
-    "choose": "Choose review",
-    "by": "Review by {name}",
-    "items": [
-      {
-        "id": "review-1",
-        "text": "Layane captured the spirit of our destination with a map that feels both informative and full of soul. Our travellers still share it on social media months later.",
-        "clientName": "Sarah Mitchell",
-        "clientRole": "Creative Director",
-        "clientCompany": "Horizon Travel Co.",
-        "projectType": "Travel illustration"
-      },
-      {
-        "id": "review-2",
-        "text": "The fantasy map she created for my son's book is the heart of the story. Every corner hides a detail he discovers again and again — it's magical without being childish.",
-        "clientName": "Daniela Ribeiro",
-        "clientRole": "Author",
-        "projectType": "Children's book map"
-      },
-      {
-        "id": "review-3",
-        "text": "Working with Layane felt like collaborating with someone who truly listens. The cover illustration balances warmth and mystery exactly the way we imagined.",
-        "clientName": "James Whitmore",
-        "clientRole": "Art Director",
-        "clientCompany": "Northlight Editions",
-        "projectType": "Book cover"
-      },
-      {
-        "id": "review-4",
-        "text": "Her vintage travel posters gave our campaign a handcrafted, timeless quality. The line work and colour palette stood out immediately in a sea of stock imagery.",
-        "clientName": "Elena Costa",
-        "clientRole": "Brand Strategist",
-        "clientCompany": "Wander Studio",
-        "projectType": "Editorial & posters"
-      },
-      {
-        "id": "review-5",
-        "text": "We needed a tourist map that felt inviting, not clinical. Layane delivered something our visitors treasure — clear, beautiful, and unmistakably Tuscan.",
-        "clientName": "Marco Bellini",
-        "clientRole": "Tourism Coordinator",
-        "clientCompany": "Regione Toscana — Partner project",
-        "projectType": "Travel map"
-      }
-    ]
+    "carouselLabel": "Group {current} of {total}",
+    "prev": "Previous group",
+    "next": "Next group",
+    "choose": "Choose review group",
+    "pageBy": "Group {current} — {name}",
+    "by": "Review by {name}"
   },
   "contact": {
-    "eyebrow": "Get in touch",
-    "title": "Let's create something together.",
-    "heading": "Contact",
-    "basedIn": "Based in",
-    "basedInValue": "Europe (nomad)",
-    "languages": "Languages",
-    "languagesValue": "PT · EN · FR (basic)",
-    "availability": "Availability",
-    "availabilityValue": "Freelance & remote full-time",
-    "formTitle": "Send a message",
-    "name": "Name",
-    "email": "Email",
-    "message": "Message",
-    "submit": "Send via email",
-    "aboutEmail": "Send me a message to {email}!",
     "mailSubject": "Project inquiry from {name}",
-    "mailBody": "Name: {name}\nEmail: {email}\n\n{message}"
+    "mailBody": "Name: {name}\nEmail: {email}\n\n{message}",
+    "form": {
+      "title": "Send a message",
+      "name": "Name",
+      "email": "Email",
+      "emailRequired": "Enter your email address.",
+      "emailInvalid": "Enter a valid email address (e.g. name{'@'}example.com).",
+      "message": "Message",
+      "submit": "Send message",
+      "successTitle": "Message sent",
+      "successMessage": "Thank you — your message was sent. We will get back to you as soon as possible.",
+      "errorTitle": "Could not send",
+      "errorInvalid": "Check the fields and try again, or write directly to {email}.",
+      "errorServer": "Something went wrong while sending. Please try again in a moment or email {email} directly.",
+      "errorRateLimit": "Too many attempts. Please wait a few minutes and try again.",
+      "errorNotConfigured": "The contact form is not configured on the server yet. Please email {email} directly."
+    }
   },
   "modal": {
     "close": "Close",
-    "tools": "Tools:",
-    "views": "Views:",
+    "projectPrev": "Previous project",
+    "projectNext": "Next project",
+    "tagsAria": "Project tags",
     "behance": "View on Behance",
-    "getInTouch": "Get in touch"
+    "getInTouch": "Get in touch",
+    "galleryAria": "Project images",
+    "galleryPrev": "Previous image",
+    "galleryNext": "Next image",
+    "galleryThumbs": "Image thumbnails",
+    "galleryGoTo": "Image {n}",
+    "gallerySlide": "{alt} — image {current} of {total}"
+  },
+  "floating": {
+    "backToTop": "Back to top",
+    "whatsapp": "Chat on WhatsApp"
   },
   "footer": {
-    "nomad": "Europe · nomad studio",
-    "rights": "© {year} {name}. All rights reserved."
+    "rights": "© {year} {name}. All rights reserved.",
+    "developmentBy": "Development by:"
   },
   "projects": {
     "desmenia-treasure-map": {

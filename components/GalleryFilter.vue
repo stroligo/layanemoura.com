@@ -1,9 +1,9 @@
 <template>
-  <div class="gallery-filter" role="toolbar" :aria-label="t('gallery.filterAria')">
+  <div class="gallery-filter" role="group" :aria-label="t('gallery.filterAria')">
     <div class="container-fluid wrap">
       <div class="gallery-filter-bar">
         <ul
-          v-if="categoryChips.length"
+          v-if="tagChips.length"
           class="gallery-tag-chips"
           role="list"
           :aria-label="t('gallery.tagChipsAria')"
@@ -12,18 +12,20 @@
             <button
               type="button"
               class="gallery-tag-chip"
-              :class="{ active: highlightCategory === null }"
-              @click="emit('update:highlight-category', null)"
+              :class="{ active: highlightTag === null }"
+              :aria-pressed="highlightTag === null"
+              @click="emit('update:highlight-tag', null)"
             >
               {{ t('gallery.tags.all') }}
             </button>
           </li>
-          <li v-for="chip in categoryChips" :key="chip.id">
+          <li v-for="chip in tagChips" :key="chip.id">
             <button
               type="button"
               class="gallery-tag-chip"
-              :class="{ active: highlightCategory === chip.id }"
-              @click="emit('update:highlight-category', chip.id)"
+              :class="{ active: highlightTag === chip.id }"
+              :aria-pressed="highlightTag === chip.id"
+              @click="emit('update:highlight-tag', chip.id)"
             >
               {{ chip.label }}
             </button>
@@ -31,18 +33,23 @@
         </ul>
 
         <div class="gallery-filter-actions">
-          <ul class="gallery-filter-pills" role="list">
-            <li v-for="filter in galleryGroupFilters" :key="filter.id">
-              <button
-                type="button"
-                class="filter-pill"
-                :class="{ active: group === filter.id }"
-                @click="emit('update:group', filter.id)"
-              >
-                {{ filter.label }}
-              </button>
-            </li>
-          </ul>
+          <div
+            class="gallery-filter-pills"
+            role="group"
+            :aria-label="t('gallery.sectionGroupAria')"
+          >
+            <button
+              v-for="filter in galleryGroupFilters"
+              :key="filter.id"
+              type="button"
+              class="filter-pill"
+              :class="{ active: group === filter.id }"
+              :aria-pressed="group === filter.id"
+              @click="emit('update:group', filter.id)"
+            >
+              {{ filter.label }}
+            </button>
+          </div>
 
           <NuxtLink
             :to="localePath('/get-in-touch')"
@@ -57,21 +64,20 @@
 </template>
 
 <script setup lang="ts">
-import type { GalleryGroup, ProjectCategory } from '~/data/site';
+import type { GalleryGroup, ProjectTag } from '~/data/site';
 
 const { t } = useI18n();
 const localePath = useLocalePath();
-const { galleryGroupFilters, categoryChipsForGroup } = useGalleryI18n();
+const { galleryGroupFilters } = useGalleryI18n();
 
-const props = defineProps<{
+defineProps<{
   group: GalleryGroup;
-  highlightCategory: ProjectCategory | null;
+  highlightTag: ProjectTag | null;
+  tagChips: { id: ProjectTag; label: string }[];
 }>();
 
 const emit = defineEmits<{
   'update:group': [value: GalleryGroup];
-  'update:highlight-category': [value: ProjectCategory | null];
+  'update:highlight-tag': [value: ProjectTag | null];
 }>();
-
-const categoryChips = computed(() => categoryChipsForGroup(props.group));
 </script>

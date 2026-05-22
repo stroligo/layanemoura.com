@@ -1,10 +1,10 @@
-import type { GalleryLayout } from '~/data/projects';
+import type { GalleryLayout } from '~/types/project';
 
 const ROW_UNIT_PX = 8;
 /** Proporção aproximada (largura × altura) quando ainda não há imagem */
 const LAYOUT_SIZE: Record<GalleryLayout, { w: number; h: number }> = {
   tall: { w: 4, h: 5 },
-  wide: { w: 16, h: 9 },
+  wide: { w: 16, h: 10 },
   normal: { w: 4, h: 3 },
 };
 
@@ -114,18 +114,17 @@ export function useGalleryItemSpan(
     applySpan(w, h);
   }
 
+  /** Grelha estável: altura da linha vem do layout, não do carregamento da imagem. */
   function remeasure() {
-    const el = root.value;
-    const img = el?.querySelector<HTMLImageElement>('.gallery-item-img');
-    if (img?.complete && img.naturalWidth) {
-      measureFromImage(img);
-    } else {
-      measureFromLayout();
-    }
+    measureFromLayout();
   }
 
   function onImageLoad(event: Event) {
-    measureFromImage(event.target as HTMLImageElement);
+    const img = event.target as HTMLImageElement;
+    if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+      const aspect = img.naturalHeight / img.naturalWidth;
+      isPortrait.value = aspect >= readAspectTallThreshold();
+    }
   }
 
   onMounted(() => {

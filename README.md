@@ -19,11 +19,87 @@ npm run dev
 npm run build
 ```
 
-## Imagens dos projetos
+## Formulário de contacto (SMTP)
 
-Capas dos projetos estão em `public/images/projects/` (baixadas do Behance; ver `scripts/fetch-behance-covers.sh`). Referenciadas em `data/projects.ts` via `image: '/images/projects/{slug}.jpg'`. Sem `image`, a grelha usa gradiente placeholder.
+O formulário em `/get-in-touch` envia e-mail pelo servidor (não abre o Mail do visitante). Configure no `.env`:
+
+| Variável | Exemplo |
+| --- | --- |
+| `CONTACT_TO_EMAIL` | `hi@layanemoura.com.br` |
+| `CONTACT_FROM_EMAIL` | mesmo endereço SMTP autenticado |
+| `SMTP_HOST` | `smtp.hostinger.com` (do seu provedor) |
+| `SMTP_PORT` | `587` |
+| `SMTP_USER` / `SMTP_PASS` | credenciais SMTP |
+
+Em desenvolvimento, sem SMTP o envio falha com mensagem clara na UI. Use a senha de app do Gmail ou SMTP do alojamento do domínio.
+
+### Aviso no WhatsApp (opcional)
+
+Depois de cada envio com sucesso, o servidor pode mandar a mesma mensagem para o WhatsApp da Layane:
+
+| Variável | Uso |
+| --- | --- |
+| `WHATSAPP_NOTIFY_ENABLED` | `true` para ativar |
+| `WHATSAPP_NOTIFY_PHONE` | `5563992429380` (código do país + número, sem `+`) |
+| `CALLMEBOT_API_KEY` | [CallMeBot](https://www.callmebot.com/blog/free-api-whatsapp-messages/) — grátis; Layane regista o bot uma vez e copia a chave |
+| `WHATSAPP_NOTIFY_WEBHOOK` | Alternativa: URL POST (Make/n8n) em vez de CallMeBot |
+
+Se o WhatsApp falhar, o e-mail **continua enviado** — o erro só aparece no log do servidor.
+
+## Projetos (Nuxt Content + Studio)
+
+A galeria lê os projetos de **`content/projects/*.yml`**, editáveis com [Nuxt Studio](https://nuxt.studio/setup).
+
+| Comando | Uso |
+| --- | --- |
+| `npm run dev` | Site + botão do Studio (edição local, sync com os ficheiros) |
+| `npm run content:sync` | Gera YAML a partir de `data/projects.ts` (mock / seed) |
+
+Capas em `public/images/projects/{slug}.jpg`. Ver `content/README.md` e `.env.example` para publicar em produção (GitHub OAuth + SSR).
 
 Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato final).
+
+## Segurança
+
+- **HTTP headers** em todas as respostas (`server/middleware/security-headers.ts`): CSP, HSTS (produção), `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, etc.
+- **CSP** permite fontes Google, imagens `https:`, `form-action` com `mailto:` (formulário de contacto)
+- **URLs validadas** em projetos, redes sociais e content (`utils/security.ts`) — bloqueia `javascript:`, `data:`, etc.
+- **Markdown do modal** escapado; padrões perigosos (`<script`, `on*=`) mostrados como texto
+- **Formulário de contacto** envia e-mail via API (`POST /api/contact`) + SMTP (ver `.env.example`)
+- **Cookie de idioma** com `Secure` em produção
+- **Segredos** só em `.env` (nunca `NUXT_PUBLIC_` para OAuth do Studio)
+- **`/.well-known/security.txt`** — contacto para reporte responsável
+
+## Performance
+
+- Fontes Google carregadas de forma **assíncrona** (`plugins/fonts-async.client.ts`) — primeiro paint com fallbacks do sistema
+- Galeria: **8 primeiras capas** com prioridade (`eager` / `preload`); restantes `lazy`
+- Cache longo em `/images/**`, favicons e `/_nuxt/**` (ver `routeRules` em `nuxt.config.ts`)
+- Páginas públicas com **SWR** (revalidação ~1 h)
+- Assets públicos comprimidos no build (`nitro.compressPublicAssets`)
+
+## Erros
+
+- `error.vue` — 404, 500 e erros genéricos (layout do site, EN/PT)
+- `pages/[...slug].vue` — rotas inexistentes → 404
+- `ErrorState` — falha ao carregar galeria ou página de contacto (botão “Tentar novamente”)
+
+## Acessibilidade
+
+- Link **Saltar para o conteúdo** (teclado)
+- Foco visível (`:focus-visible`) em controlos interativos
+- Modal com focus trap, Escape, `aria-labelledby` no título
+- Filtros com `aria-pressed`; itens filtrados desativados na galeria
+- Carrosséis: setas só com foco no componente; autoplay desligado com `prefers-reduced-motion`
+- Hierarquia de headings (H1 home, H2 galeria/reviews, H1 contacto)
+
+## SEO
+
+- Meta tags, Open Graph e Twitter Card via `useSiteSeo` (por página)
+- `hreflang` + canonical automáticos (`@nuxtjs/i18n` + `useLocaleHead`)
+- JSON-LD (`Person`, `WebSite`, `ContactPage`)
+- `/sitemap.xml` e `/robots.txt` (dinâmicos)
+- Em produção, defina `NUXT_PUBLIC_SITE_URL` no `.env` (ver `.env.example`)
 
 ## Tokens
 

@@ -5,21 +5,42 @@
     class="gallery-item"
     :class="[
       `gallery-item--${project.layout}`,
-      { 'gallery-item--dimmed': dimmed, 'gallery-item--portrait': isPortrait },
+      {
+        'gallery-item--dimmed': dimmed,
+        'gallery-item--portrait': isPortrait,
+        'gallery-item--loaded': imageLoaded,
+      },
     ]"
     :style="gridRowEnd ? { gridRowEnd } : undefined"
-    :aria-label="`View ${project.title} — ${project.subtitle}`"
+    :disabled="dimmed"
+    :aria-disabled="dimmed || undefined"
+    :aria-label="
+      t('gallery.viewProject', {
+        title: project.title,
+        subtitle: project.subtitle,
+      })
+    "
     @click="$emit('select', project)"
   >
-    <div class="gallery-item-visual">
+    <div class="gallery-item-visual" :style="visualAspectStyle">
+      <div
+        v-if="coverImage"
+        class="gallery-item-skeleton"
+        :style="skeletonStyle"
+        aria-hidden="true"
+      />
       <img
-        v-if="project.image"
-        :src="project.image"
-        :alt="`${project.title}, ${project.subtitle}`"
+        v-if="coverImage"
+        :src="coverImage"
+        alt=""
         class="gallery-item-img"
-        loading="lazy"
+        :width="imageWidth"
+        :height="imageHeight"
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
+        :loading="priority ? 'eager' : 'lazy'"
         decoding="async"
-        @load="onImageLoad"
+        :fetchpriority="priority ? 'high' : 'auto'"
+        @load="onImageReady"
       />
       <div
         v-else
@@ -32,16 +53,37 @@
 </template>
 
 <script setup lang="ts">
-import type { Project } from '~/data/projects';
+import type { Project } from '~/types/project';
+import { projectCoverImage } from '~/types/project';
+
+const { t } = useI18n();
 
 const props = withDefaults(
-  defineProps<{ project: Project; dimmed?: boolean }>(),
-  { dimmed: false },
+  defineProps<{ project: Project; dimmed?: boolean; priority?: boolean }>(),
+  { dimmed: false, priority: false },
 );
+
+const imageDimensions = computed(() => {
+  switch (props.project.layout) {
+    case 'tall':
+      return { width: 320, height: 400 };
+    case 'wide':
+      return { width: 480, height: 300 };
+    default:
+      return { width: 320, height: 240 };
+  }
+});
+
+const imageWidth = computed(() => imageDimensions.value.width);
+const imageHeight = computed(() => imageDimensions.value.height);
 
 defineEmits<{
   select: [project: Project];
 }>();
+
+const coverImage = computed(() => projectCoverImage(props.project));
+
+const imageLoaded = ref(false);
 
 const root = ref<HTMLElement | null>(null);
 const { gridRowEnd, isPortrait, onImageLoad, remeasure } = useGalleryItemSpan(
@@ -49,25 +91,58 @@ const { gridRowEnd, isPortrait, onImageLoad, remeasure } = useGalleryItemSpan(
   props.project.layout,
 );
 
-const placeholderStyle = computed(() => ({
-  aspectRatio: String(
-    props.project.layout === 'tall'
-      ? '4 / 5'
-      : props.project.layout === 'wide'
-        ? '16 / 10'
-        : '4 / 3',
-  ),
-  background: `linear-gradient(165deg, color-mix(in srgb, ${props.project.thumbFrom} 75%, #faf8f4) 0%, color-mix(in srgb, ${props.project.thumbTo} 60%, #5a3e2b) 100%)`,
+const layoutAspect = computed(() => {
+  switch (props.project.layout) {
+    case 'tall':
+      return '4 / 5';
+    case 'wide':
+      return '16 / 10';
+    default:
+      return '4 / 3';
+  }
+});
+
+const visualAspectStyle = computed(() => ({
+  aspectRatio: layoutAspect.value,
 }));
 
+const skeletonStyle = computed(() => ({
+  aspectRatio: layoutAspect.value,
+  ...projectPlaceholderStyle(props.project.slug, 'card'),
+}));
+
+const placeholderStyle = computed(() => ({
+  aspectRatio: layoutAspect.value,
+  ...projectPlaceholderStyle(props.project.slug, 'card'),
+}));
+
+function onImageReady(event: Event) {
+  imageLoaded.value = true;
+  onImageLoad(event);
+}
+
 watch(
-  () => props.project.image,
+  () => coverImage.value,
+  () => {
+    imageLoaded.value = false;
+    nextTick(remeasure);
+  },
+);
+
+watch(
+  () => props.project.layout,
   () => nextTick(remeasure),
 );
 
 onMounted(() => {
-  if (!props.project.image) {
-    nextTick(remeasure);
+  nextTick(remeasure);
+
+  if (!import.meta.client || !coverImage.value) return;
+
+  const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
+  if (img?.complete && img.naturalWidth > 0) {
+    imageLoaded.value = true;
+    onImageLoad({ target: img } as Event);
   }
 });
 </script>

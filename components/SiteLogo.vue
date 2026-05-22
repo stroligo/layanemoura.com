@@ -2,30 +2,26 @@
   <NuxtLink
     :to="localePath('/')"
     class="site-logo group leading-none no-underline"
+    :class="variant === 'footer' ? 'site-logo--footer' : ''"
     :aria-label="t('nav.homeAria', { name: site.name })"
     @click="onLogoClick"
   >
-    <img
-      :src="logoSrc"
-      :alt="site.name"
-      class="site-logo-img"
-      :class="variant === 'footer' ? 'site-logo-img--footer' : ''"
-      decoding="async"
+    <LogoSignatureDraw
+      :animate="variant === 'default'"
+      :inverted="variant === 'footer'"
     />
   </NuxtLink>
 </template>
 
 <script setup lang="ts">
 import { site } from '~/data/site';
-import logoSrc from '~/assets/images/logo.png';
 
 const { t } = useI18n();
 const localePath = useLocalePath();
 
-const props = withDefaults(
-  defineProps<{ variant?: 'default' | 'footer' }>(),
-  { variant: 'default' },
-);
+withDefaults(defineProps<{ variant?: 'default' | 'footer' }>(), {
+  variant: 'default',
+});
 
 const route = useRoute();
 
@@ -38,10 +34,15 @@ function isOnHome() {
   return normalizePath(route.path) === normalizePath(localePath('/'));
 }
 
+function scrollToTop() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+}
+
 function onLogoClick(event: MouseEvent) {
-  if (props.variant === 'footer' || !import.meta.client || !isOnHome()) return;
+  if (!import.meta.client || !isOnHome()) return;
 
   event.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollToTop();
 }
 </script>

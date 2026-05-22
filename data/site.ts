@@ -2,50 +2,73 @@ export const site = {
   name: 'Layane Moura',
   email: 'hi@layanemoura.com.br',
   photo: '/images/about.JPG',
-  social: [
-    {
-      label: 'Behance',
-      href: 'https://www.behance.net/layanemds',
-      icon: 'behance',
-    },
-    {
-      label: 'Instagram',
-      href: 'https://www.instagram.com/layanemoura.png/',
-      icon: 'instagram',
-    },
-    {
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/layanemds/',
-      icon: 'linkedin',
-    },
-  ],
 } as const;
 
-export type ProjectCategory =
-  | 'fantasy-maps'
-  | 'travel'
-  | 'book-covers'
-  | 'editorial'
-  | 'patterns'
-  | 'commercial';
-
-/** Grupos da galeria (toolbar): Maps vs More */
+/** Secção da galeria (toolbar): Maps ou More */
 export type GalleryGroup = 'maps' | 'more';
 
 export const galleryGroupIds: GalleryGroup[] = ['maps', 'more'];
 
-export const categoriesByGroup: Record<GalleryGroup, ProjectCategory[]> = {
-  maps: ['fantasy-maps', 'travel'],
-  more: ['book-covers', 'editorial', 'patterns', 'commercial'],
-};
+/** Tag de classificação (slug livre; ex.: travel, desert, fantasy-maps) */
+export type ProjectTag = string;
 
-export function galleryGroupForCategory(
-  category: ProjectCategory,
-): GalleryGroup {
-  return categoriesByGroup.maps.includes(category) ? 'maps' : 'more';
+/** Tags legadas usadas na migração category → maps/more */
+export const legacyMapTags = ['fantasy-maps', 'travel'] as const;
+export const legacyMoreTags = [
+  'book-covers',
+  'editorial',
+  'patterns',
+  'commercial',
+] as const;
+
+export function isGalleryGroup(value: string): value is GalleryGroup {
+  return value === 'maps' || value === 'more';
 }
 
-export type SortField = 'date' | 'tag' | 'views' | 'title';
+export function isLegacyProjectTag(value: string): boolean {
+  return (
+    (legacyMapTags as readonly string[]).includes(value) ||
+    (legacyMoreTags as readonly string[]).includes(value)
+  );
+}
+
+export function galleryGroupForLegacyTag(tag: string): GalleryGroup {
+  return (legacyMapTags as readonly string[]).includes(tag) ? 'maps' : 'more';
+}
+
+/** Normaliza texto do YAML/Studio para slug estável (ex.: "Desert" → "desert"). */
+export function normalizeTagSlug(value: string): ProjectTag {
+  const trimmed = value.trim();
+  if (!trimmed) return '';
+
+  if (/^[a-z0-9]+(-[a-z0-9]+)*$/.test(trimmed)) {
+    return trimmed.toLowerCase();
+  }
+
+  return trimmed
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Tags únicas usadas em projetos da secção (ordem alfabética por slug). */
+export function tagsUsedInGroup(
+  projects: { category: GalleryGroup; tags: ProjectTag[] }[],
+  group: GalleryGroup,
+): ProjectTag[] {
+  const used = new Set<ProjectTag>();
+  for (const p of projects) {
+    if (p.category !== group) continue;
+    for (const tag of p.tags) {
+      if (tag) used.add(tag);
+    }
+  }
+  return [...used].sort((a, b) => a.localeCompare(b));
+}
+
+export type SortField = 'date' | 'tag' | 'title';
 export type SortDirection = 'asc' | 'desc';
 
 export const sortFieldDefaults: {
@@ -54,6 +77,5 @@ export const sortFieldDefaults: {
 }[] = [
   { field: 'date', defaultDirection: 'desc' },
   { field: 'tag', defaultDirection: 'asc' },
-  { field: 'views', defaultDirection: 'desc' },
   { field: 'title', defaultDirection: 'asc' },
 ];

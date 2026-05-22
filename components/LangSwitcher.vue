@@ -14,6 +14,7 @@
         :to="switchLocalePath(loc.code)"
         class="lang-switcher-link"
         :class="{ 'lang-switcher-link--active': locale === loc.code }"
+        :aria-current="locale === loc.code ? 'page' : undefined"
         :hreflang="loc.code"
         @click="onSwitch"
       >

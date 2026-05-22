@@ -1,30 +1,33 @@
 <template>
   <TransitionGroup
     tag="div"
-    name="gallery-reorder"
+    name="gallery-cards"
     class="gallery-organic"
-    role="list"
   >
     <GalleryItem
-      v-for="project in projects"
+      v-for="(project, index) in projects"
       :key="project.slug"
       :project="project"
       :dimmed="isDimmed(project)"
-      role="listitem"
+      :priority="index < priorityCoverCount"
+      :style="{ '--gallery-stagger': Math.min(index, 14) }"
       @select="$emit('select', $event)"
     />
   </TransitionGroup>
 </template>
 
 <script setup lang="ts">
-import type { Project } from '~/data/projects';
-import type { GalleryGroup, ProjectCategory } from '~/data/site';
+import { GALLERY_PRIORITY_COVER_COUNT } from '~/data/performance';
+import type { Project } from '~/types/project';
+import type { GalleryGroup, ProjectTag } from '~/data/site';
+
+const priorityCoverCount = GALLERY_PRIORITY_COVER_COUNT;
 
 const props = defineProps<{
   projects: Project[];
   sectionGroup: GalleryGroup;
   activeGroup: GalleryGroup;
-  highlightCategory: ProjectCategory | null;
+  highlightTag: ProjectTag | null;
 }>();
 
 defineEmits<{
@@ -32,8 +35,8 @@ defineEmits<{
 }>();
 
 function isDimmed(project: Project): boolean {
-  if (!props.highlightCategory) return false;
+  if (!props.highlightTag) return false;
   if (props.sectionGroup !== props.activeGroup) return false;
-  return project.category !== props.highlightCategory;
+  return !project.tags.includes(props.highlightTag);
 }
 </script>

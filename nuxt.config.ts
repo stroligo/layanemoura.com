@@ -1,16 +1,97 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
+import { STATIC_CACHE_MAX_AGE } from './data/performance';
+
+const studioRepositoryOwner = process.env.STUDIO_REPOSITORY_OWNER;
+const studioRepositoryRepo = process.env.STUDIO_REPOSITORY_REPO;
+const studioRepositoryConfigured = Boolean(
+  studioRepositoryOwner && studioRepositoryRepo,
+);
+const studioModuleEnabled =
+  process.env.NODE_ENV === 'development' || studioRepositoryConfigured;
+
+const siteUrl =
+  process.env.NUXT_PUBLIC_SITE_URL?.trim() || 'https://layanemoura.com';
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-08',
 
-  devtools: { enabled: true },
+  runtimeConfig: {
+    /** Apenas servidor — nunca expor em `public`. */
+    studioGithubClientId: process.env.STUDIO_GITHUB_CLIENT_ID || '',
+    studioGithubClientSecret: process.env.STUDIO_GITHUB_CLIENT_SECRET || '',
+    /** Formulário de contacto (SMTP). Ver `.env.example`. */
+    contactToEmail: process.env.CONTACT_TO_EMAIL || 'hi@layanemoura.com.br',
+    contactFromEmail: process.env.CONTACT_FROM_EMAIL || '',
+    contactFromName: process.env.CONTACT_FROM_NAME || 'Layane Moura Website',
+    smtpHost: process.env.SMTP_HOST || '',
+    smtpPort: process.env.SMTP_PORT || '587',
+    smtpSecure: process.env.SMTP_SECURE === 'true',
+    smtpUser: process.env.SMTP_USER || '',
+    smtpPass: process.env.SMTP_PASS || '',
+    /** Aviso no WhatsApp da Layane quando o formulário é enviado (CallMeBot ou webhook). */
+    whatsappNotifyEnabled: process.env.WHATSAPP_NOTIFY_ENABLED === 'true',
+    whatsappNotifyPhone: process.env.WHATSAPP_NOTIFY_PHONE || '5563992429380',
+    callmebotApiKey: process.env.CALLMEBOT_API_KEY || '',
+    whatsappNotifyWebhook: process.env.WHATSAPP_NOTIFY_WEBHOOK || '',
+    public: {
+      siteUrl,
+      /** Indica modo dev do Studio (botão local); não é segredo. */
+      studioDev: process.env.NODE_ENV === 'development',
+    },
+  },
+
+  ignore: [
+    'ARQUIVOS/**',
+    '.arq-match/**',
+    '.arq-preview/**',
+    'Projeto/**',
+  ],
+
+  devtools: { enabled: process.env.NODE_ENV === 'development' },
 
   css: ['~/src/css/main.css'],
 
-  modules: ['nuxt-svgo', '@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: [
+    '@nuxt/content',
+    'nuxt-svgo',
+    '@nuxt/eslint',
+    '@nuxtjs/i18n',
+    ...(studioModuleEnabled ? (['nuxt-studio'] as const) : []),
+  ],
+
+  ...(studioModuleEnabled
+    ? {
+        studio: {
+          route: '/_studio',
+          dev: process.env.NODE_ENV === 'development',
+          // UI do Studio (não confundir com @nuxtjs/i18n do site). Use 'en' ou 'pt-BR'.
+          i18n: {
+            defaultLocale: 'en',
+          },
+          git: {
+            commit: {
+              messagePrefix: 'content:',
+            },
+          },
+          ...(studioRepositoryConfigured
+            ? {
+                repository: {
+                  provider: 'github' as const,
+                  owner: studioRepositoryOwner!,
+                  repo: studioRepositoryRepo!,
+                  branch: process.env.STUDIO_REPOSITORY_BRANCH || 'main',
+                },
+              }
+            : {}),
+        },
+      }
+    : {}),
+
+  content: {},
 
   i18n: {
+    baseUrl: siteUrl,
     compilation: {
       strictMessage: false,
     },
@@ -25,6 +106,8 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'lm_locale',
       redirectOn: 'root',
+      cookieSecure: process.env.NODE_ENV === 'production',
+      cookieCrossOrigin: false,
     },
   },
 
@@ -35,52 +118,65 @@ export default defineNuxtConfig({
         {
           name: 'removeAttrs',
           params: {
-            attrs: '(fill|stroke)',
+            attrs: 'stroke',
           },
         },
       ],
     },
   },
 
+  // Pastas com centenas de imagens fora do site — evita EMFILE no file watcher (macOS).
+  watchers: {
+    chokidar: {
+      usePolling: true,
+      interval: 1000,
+      ignoreInitial: true,
+      ignored: [
+        '**/ARQUIVOS/**',
+        '**/.arq-match/**',
+        '**/.arq-preview/**',
+        '**/Projeto/**',
+        '**/.output/**',
+        '**/build/**',
+        '**/node_modules/**',
+      ],
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+    },
+    server: {
+      watch: {
+        ignored: [
+          '**/ARQUIVOS/**',
+          '**/.arq-match/**',
+          '**/.arq-preview/**',
+          '**/Projeto/**',
+          '**/.output/**',
+          '**/build/**',
+        ],
+      },
+    },
   },
 
   app: {
     baseURL: '/',
     head: {
-      htmlAttrs: { lang: 'en' }, // atualizado em runtime pelo @nuxtjs/i18n
-      title: 'Layane Moura — Illustrator & Map Maker',
-      meta: [
-        {
-          name: 'description',
-          content:
-            'Brazilian illustrator turning real and imaginary places into sensitive, organic narratives. Fantasy maps, travel illustration, book covers and editorial work.',
-        },
-        { property: 'og:type', content: 'website' },
-        {
-          property: 'og:title',
-          content: 'Layane Moura — Illustrator & Map Maker',
-        },
-        {
-          property: 'og:description',
-          content:
-            'Fantasy maps, travel illustration, book covers and editorial work by Layane Moura.',
-        },
-        { property: 'og:image', content: '/share-img.svg' },
-        { name: 'twitter:card', content: 'summary_large_image' },
-      ],
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'Layane Moura',
       link: [
-        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+        { rel: 'icon', href: '/favicon.png', type: 'image/png' },
+        { rel: 'icon', href: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com',
           crossorigin: '',
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Delius&family=Inter:wght@400;500;600&display=swap',
         },
       ],
     },
@@ -90,6 +186,7 @@ export default defineNuxtConfig({
     output: {
       publicDir: 'build',
     },
+    compressPublicAssets: true,
   },
 
   routeRules: {
@@ -98,5 +195,49 @@ export default defineNuxtConfig({
     '/services': { redirect: '/' },
     '/projects': { redirect: '/' },
     '/projects/**': { redirect: '/' },
+    '/': { swr: 3600 },
+    '/pt': { swr: 3600 },
+    '/get-in-touch': { swr: 3600 },
+    '/pt/get-in-touch': { swr: 3600 },
+    '/uikit': { index: false },
+    '/_studio/**': { ssr: true, index: false },
+    '/robots.txt': { headers: { 'cache-control': 'public, max-age=3600' } },
+    '/sitemap.xml': { headers: { 'cache-control': 'public, max-age=3600' } },
+    '/images/**': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/fonts/**': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/favicon.png': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/favicon-32.png': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/apple-touch-icon.png': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/loading.png': {
+      headers: { 'cache-control': 'public, max-age=86400' },
+    },
+    '/_nuxt/**': {
+      headers: {
+        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
+      },
+    },
+    '/.well-known/security.txt': {
+      headers: { 'cache-control': 'public, max-age=86400' },
+    },
   },
 });

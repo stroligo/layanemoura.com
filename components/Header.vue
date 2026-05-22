@@ -4,7 +4,7 @@
     class="top-bar"
     :class="{ 'top-bar--compact': isCompact }"
   >
-    <nav class="top-bar-nav container-fluid wrap" aria-label="Main">
+    <nav class="top-bar-nav container-fluid wrap" :aria-label="t('nav.mainAria')">
       <span class="top-bar-spacer" aria-hidden="true" />
       <SiteLogo />
       <LangSwitcher />
@@ -13,5 +13,6 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
 const { isCompact } = useNavCompact();
 </script>

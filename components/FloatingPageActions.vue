@@ -1,0 +1,193 @@
+<template>
+  <Teleport to="body">
+    <Transition name="back-top-fade">
+      <button
+        v-if="showBackTop"
+        type="button"
+        class="floating-actions__btn floating-actions__back-top"
+        :aria-label="t('floating.backToTop')"
+        @click="scrollToTop"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="floating-actions__back-top-icon"
+          aria-hidden="true"
+        >
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+      </button>
+    </Transition>
+
+    <a
+      :href="whatsappHref"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-actions__btn floating-actions__whatsapp"
+      :aria-label="t('floating.whatsapp')"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="floating-actions__whatsapp-icon"
+        aria-hidden="true"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+        />
+      </svg>
+    </a>
+  </Teleport>
+</template>
+
+<script setup lang="ts">
+import { socialLinksFallback } from '~/data/social';
+
+const WHATSAPP_FALLBACK =
+  socialLinksFallback.find((link) => link.icon === 'whatsapp')?.href ??
+  'https://wa.me/5563992429380';
+
+const { t } = useI18n();
+const { socialLinks } = useSocialLinks();
+
+const showBackTop = ref(false);
+
+const whatsappHref = computed(() => {
+  const fromContent = socialLinks.value.find((link) => link.icon === 'whatsapp')
+    ?.href;
+  return fromContent || WHATSAPP_FALLBACK;
+});
+
+function getScrollTop() {
+  return Math.max(
+    window.scrollY,
+    document.documentElement.scrollTop,
+    document.body.scrollTop,
+  );
+}
+
+function updateBackTopVisibility() {
+  showBackTop.value = getScrollTop() > 80;
+}
+
+function scrollToTop() {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+}
+
+onMounted(() => {
+  updateBackTopVisibility();
+  window.addEventListener('scroll', updateBackTopVisibility, {
+    passive: true,
+    capture: true,
+  });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateBackTopVisibility, { capture: true });
+});
+</script>
+
+<style scoped>
+.floating-actions__btn {
+  position: fixed;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-ui);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--color-cocoa) 18%, transparent);
+  transition:
+    border-color 0.3s var(--ease-organic),
+    color 0.3s var(--ease-organic),
+    background-color 0.3s var(--ease-organic),
+    transform 0.3s var(--ease-organic);
+}
+
+.floating-actions__btn:hover {
+  transform: translateY(-2px);
+}
+
+.floating-actions__back-top {
+  left: 1rem;
+  bottom: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  color: var(--color-cocoa);
+  background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.floating-actions__back-top:hover {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+  background: var(--color-paper);
+}
+
+.floating-actions__back-top-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.floating-actions__whatsapp {
+  right: 1rem;
+  bottom: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+  color: var(--color-paper);
+  background: var(--color-terracotta);
+  text-decoration: none;
+}
+
+.floating-actions__whatsapp:hover {
+  border-color: var(--color-terracotta-dark);
+  background: var(--color-terracotta-dark);
+  color: var(--color-paper);
+}
+
+.floating-actions__whatsapp-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .floating-actions__back-top {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .floating-actions__whatsapp {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+.back-top-fade-enter-active,
+.back-top-fade-leave-active {
+  transition: opacity 0.35s var(--ease-organic);
+}
+
+.back-top-fade-enter-from,
+.back-top-fade-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-actions__btn:hover {
+    transform: none;
+  }
+
+  .back-top-fade-enter-active,
+  .back-top-fade-leave-active {
+    transition-duration: 0.01ms;
+  }
+}
+</style>

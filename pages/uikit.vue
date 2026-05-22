@@ -318,9 +318,9 @@
 
 <script setup lang="ts">
 import { colors, fonts, shadows, typography } from '~/data/tokens';
-import { getFeaturedProjects } from '~/data/projects';
+const { highlightProjects } = useProjectCollection();
 
-const featured = getFeaturedProjects().slice(0, 3);
+const featured = computed(() => highlightProjects.value.slice(0, 3));
 const demoTabs = ['Mapas', 'Capas', 'Viagem', 'Editorial'];
 const activeTab = ref(demoTabs[0]);
 
@@ -328,8 +328,11 @@ definePageMeta({
   layout: 'uikit',
 });
 
-useSeoMeta({
-  title: 'UI Kit — Layane Moura',
-  robots: 'noindex, nofollow',
+const { t } = useI18n();
+
+useSiteSeo({
+  title: t('seo.uikitTitle'),
+  description: t('seo.uikitDescription'),
+  noindex: true,
 });
 </script>

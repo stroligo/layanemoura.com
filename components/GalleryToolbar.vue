@@ -12,25 +12,27 @@
     >
       <GalleryFilter
         :group="group"
-        :highlight-category="highlightCategory"
+        :highlight-tag="highlightTag"
+        :tag-chips="tagChips"
         @update:group="emit('update:group', $event)"
-        @update:highlight-category="emit('update:highlight-category', $event)"
+        @update:highlight-tag="emit('update:highlight-tag', $event)"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { GalleryGroup, ProjectCategory } from '~/data/site';
+import type { GalleryGroup, ProjectTag } from '~/data/site';
 
 defineProps<{
   group: GalleryGroup;
-  highlightCategory: ProjectCategory | null;
+  highlightTag: ProjectTag | null;
+  tagChips: { id: ProjectTag; label: string }[];
 }>();
 
 const emit = defineEmits<{
   'update:group': [value: GalleryGroup];
-  'update:highlight-category': [value: ProjectCategory | null];
+  'update:highlight-tag': [value: ProjectTag | null];
 }>();
 
 const { isVisible } = useScrollRevealBar();

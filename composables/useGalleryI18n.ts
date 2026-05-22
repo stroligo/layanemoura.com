@@ -1,17 +1,18 @@
 import type {
   GalleryGroup,
-  ProjectCategory,
+  ProjectTag,
   SortDirection,
   SortField,
 } from '~/data/site';
 import {
-  categoriesByGroup,
   galleryGroupIds,
   sortFieldDefaults,
+  tagsUsedInGroup,
 } from '~/data/site';
+import type { Project } from '~/types/project';
 
 export function useGalleryI18n() {
-  const { t } = useI18n();
+  const { t, te } = useI18n();
 
   const galleryGroupFilters = computed(() =>
     galleryGroupIds.map((id) => ({
@@ -20,6 +21,8 @@ export function useGalleryI18n() {
     })),
   );
 
+  const groupLabel = (group: GalleryGroup) => t(`gallery.groups.${group}`);
+
   const sortDirectionLabel = (field: SortField, direction: SortDirection) =>
     t(`gallery.sortDirection.${field}.${direction}`);
 
@@ -27,7 +30,6 @@ export function useGalleryI18n() {
     const directionOrder: Record<SortField, SortDirection[]> = {
       date: ['desc', 'asc'],
       tag: ['asc', 'desc'],
-      views: ['desc', 'asc'],
       title: ['asc', 'desc'],
     };
 
@@ -44,20 +46,30 @@ export function useGalleryI18n() {
     );
   });
 
-  const categoryLabel = (category: ProjectCategory) =>
-    t(`categories.${category}`);
+  const tagLabel = (tag: ProjectTag) => {
+    const key = `tags.${tag}`;
+    if (te(key)) return t(key);
+    return tag
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  };
 
-  const categoryChipsForGroup = (group: GalleryGroup) =>
-    categoriesByGroup[group].map((id) => ({
+  /** Chips só para tags que existem em pelo menos um projeto da secção. */
+  const tagChipsForGroup = (group: GalleryGroup, projects: Project[]) => {
+    const used = tagsUsedInGroup(projects, group);
+    return used.map((id) => ({
       id,
-      label: categoryLabel(id),
+      label: tagLabel(id),
     }));
+  };
 
   return {
     galleryGroupFilters,
-    categoryChipsForGroup,
+    tagChipsForGroup,
     sortChoices,
-    categoryLabel,
+    groupLabel,
+    tagLabel,
     sortDirectionLabel,
   };
 }

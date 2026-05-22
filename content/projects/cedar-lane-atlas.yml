@@ -1,0 +1,27 @@
+title: Cedar Lane
+category: maps
+description:
+  en: Illustrated **city atlas** with soft vintage tones and clear, inviting geography — a travel piece for Cedar Lane.
+  pt: Atlas urbano ilustrado com tons vintage suaves e geografia **clara e acolhedora** — peça de viagem para Cedar Lane.
+highlight: true
+images:
+  - src: /images/projects/cedar-lane-atlas.jpg
+  - src: /images/projects/cedar-lane-atlas/02.jpg
+  - src: /images/projects/birchlane-brand-mark.jpg
+layout: tall
+links:
+  - label:
+      en: View on Behance
+      pt: Ver no Behance
+    url: https://www.behance.net/layanemds
+  - label:
+      en: Globo
+      pt: |
+        Globo
+    url: "1: https://www.globo.com"
+published: true
+subtitle: City Atlas
+tags:
+  - travel
+  - touristic
+year: 2025

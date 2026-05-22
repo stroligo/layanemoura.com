@@ -1,12 +1,5 @@
-import type { Project } from '~/data/projects';
-import { projects } from '~/data/projects';
-import {
-  categoriesByGroup,
-  type GalleryGroup,
-  type ProjectCategory,
-  type SortDirection,
-  type SortField,
-} from '~/data/site';
+import type { GalleryGroup, ProjectTag, SortDirection, SortField } from '~/data/site';
+import type { Project } from '~/types/project';
 
 export interface GalleryGroupBlock {
   id: GalleryGroup;
@@ -19,7 +12,7 @@ function compareProjects(
   b: Project,
   field: SortField,
   direction: SortDirection,
-  tagLabel: (category: ProjectCategory) => string,
+  tagLabel: (tag: ProjectTag) => string,
 ): number {
   let result = 0;
 
@@ -27,14 +20,10 @@ function compareProjects(
     case 'date':
       result = a.year - b.year;
       break;
-    case 'views':
-      result = a.views - b.views;
-      break;
     case 'tag': {
-      const tagCmp = tagLabel(a.category).localeCompare(
-        tagLabel(b.category),
-      );
-      result = tagCmp !== 0 ? tagCmp : a.title.localeCompare(b.title);
+      const labelA = a.tags.map(tagLabel).join(', ');
+      const labelB = b.tags.map(tagLabel).join(', ');
+      result = labelA.localeCompare(labelB);
       break;
     }
     case 'title':
@@ -46,11 +35,12 @@ function compareProjects(
 }
 
 export function useProjects() {
-  const { categoryLabel } = useGalleryI18n();
+  const { tagLabel, tagChipsForGroup } = useGalleryI18n();
   const { t } = useI18n();
+  const { projects } = useProjectCollection();
 
   const activeGroup = ref<GalleryGroup>('maps');
-  const highlightCategory = ref<ProjectCategory | null>(null);
+  const highlightTag = ref<ProjectTag | null>(null);
   const sortField = ref<SortField>('date');
   const sortDirection = ref<SortDirection>('desc');
   const selectedProject = ref<Project | null>(null);
@@ -62,64 +52,69 @@ export function useProjects() {
         b,
         sortField.value,
         sortDirection.value,
-        categoryLabel,
+        tagLabel,
       ),
     );
   }
 
-  /** Destaque: categoria ativa primeiro no bloco selecionado (Maps/More). */
+  const publishedProjects = computed(() =>
+    projects.value.filter((p) => p.published),
+  );
+
+  /** Ordenação + tag ativa + destaque (highlight) no topo da secção. */
   function orderGroupProjects(
     list: Project[],
     groupId: GalleryGroup,
   ): Project[] {
     const sorted = sortList(list);
-    const highlight = highlightCategory.value;
+    const activeTag = highlightTag.value;
 
-    if (!highlight || groupId !== activeGroup.value) {
-      return sorted;
+    let ordered = sorted;
+    if (activeTag && groupId === activeGroup.value) {
+      const active = sorted.filter((p) => p.tags.includes(activeTag));
+      const rest = sorted.filter((p) => !p.tags.includes(activeTag));
+      ordered = [...active, ...rest];
     }
 
-    const active = sorted.filter((p) => p.category === highlight);
-    const rest = sorted.filter((p) => p.category !== highlight);
-    return [...active, ...rest];
+    const pinned = ordered.filter((p) => p.highlight);
+    const rest = ordered.filter((p) => !p.highlight);
+    return [...pinned, ...rest];
   }
 
   const galleryGroups = computed((): GalleryGroupBlock[] => {
-    const order: GalleryGroup[] =
-      activeGroup.value === 'maps' ? ['maps', 'more'] : ['more', 'maps'];
+    const groupId = activeGroup.value;
+    const groupProjects = orderGroupProjects(
+      publishedProjects.value.filter((p) => p.category === groupId),
+      groupId,
+    );
 
-    return order
-      .map((groupId) => {
-        const groupCategories = categoriesByGroup[groupId];
-        const groupProjects = orderGroupProjects(
-          projects.filter((p) => groupCategories.includes(p.category)),
-          groupId,
-        );
+    if (!groupProjects.length) return [];
 
-        if (!groupProjects.length) return null;
-
-        return {
-          id: groupId,
-          label: t(`gallery.groups.${groupId}`),
-          projects: groupProjects,
-        };
-      })
-      .filter((block): block is GalleryGroupBlock => !!block);
+    return [
+      {
+        id: groupId,
+        label: t(`gallery.groups.${groupId}`),
+        projects: groupProjects,
+      },
+    ];
   });
+
+  const tagChips = computed(() =>
+    tagChipsForGroup(activeGroup.value, publishedProjects.value),
+  );
 
   function setActiveGroup(group: GalleryGroup) {
     if (activeGroup.value === group) return;
     activeGroup.value = group;
-    highlightCategory.value = null;
+    highlightTag.value = null;
   }
 
-  function setHighlightCategory(category: ProjectCategory | null) {
-    if (category === null) {
-      highlightCategory.value = null;
+  function setHighlightTag(tag: ProjectTag | null) {
+    if (tag === null) {
+      highlightTag.value = null;
       return;
     }
-    highlightCategory.value =
-      highlightCategory.value === category ? null : category;
+    highlightTag.value = highlightTag.value === tag ? null : tag;
   }
 
   function setSort(field: SortField, direction: SortDirection) {
@@ -142,18 +137,51 @@ export function useProjects() {
     }
   }
 
+  /** Projetos visíveis na galeria ativa, na ordem exibida (para prev/next no modal). */
+  const modalProjects = computed(() =>
+    galleryGroups.value.flatMap((group) => group.projects),
+  );
+
+  const selectedProjectIndex = computed(() => {
+    const current = selectedProject.value;
+    if (!current) return -1;
+    return modalProjects.value.findIndex((p) => p.slug === current.slug);
+  });
+
+  const canNavigateProjects = computed(() => modalProjects.value.length > 1);
+
+  function goToAdjacentProject(delta: 1 | -1) {
+    const list = modalProjects.value;
+    const index = selectedProjectIndex.value;
+    if (index < 0 || list.length < 2) return;
+    const nextIndex = (index + delta + list.length) % list.length;
+    selectedProject.value = list[nextIndex] ?? null;
+  }
+
+  function goToPrevProject() {
+    goToAdjacentProject(-1);
+  }
+
+  function goToNextProject() {
+    goToAdjacentProject(1);
+  }
+
   return {
     projects,
     galleryGroups,
     activeGroup,
-    highlightCategory,
+    highlightTag,
+    tagChips,
     sortField,
     sortDirection,
     selectedProject,
     setActiveGroup,
-    setHighlightCategory,
+    setHighlightTag,
     setSort,
     openProject,
     closeProject,
+    canNavigateProjects,
+    goToPrevProject,
+    goToNextProject,
   };
 }

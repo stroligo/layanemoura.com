@@ -10,4 +10,4 @@ Todas as fontes do site são carregadas via **Google Fonts** (`nuxt.config.ts`):
 
 Tokens em `src/css/tokens.css`. Não é necessário colocar ficheiros `.woff2` nesta pasta.
 
-A assinatura no topo usa `assets/images/logo.png` no componente `SiteLogo`.
+A assinatura no topo usa o SVG vetorial (`Projeto/layanemoura.svg` → `assets/images/logo-signature.svg`) com animação de traço em `LogoSignatureDraw` / `SiteLogo`.

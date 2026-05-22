@@ -12,21 +12,34 @@
     "format:check": "prettier . --check",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deps:check": "npm outdated"
+    "deps:check": "npm outdated",
+    "content:sync": "tsx scripts/sync-projects-to-content.ts",
+    "content:sync-reviews": "tsx scripts/sync-reviews-to-content.ts",
+    "content:sync-contact": "tsx scripts/sync-get-in-touch-to-content.ts",
+    "content:sync-social": "tsx scripts/sync-social-to-content.ts",
+    "content:reset": "rm -rf .data && nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
     "@tailwindcss/vite": "^4.2.4",
+    "@types/nodemailer": "^8.0.0",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "nuxt": "^4.4.4",
     "nuxt-svgo": "^5.3.0",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.2.4",
+    "tsx": "^4.22.3",
     "vue": "^3.5.34",
-    "vue-router": "^5.0.6"
+    "vue-router": "^5.0.6",
+    "yaml": "^2.9.0"
   },
   "dependencies": {
-    "@nuxtjs/i18n": "^10.3.0"
+    "@nuxt/content": "^3.14.0",
+    "@nuxtjs/i18n": "^10.3.0",
+    "better-sqlite3": "^12.10.0",
+    "nodemailer": "^8.0.7",
+    "nuxt-studio": "^1.7.0",
+    "zod": "^4.4.3"
   }
 }
