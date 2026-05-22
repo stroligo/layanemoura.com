@@ -73,9 +73,7 @@ Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato fi
 ## Performance
 
 - Fontes Google carregadas de forma **assíncrona** (`plugins/fonts-async.client.ts`) — primeiro paint com fallbacks do sistema
-- Galeria: **`@nuxt/image`** (WebP + tamanho por `sizes`); **4 primeiras** capas `eager`, **2** preloads no `<head>`
-- Comprimir capas: `npm run images:optimize` (máx. 1200px, JPEG ~82%; mantém `.jpg` nos YAML)
-- Spinner de loading em **CSS** (sem `loading.png` de 400 KB)
+- Galeria: **8 primeiras capas** com prioridade (`eager` / `preload`); restantes `lazy`
 - Cache longo em `/images/**`, favicons e `/_nuxt/**` (ver `routeRules` em `nuxt.config.ts`)
 - Páginas públicas com **SWR** (revalidação ~1 h)
 - Assets públicos comprimidos no build (`nitro.compressPublicAssets`)

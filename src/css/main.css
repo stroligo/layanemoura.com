@@ -1323,7 +1323,7 @@
   }
 
   .gallery-loading-spinner {
-    @apply h-[50px] w-[50px] rounded-full border-2 border-ink/15 border-t-terracotta;
+    @apply h-[50px] w-[50px] object-contain;
     animation: gallery-loading-spin 1.1s linear infinite;
   }
 
@@ -1345,7 +1345,7 @@
   }
 
   .page-loading-spinner {
-    @apply h-[50px] w-[50px] rounded-full border-2 border-ink/15 border-t-terracotta;
+    @apply h-[50px] w-[50px] object-contain;
     animation: gallery-loading-spin 1.1s linear infinite;
   }
 

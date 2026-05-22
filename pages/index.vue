@@ -38,7 +38,7 @@
       </div>
     </section>
 
-    <LazyReviewsCarousel />
+    <ReviewsCarousel />
 
     <ProjectModal
       :project="selectedProject"
@@ -52,10 +52,7 @@
 
 <script setup lang="ts">
 import { site } from '~/data/site';
-import {
-  GALLERY_BACKGROUND_PRELOAD_COUNT,
-  GALLERY_HEAD_PRELOAD_COUNT,
-} from '~/data/performance';
+import { GALLERY_HEAD_PRELOAD_COUNT } from '~/data/performance';
 import { projectCoverImage } from '~/types/project';
 import { resolveSiteUrl } from '~/utils/seo';
 import {
@@ -105,17 +102,13 @@ const galleryCoverUrls = computed(() => {
     .filter((url): url is string => Boolean(url));
 });
 
-const img = useImage();
-
 useHead(() => ({
-  link: galleryCoverUrls.value
-    .slice(0, GALLERY_HEAD_PRELOAD_COUNT)
-    .map((href) => ({
-      rel: 'preload',
-      as: 'image',
-      href: img(href, { width: 480, format: 'webp', quality: 82 }),
-      fetchpriority: 'high' as const,
-    })),
+  link: galleryCoverUrls.value.slice(0, GALLERY_HEAD_PRELOAD_COUNT).map((href) => ({
+    rel: 'preload',
+    as: 'image',
+    href,
+    fetchpriority: 'high' as const,
+  })),
 }));
 
 /** Pré-carrega capas em segundo plano (a grelha já mostra skeletons). */
@@ -125,7 +118,7 @@ watch(
   [galleryCoverUrls, projectsPending],
   ([covers, pending]) => {
     if (!import.meta.client || pending || !covers.length) return;
-    waitForGalleryCovers(covers.slice(0, GALLERY_BACKGROUND_PRELOAD_COUNT));
+    waitForGalleryCovers(covers);
   },
   { immediate: true },
 );

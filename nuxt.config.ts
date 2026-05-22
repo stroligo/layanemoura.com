@@ -57,7 +57,6 @@ export default defineNuxtConfig({
   css: ['~/src/css/main.css'],
 
   modules: [
-    '@nuxt/image',
     '@nuxt/content',
     'nuxt-svgo',
     '@nuxt/eslint',
@@ -91,18 +90,6 @@ export default defineNuxtConfig({
     : {}),
 
   content: {},
-
-  image: {
-    format: ['webp', 'jpeg'],
-    quality: 80,
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-    },
-  },
 
   i18n: {
     baseUrl: siteUrl,
@@ -248,11 +235,6 @@ export default defineNuxtConfig({
       headers: { 'cache-control': 'public, max-age=86400' },
     },
     '/_nuxt/**': {
-      headers: {
-        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
-      },
-    },
-    '/_ipx/**': {
       headers: {
         'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
       },

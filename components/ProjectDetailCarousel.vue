@@ -19,16 +19,12 @@
         aria-atomic="true"
       >
         <Transition name="project-slide-fade" mode="out-in">
-          <NuxtImg
+          <img
             :key="activeSrc"
             :src="activeSrc"
             :alt="slideAlt"
             class="project-detail-carousel-img"
-            format="webp"
-            quality="82"
-            sizes="(max-width: 768px) 100vw, 720px"
             decoding="async"
-            loading="eager"
           />
         </Transition>
 
@@ -72,14 +68,10 @@
           :aria-label="t('modal.galleryGoTo', { n: index + 1 })"
           @click="goTo(index)"
         >
-          <NuxtImg
+          <img
             :src="src"
             alt=""
             class="project-detail-carousel-thumb-img"
-            format="webp"
-            quality="70"
-            width="96"
-            height="72"
             decoding="async"
             loading="lazy"
           />

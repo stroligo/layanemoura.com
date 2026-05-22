@@ -124,9 +124,10 @@ export function useGalleryItemSpan(
   }
 
   function onImageLoad(event: Event) {
-    const img = event.target as HTMLImageElement;
-    if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-      measureFromImage(img);
+    const target = event.target;
+    if (!(target instanceof HTMLImageElement)) return;
+    if (target.naturalWidth > 0 && target.naturalHeight > 0) {
+      measureFromImage(target);
     }
   }
 
