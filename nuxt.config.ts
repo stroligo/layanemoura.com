@@ -50,6 +50,7 @@ export default defineNuxtConfig({
 
   devtools: { enabled: process.env.NODE_ENV === 'development' },
 
+
   css: ['~/src/css/main.css'],
 
   modules: [
@@ -183,10 +184,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    output: {
-      publicDir: 'build',
-    },
     compressPublicAssets: true,
+    // Na Vercel o preset é detectado automaticamente (VERCEL=1).
+    preset: process.env.VERCEL ? 'vercel' : undefined,
   },
 
   routeRules: {

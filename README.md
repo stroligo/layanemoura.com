@@ -93,6 +93,14 @@ Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato fi
 - Carrosséis: setas só com foco no componente; autoplay desligado com `prefers-reduced-motion`
 - Hierarquia de headings (H1 home, H2 galeria/reviews, H1 contacto)
 
+## Deploy (Vercel)
+
+- **Build:** `npm run build` (SSR — não use só `generate` nem pasta `build` como output)
+- **Output Directory:** deixe em branco no painel da Vercel (o Nitro usa `.output/`)
+- **Node:** 20.x (`.nvmrc`)
+- **Env:** `NUXT_PUBLIC_SITE_URL` + SMTP (ver `.env.example`); Nuxt Content usa SQLite em `/tmp` na Vercel automaticamente
+- Não defina `Output Directory` como `build` — isso quebra CSS/JS
+
 ## SEO
 
 - Meta tags, Open Graph e Twitter Card via `useSiteSeo` (por página)
