@@ -1280,20 +1280,7 @@
   }
 
   .gallery-item-visual {
-    @apply relative w-full overflow-hidden leading-none;
-    max-height: var(--gallery-max-h-normal);
-  }
-
-  .gallery-item--tall .gallery-item-visual {
-    max-height: var(--gallery-max-h-tall);
-  }
-
-  .gallery-item--wide:not(.gallery-item--portrait) .gallery-item-visual {
-    max-height: var(--gallery-max-h-wide);
-  }
-
-  .gallery-item--portrait .gallery-item-visual {
-    max-height: var(--gallery-max-h-tall);
+    @apply relative w-full overflow-hidden bg-surface leading-none;
   }
 
   .gallery-item-skeleton {
@@ -1302,7 +1289,7 @@
   }
 
   .gallery-item-img {
-    @apply absolute inset-0 block h-full w-full object-cover object-center opacity-0;
+    @apply absolute inset-0 block h-full w-full object-contain object-center opacity-0;
     transition: opacity 0.45s var(--ease-organic);
   }
 

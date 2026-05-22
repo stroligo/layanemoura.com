@@ -114,16 +114,19 @@ export function useGalleryItemSpan(
     applySpan(w, h);
   }
 
-  /** Grelha estável: altura da linha vem do layout, não do carregamento da imagem. */
   function remeasure() {
+    const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
+    if (img?.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+      measureFromImage(img);
+      return;
+    }
     measureFromLayout();
   }
 
   function onImageLoad(event: Event) {
     const img = event.target as HTMLImageElement;
     if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-      const aspect = img.naturalHeight / img.naturalWidth;
-      isPortrait.value = aspect >= readAspectTallThreshold();
+      measureFromImage(img);
     }
   }
 
