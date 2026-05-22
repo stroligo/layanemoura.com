@@ -11,6 +11,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs",
     "postinstall": "nuxt prepare",
     "deps:check": "npm outdated",
     "content:sync": "tsx scripts/sync-projects-to-content.ts",

@@ -7,12 +7,9 @@ const studioRepositoryRepo = process.env.STUDIO_REPOSITORY_REPO;
 const studioRepositoryConfigured = Boolean(
   studioRepositoryOwner && studioRepositoryRepo,
 );
-/** Vercel injeta VERCEL_GIT_* — o nuxt-studio detecta owner/repo no build. */
-const isVercel = Boolean(process.env.VERCEL);
+/** Produção (Hostinger, etc.): owner + repo obrigatórios no build — ver .env.example */
 const studioModuleEnabled =
-  process.env.NODE_ENV === 'development' ||
-  studioRepositoryConfigured ||
-  isVercel;
+  process.env.NODE_ENV === 'development' || studioRepositoryConfigured;
 
 const siteUrl =
   process.env.NUXT_PUBLIC_SITE_URL?.trim() || 'https://layanemoura.com';
@@ -193,8 +190,6 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
-    // Na Vercel o preset é detectado automaticamente (VERCEL=1).
-    preset: process.env.VERCEL ? 'vercel' : undefined,
   },
 
   routeRules: {

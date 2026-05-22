@@ -93,15 +93,27 @@ Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato fi
 - Carrosséis: setas só com foco no componente; autoplay desligado com `prefers-reduced-motion`
 - Hierarquia de headings (H1 home, H2 galeria/reviews, H1 contacto)
 
-## Deploy (Vercel)
+## Deploy (Hostinger)
 
-- **Build:** `npm run build` (SSR — não use só `generate` nem pasta `build` como output)
-- **Output Directory:** deixe em branco no painel da Vercel (o Nitro usa `.output/`)
-- **Node:** 20.x (`.nvmrc`)
-- **Git:** ligue o repositório GitHub ao projeto Vercel (o Studio detecta `owner/repo` no build)
-- **Env:** `NUXT_PUBLIC_SITE_URL` + SMTP (ver `.env.example`); Nuxt Content usa SQLite em `/tmp` na Vercel automaticamente
-- **Nuxt Studio (`/_studio`):** `STUDIO_GITHUB_CLIENT_ID` + `STUDIO_GITHUB_CLIENT_SECRET` (OAuth App com callback `https://layanemoura.com/_studio/auth/github/callback`). Sem estes, o build até pode correr, mas o editor em produção não autentica.
-- Não defina `Output Directory` como `build` — isso quebra CSS/JS
+Este site é **Nuxt SSR** (não é só HTML estático). Precisa de plano com **Node.js** (ex.: *Business Web Hosting* / *VPS* / *Node.js Web App*), não só alojamento PHP.
+
+| Passo | Ação |
+| --- | --- |
+| 1 | No painel Hostinger, cria app Node ou configura VPS com **Node 20** |
+| 2 | Deploy do repositório Git (ou upload) com `npm ci` → `npm run build` |
+| 3 | Comando de arranque: `npm run start` (corre `node .output/server/index.mjs`) |
+| 4 | Variáveis de ambiente: copiar `.env.example` (SMTP, `NUXT_PUBLIC_SITE_URL`, Studio) |
+| 5 | DNS do domínio `layanemoura.com`: registo **A** ou nameservers apontando para a **Hostinger** (não Locaweb) |
+
+**Nuxt Studio (`/_studio`)** — no servidor, antes do `npm run build`, defina:
+
+- `STUDIO_REPOSITORY_OWNER` + `STUDIO_REPOSITORY_REPO` (senão o módulo não entra no build e `/_studio` → 404)
+- `STUDIO_GITHUB_CLIENT_ID` + `STUDIO_GITHUB_CLIENT_SECRET`
+- Callback OAuth: `https://layanemoura.com/_studio/auth/github/callback`
+
+**SMTP:** `SMTP_HOST=smtp.hostinger.com` (ou o que o painel indicar para o domínio).
+
+Não uses pasta `build` como raiz do site — o Nitro gera `.output/public` + `.output/server`.
 
 ## SEO
 
