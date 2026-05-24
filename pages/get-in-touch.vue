@@ -277,8 +277,13 @@ async function onSubmit() {
         locale: localeCode,
       },
     });
-    formStatus.value = 'success';
     resetFormFields();
+    formStatus.value = 'success';
+    await nextTick();
+    document.querySelector('.contact-form__feedback')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
   } catch (error) {
     const statusCode =
       error && typeof error === 'object' && 'statusCode' in error
@@ -290,13 +295,6 @@ async function onSubmit() {
     formSubmitting.value = false;
   }
 }
-
-watch(
-  () => [form.name, form.email, form.message],
-  () => {
-    if (formStatus.value) resetFormFeedback();
-  },
-);
 
 const localePath = useLocalePath();
 const runtimeConfig = useRuntimeConfig();
