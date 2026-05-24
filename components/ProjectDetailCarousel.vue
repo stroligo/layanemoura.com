@@ -18,15 +18,37 @@
         aria-live="polite"
         aria-atomic="true"
       >
-        <Transition name="project-slide-fade" mode="out-in">
-          <img
-            :key="activeSrc"
-            :src="activeSrc"
-            :alt="slideAlt"
-            class="project-detail-carousel-img"
-            decoding="async"
-          />
-        </Transition>
+        <button
+          type="button"
+          class="project-detail-carousel-zoom-trigger"
+          :aria-label="t('modal.galleryZoomOpen')"
+          @click="openLightbox"
+        >
+          <Transition name="project-slide-fade" mode="out-in">
+            <img
+              :key="activeSrc"
+              :src="activeSrc"
+              :alt="slideAlt"
+              class="project-detail-carousel-img"
+              decoding="async"
+            />
+          </Transition>
+          <span class="project-detail-carousel-zoom-hint" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="project-detail-carousel-zoom-hint__icon"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.35-4.35M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
 
         <template v-if="hasMultiple">
           <button
@@ -78,6 +100,13 @@
         </button>
       </div>
     </div>
+
+    <ProjectImageLightbox
+      v-if="lightboxOpen && activeSrc"
+      :src="activeSrc"
+      :alt="slideAlt"
+      @close="closeLightbox"
+    />
   </div>
 </template>
 
@@ -103,6 +132,19 @@ const {
 } = useProjectDetailCarousel(() => props.images);
 
 const activeThumbId = computed(() => thumbId(activeIndex.value));
+const lightboxOpen = ref(false);
+
+function openLightbox() {
+  lightboxOpen.value = true;
+}
+
+function closeLightbox() {
+  lightboxOpen.value = false;
+}
+
+watch(activeSrc, () => {
+  if (lightboxOpen.value) closeLightbox();
+});
 
 const slideAlt = computed(() => {
   if (!hasMultiple.value) return props.alt;

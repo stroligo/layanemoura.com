@@ -49,16 +49,10 @@
               />
 
               <div class="project-modal-body">
-                <p
-                  :id="metaId"
-                  class="font-inter text-xs uppercase tracking-[0.2em] text-terracotta"
-                >
+                <p :id="metaId" class="font-inter text-xs uppercase tracking-[0.2em] text-terracotta">
                   {{ groupLabel(project.category) }} · {{ project.year }}
                 </p>
-                <h2
-                  :id="titleId"
-                  class="mt-2 font-cormorant text-3xl text-cocoa md:text-4xl"
-                >
+                <h2 :id="titleId" class="mt-2 font-cormorant text-3xl text-cocoa md:text-4xl">
                   {{ project.title }}
                 </h2>
                 <p class="mt-1 font-cormorant text-xl italic text-ink-muted">
@@ -82,7 +76,7 @@
                     {{ tagLabel(tag) }}
                   </li>
                 </ul>
-                <div class="mt-8 flex flex-wrap gap-3">
+                <div class="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
                   <a
                     v-for="(link, index) in project.links"
                     :key="`${link.url}-${index}`"
@@ -98,11 +92,7 @@
                   >
                     {{ projectLinkLabel(link.label) }}
                   </a>
-                  <NuxtLink
-                    :to="localePath('/get-in-touch')"
-                    class="btn-secondary"
-                    @click="emit('close')"
-                  >
+                  <NuxtLink :to="localePath('/get-in-touch')" class="btn-secondary" @click="emit('close')">
                     {{ t('modal.getInTouch') }}
                   </NuxtLink>
                 </div>
@@ -155,23 +145,16 @@ useFocusTrap(modalRoot, {
 
 const projectDescriptionSource = computed(() => {
   if (!props.project) return '';
-  const fromContent = projectDescriptionForLocale(
-    props.project.description,
-    locale.value,
-  );
+  const fromContent = projectDescriptionForLocale(props.project.description, locale.value);
   if (fromContent) return fromContent;
 
   const legacy = t(`projects.${props.project.slug}.description`);
   return legacy === `projects.${props.project.slug}.description` ? '' : legacy;
 });
 
-const projectDescriptionHtml = computed(() =>
-  projectDescriptionToHtml(projectDescriptionSource.value),
-);
+const projectDescriptionHtml = computed(() => projectDescriptionToHtml(projectDescriptionSource.value));
 
-function projectLinkLabel(
-  label: Project['links'][number]['label'],
-): string {
+function projectLinkLabel(label: Project['links'][number]['label']): string {
   return projectDescriptionForLocale(label, locale.value);
 }
 

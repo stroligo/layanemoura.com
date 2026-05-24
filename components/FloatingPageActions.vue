@@ -25,6 +25,7 @@
     </Transition>
 
     <a
+      v-if="showWhatsApp"
       :href="whatsappHref"
       target="_blank"
       rel="noopener noreferrer"
@@ -55,8 +56,14 @@ const WHATSAPP_FALLBACK =
 
 const { t } = useI18n();
 const { socialLinks } = useSocialLinks();
+const { dialogOpen } = useDialogLock();
 
 const showBackTop = ref(false);
+const isMobileViewport = ref(false);
+
+const showWhatsApp = computed(
+  () => !(dialogOpen.value && isMobileViewport.value),
+);
 
 const whatsappHref = computed(() => {
   const fromContent = socialLinks.value.find((link) => link.icon === 'whatsapp')
@@ -81,16 +88,27 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
 }
 
+function syncMobileViewport() {
+  isMobileViewport.value = window.matchMedia('(max-width: 767px)').matches;
+}
+
+let mobileMq: MediaQueryList | null = null;
+
 onMounted(() => {
   updateBackTopVisibility();
   window.addEventListener('scroll', updateBackTopVisibility, {
     passive: true,
     capture: true,
   });
+
+  mobileMq = window.matchMedia('(max-width: 767px)');
+  syncMobileViewport();
+  mobileMq.addEventListener('change', syncMobileViewport);
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', updateBackTopVisibility, { capture: true });
+  mobileMq?.removeEventListener('change', syncMobileViewport);
 });
 </script>
 

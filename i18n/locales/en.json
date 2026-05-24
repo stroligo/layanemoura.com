@@ -130,7 +130,13 @@
     "galleryNext": "Next image",
     "galleryThumbs": "Image thumbnails",
     "galleryGoTo": "Image {n}",
-    "gallerySlide": "{alt} — image {current} of {total}"
+    "gallerySlide": "{alt} — image {current} of {total}",
+    "galleryZoomOpen": "View image fullscreen with zoom",
+    "lightboxAria": "Image zoom view",
+    "lightboxToolbar": "Zoom controls",
+    "lightboxZoomIn": "Zoom in",
+    "lightboxZoomOut": "Zoom out",
+    "lightboxReset": "Reset zoom"
   },
   "floating": {
     "backToTop": "Back to top",
