@@ -587,6 +587,7 @@
   }
 
   .site-logo-svg__clip-rect {
+    transform: scaleX(0);
     transform-box: fill-box;
     transform-origin: 0 50%;
   }
@@ -1047,7 +1048,7 @@
   }
 
   .gallery-groups {
-    @apply relative md:pt-4! pt-2!;
+    @apply relative md:pt-4! pt-2! min-h-[80vh];
   }
 
   .gallery-group-switch-enter-active,
@@ -1096,7 +1097,7 @@
 
   /* ——— Reviews carousel ——— */
   .reviews-section {
-    @apply border-t border-border/70 bg-paper py-12 md:py-16;
+    @apply border-t border-border/70 bg-surface/50 mt-10 py-8 md:py-8;
   }
 
   .reviews-header {
@@ -1281,8 +1282,24 @@
     isolation: isolate;
   }
 
+  .gallery-item-visual--loading {
+    @apply bg-border/25;
+  }
+
   .gallery-item-img {
     @apply relative block h-full w-full object-contain object-center;
+    opacity: 0;
+    transition: opacity 0.55s var(--ease-organic);
+  }
+
+  .gallery-item-img--visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-item-img {
+      transition-duration: 0.01ms;
+    }
   }
 
   .gallery-item--wide:not(.gallery-item--portrait) {

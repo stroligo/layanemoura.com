@@ -11,8 +11,8 @@ export const getInTouchFallback: GetInTouchInput = {
   },
   email: 'hi@layanemoura.com.br',
   eyebrow: {
-    en: 'Get in touch',
-    pt: 'Contato',
+    en: 'Get in touch!',
+    pt: 'Entre em Contato!',
   },
   title: {
     en: "Let's create something together.",
@@ -27,7 +27,7 @@ export const getInTouchFallback: GetInTouchInput = {
     ].join('\n\n'),
     pt: [
       'Olá! Eu sou uma curiosa ilustradora, nascida no Brasil, mas vivendo pelo mundo em uma campervan há mais de 1 ano! Trabalho tanto com o digital, como também com mídias tradicionais, como a aquarela, mas na maior parte do tempo misturando tudo em uma coisa só.',
-      'Sou apaixonada por novos lugares, pessoas e culturas, o que sem dúvida se reflete no meu trabalho! E isso vale tanto para \'mundos reais\', quanto para os que existem apenas na nossa imaginação. Sendo assim, também produzo bastante coisas no universo da fantasia e do lúdico.',
+      "Sou apaixonada por novos lugares, pessoas e culturas, o que sem dúvida se reflete no meu trabalho! E isso vale tanto para 'mundos reais', quanto para os que existem apenas na nossa imaginação. Sendo assim, também produzo bastante coisas no universo da fantasia e do lúdico.",
       'Meu trabalho permite aplicações nos mais diversos tipos de media, principalmente capas de livros infantis e YA, revistas, design de produto, peças publicitárias e estamparia.',
       'Por que não nos mantemos em contato? :)',
     ].join('\n\n'),

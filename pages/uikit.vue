@@ -7,9 +7,8 @@
         <h1 class="uikit-heading">UI Kit — Layane Moura</h1>
         <p class="prose-site mt-4 max-w-3xl">
           Referência visual baseada em
-          <code class="rounded bg-paper px-1.5 py-0.5 text-sm text-terracotta"
-            >Projeto/uikit.png</code
-          >. Tokens, tipografia e componentes usados no site Nuxt + Tailwind.
+          <code class="rounded bg-paper px-1.5 py-0.5 text-sm text-terracotta">Projeto/uikit.png</code>.
+          Tokens, tipografia e componentes usados no site Nuxt + Tailwind.
         </p>
         <div class="mt-8 overflow-hidden rounded-[var(--radius-ui)] border border-border shadow-elevation-2">
           <img
@@ -26,15 +25,12 @@
 
     <div class="container-fluid wrap">
       <!-- Paleta -->
-      <section class="uikit-section" id="colors">
+      <section id="colors" class="uikit-section">
         <p class="uikit-title">01</p>
         <h2 class="uikit-heading">Paleta de cores</h2>
         <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
           <div v-for="color in colors" :key="color.token" class="swatch">
-            <div
-              class="swatch-color"
-              :style="{ backgroundColor: color.hex }"
-            />
+            <div class="swatch-color" :style="{ backgroundColor: color.hex }" />
             <div class="swatch-meta">
               <p class="font-medium text-cocoa">{{ color.name }}</p>
               <p>{{ color.hex }}</p>
@@ -45,22 +41,20 @@
       </section>
 
       <!-- Tipografia -->
-      <section class="uikit-section" id="typography">
+      <section id="typography" class="uikit-section">
         <p class="uikit-title">02</p>
         <h2 class="uikit-heading">Tipografia</h2>
         <ul class="mt-6 flex flex-wrap gap-4 font-sans text-sm text-ink-muted">
           <li v-for="font in fonts" :key="font.token">
             <strong class="text-cocoa">{{ font.name }}</strong> — {{ font.role }}
             <span v-if="font.source"> ({{ font.source }})</span>
-            <span v-if="font.file"> → <code class="text-terracotta">{{ font.file }}</code></span>
+            <span v-if="font.file">
+              → <code class="text-terracotta">{{ font.file }}</code></span
+            >
           </li>
         </ul>
         <ul class="mt-8 space-y-10">
-          <li
-            v-for="item in typography"
-            :key="item.name"
-            class="border-b border-border pb-8 last:border-0"
-          >
+          <li v-for="item in typography" :key="item.name" class="border-b border-border pb-8 last:border-0">
             <p class="font-sans text-xs uppercase tracking-[0.2em] text-ink-muted">
               {{ item.name }} — {{ item.spec }}
             </p>
@@ -70,7 +64,7 @@
       </section>
 
       <!-- Botões -->
-      <section class="uikit-section" id="buttons">
+      <section id="buttons" class="uikit-section">
         <p class="uikit-title">03</p>
         <h2 class="uikit-heading">Botões</h2>
         <div class="mt-8 flex flex-wrap items-center gap-4">
@@ -80,12 +74,7 @@
             Tertiary <span class="btn-tertiary-arrow" aria-hidden="true">→</span>
           </button>
           <button type="button" class="btn-icon" aria-label="Favorite">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="h-5 w-5"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
               <path
                 d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
               />
@@ -96,33 +85,21 @@
       </section>
 
       <!-- Formulários -->
-      <section class="uikit-section" id="forms">
+      <section id="forms" class="uikit-section">
         <p class="uikit-title">04</p>
         <h2 class="uikit-heading">Campos de formulário</h2>
         <div class="mt-8 grid gap-10 lg:grid-cols-2">
           <div class="space-y-5">
             <div>
               <label for="uikit-name" class="label-ui mb-1.5 block">Nome</label>
-              <input
-                id="uikit-name"
-                type="text"
-                class="input-field"
-                placeholder="Seu nome"
-              />
+              <input id="uikit-name" type="text" class="input-field" placeholder="Seu nome" />
             </div>
             <div>
               <label for="uikit-email" class="label-ui mb-1.5 block">Email</label>
-              <input
-                id="uikit-email"
-                type="email"
-                class="input-field"
-                placeholder="email@exemplo.com"
-              />
+              <input id="uikit-email" type="email" class="input-field" placeholder="email@exemplo.com" />
             </div>
             <div>
-              <label for="uikit-select" class="label-ui mb-1.5 block"
-                >Tipo de projeto</label
-              >
+              <label for="uikit-select" class="label-ui mb-1.5 block">Tipo de projeto</label>
               <select id="uikit-select" class="select-field">
                 <option>Mapa de fantasia</option>
                 <option>Capa de livro</option>
@@ -131,9 +108,7 @@
             </div>
             <div class="flex items-center gap-2">
               <input id="uikit-check" type="checkbox" class="checkbox-ui" checked />
-              <label for="uikit-check" class="label-ui !font-normal"
-                >Aceito ser contactada</label
-              >
+              <label for="uikit-check" class="label-ui !font-normal">Aceito ser contactada</label>
             </div>
           </div>
           <div class="space-y-5">
@@ -149,9 +124,7 @@
               <p class="field-error">Este campo é obrigatório.</p>
             </div>
             <div>
-              <label for="uikit-message" class="label-ui mb-1.5 block"
-                >Mensagem</label
-              >
+              <label for="uikit-message" class="label-ui mb-1.5 block">Mensagem</label>
               <textarea
                 id="uikit-message"
                 class="input-field min-h-[120px] resize-y"
@@ -174,7 +147,7 @@
       </section>
 
       <!-- Alertas -->
-      <section class="uikit-section" id="alerts">
+      <section id="alerts" class="uikit-section">
         <p class="uikit-title">05</p>
         <h2 class="uikit-heading">Alertas</h2>
         <div class="mt-8 space-y-3 max-w-xl">
@@ -198,7 +171,7 @@
       </section>
 
       <!-- Tabs -->
-      <section class="uikit-section" id="tabs">
+      <section id="tabs" class="uikit-section">
         <p class="uikit-title">06</p>
         <h2 class="uikit-heading">Tabs</h2>
         <div class="tabs mt-8">
@@ -214,12 +187,13 @@
           </button>
         </div>
         <p class="mt-6 font-body text-ink-muted">
-          Conteúdo da tab <strong class="text-cocoa">{{ activeTab }}</strong>.
+          Conteúdo da tab <strong class="text-cocoa">{{ activeTab }}</strong
+          >.
         </p>
       </section>
 
       <!-- Stepper -->
-      <section class="uikit-section" id="stepper">
+      <section id="stepper" class="uikit-section">
         <p class="uikit-title">07</p>
         <h2 class="uikit-heading">Stepper</h2>
         <div class="stepper mt-10 max-w-2xl">
@@ -241,7 +215,7 @@
       </section>
 
       <!-- Elevações -->
-      <section class="uikit-section" id="shadows">
+      <section id="shadows" class="uikit-section">
         <p class="uikit-title">08</p>
         <h2 class="uikit-heading">Elevações</h2>
         <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -259,12 +233,12 @@
       </section>
 
       <!-- Card de projeto -->
-      <section class="uikit-section" id="cards">
+      <section id="cards" class="uikit-section">
         <p class="uikit-title">09</p>
         <h2 class="uikit-heading">Card de projeto</h2>
         <p class="prose-site mt-4">
-          A galeria da Home usa <code class="text-terracotta">GalleryItem</code> —
-          apenas imagem, grid orgânica e modal ao clicar.
+          A galeria da Home usa <code class="text-terracotta">GalleryItem</code> — apenas imagem, grid
+          orgânica e modal ao clicar.
         </p>
         <div class="gallery-organic mt-8 max-w-3xl">
           <GalleryItem
@@ -277,12 +251,12 @@
       </section>
 
       <!-- Navegação (preview) -->
-      <section class="uikit-section" id="navigation">
+      <section id="navigation" class="uikit-section">
         <p class="uikit-title">10</p>
         <h2 class="uikit-heading">Navegação</h2>
         <p class="prose-site mt-2">
-          Header com logo centralizada; barra de filtros (Home) com pills à
-          esquerda e botão Get in touch à direita.
+          Header com logo centralizada; barra de filtros (Home) com pills à esquerda e botão Get in touch à
+          direita.
         </p>
         <div
           class="mt-8 overflow-hidden rounded-[var(--radius-ui)] border border-border bg-paper shadow-elevation-1"
@@ -299,13 +273,13 @@
               <li><span class="filter-pill">Travel</span></li>
               <li><span class="filter-pill">Fantasy Maps</span></li>
             </ul>
-            <span class="btn-primary gallery-filter-cta text-sm">Get in touch</span>
+            <span class="btn-primary gallery-filter-cta text-sm">Get in touch!</span>
           </div>
         </div>
       </section>
 
       <!-- Footer (preview) -->
-      <section class="uikit-section" id="footer">
+      <section id="footer" class="uikit-section">
         <p class="uikit-title">11</p>
         <h2 class="uikit-heading">Footer</h2>
         <div class="mt-8 overflow-hidden rounded-[var(--radius-ui)]">

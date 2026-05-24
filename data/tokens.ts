@@ -60,7 +60,7 @@ export const typography = [
   },
   {
     name: 'Inter',
-    sample: 'HOME · GET IN TOUCH',
+    sample: 'HOME · GET IN TOUCH!',
     class: 'font-inter text-xs uppercase tracking-[0.2em] text-cocoa',
     spec: 'UI — menu, botões, labels',
   },

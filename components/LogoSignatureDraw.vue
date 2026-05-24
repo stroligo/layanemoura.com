@@ -121,22 +121,21 @@ onMounted(() => {
   const rect = clipRectEl.value;
   if (!rect) return;
 
-  rect.style.transform = 'scaleX(1)';
-  rect.style.transformOrigin = '0 50%';
-  rect.style.transformBox = 'fill-box';
-
-  ready.value = true;
-
   const skipAnimation = !props.animate || prefersReducedMotion();
 
   if (skipAnimation) {
     phase.value = 'hold';
     setReveal(1, false);
+    ready.value = true;
     return;
   }
 
   setReveal(0, false);
-  runCycle();
+  ready.value = true;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => runCycle());
+  });
 });
 
 onUnmounted(() => {

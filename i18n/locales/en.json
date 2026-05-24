@@ -2,7 +2,7 @@
   "meta": {
     "homeTitle": "Layane Moura — Illustrator & Map Maker",
     "homeDescription": "Portfolio of Layane Moura — fantasy maps, travel illustration, book covers and editorial work.",
-    "contactTitle": "Get in touch — Layane Moura",
+    "contactTitle": "Get in touch! — Layane Moura",
     "contactDescription": "Contact Layane Moura for illustration commissions, maps, book covers and collaborations."
   },
   "seo": {
@@ -39,7 +39,7 @@
   "nav": {
     "home": "Home",
     "homeAria": "{name} — home",
-    "getInTouch": "Get in touch",
+    "getInTouch": "Get in touch!",
     "langAria": "Language",
     "breadcrumbAria": "Breadcrumb",
     "mainAria": "Main navigation"
@@ -124,7 +124,7 @@
     "projectNext": "Next project",
     "tagsAria": "Project tags",
     "behance": "View on Behance",
-    "getInTouch": "Get in touch",
+    "getInTouch": "Get in touch!",
     "galleryAria": "Project images",
     "galleryPrev": "Previous image",
     "galleryNext": "Next image",

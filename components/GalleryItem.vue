@@ -21,12 +21,17 @@
     "
     @click="$emit('select', project)"
   >
-    <div class="gallery-item-visual" :style="visualAspectStyle">
+    <div
+      class="gallery-item-visual"
+      :class="{ 'gallery-item-visual--loading': coverImage && !isVisible }"
+      :style="visualAspectStyle"
+    >
       <img
         v-if="coverImage"
         :src="coverImage"
         alt=""
         class="gallery-item-img"
+        :class="{ 'gallery-item-img--visible': isVisible }"
         :width="imageWidth"
         :height="imageHeight"
         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
@@ -69,6 +74,7 @@ defineEmits<{
 }>();
 
 const coverImage = computed(() => projectCoverImage(props.project));
+const { isVisible, reveal } = useGalleryCoverImage(coverImage);
 
 const root = ref<HTMLElement | null>(null);
 const { gridRowEnd, displayAspect, isPortrait, onImageLoad, remeasure } =
@@ -90,6 +96,7 @@ const visualAspectStyle = computed(() => ({
 }));
 
 function onImageReady(event: Event) {
+  reveal();
   onImageLoad(event);
 }
 
@@ -110,6 +117,7 @@ onMounted(() => {
 
   const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
   if (img?.complete && img.naturalWidth > 0) {
+    reveal();
     remeasure();
   }
 });

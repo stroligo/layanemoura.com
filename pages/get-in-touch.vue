@@ -1,5 +1,5 @@
 <template>
-  <section class="!pt-8">
+  <section class="!pt-4">
     <div class="container-fluid wrap">
       <PageBreadcrumbs :current-label="t('nav.getInTouch')" class="mb-5 md:mb-6" />
 
@@ -101,12 +101,7 @@
                     @blur="validateEmailField"
                     @input="onEmailInput"
                   />
-                  <p
-                    v-if="fieldErrors.email"
-                    id="email-error"
-                    class="field-error"
-                    role="alert"
-                  >
+                  <p v-if="fieldErrors.email" id="email-error" class="field-error" role="alert">
                     {{ fieldErrors.email }}
                   </p>
                 </div>
@@ -125,20 +120,10 @@
               </div>
               <div class="contact-form__honeypot" aria-hidden="true">
                 <label for="website">Website</label>
-                <input
-                  id="website"
-                  v-model="form.website"
-                  type="text"
-                  tabindex="-1"
-                  autocomplete="off"
-                />
+                <input id="website" v-model="form.website" type="text" tabindex="-1" autocomplete="off" />
               </div>
             </div>
-            <button
-              type="submit"
-              class="btn-primary contact-form__submit"
-              :disabled="formSubmitting"
-            >
+            <button type="submit" class="btn-primary contact-form__submit" :disabled="formSubmitting">
               {{ t('contact.form.submit') }}
             </button>
 
@@ -146,19 +131,13 @@
               v-if="formStatus"
               class="contact-form__feedback"
               :class="
-                formStatus === 'success'
-                  ? 'contact-form__feedback--success'
-                  : 'contact-form__feedback--error'
+                formStatus === 'success' ? 'contact-form__feedback--success' : 'contact-form__feedback--error'
               "
               role="status"
               aria-live="polite"
             >
               <p class="contact-form__feedback-title">
-                {{
-                  formStatus === 'success'
-                    ? t('contact.form.successTitle')
-                    : t('contact.form.errorTitle')
-                }}
+                {{ formStatus === 'success' ? t('contact.form.successTitle') : t('contact.form.errorTitle') }}
               </p>
               <p class="contact-form__feedback-text">
                 {{ feedbackMessage }}
