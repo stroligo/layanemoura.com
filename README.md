@@ -21,17 +21,14 @@ npm run build
 
 ## Formulário de contacto (SMTP)
 
-O formulário em `/get-in-touch` envia e-mail pelo servidor (não abre o Mail do visitante). Configure no `.env`:
+O formulário em `/get-in-touch` envia e-mail pelo servidor (`POST /api/contact`). Sem SMTP configurado → erro **503** na UI.
 
-| Variável | Exemplo |
-| --- | --- |
-| `CONTACT_TO_EMAIL` | `hi@layanemoura.com.br` |
-| `CONTACT_FROM_EMAIL` | mesmo endereço SMTP autenticado |
-| `SMTP_HOST` | `smtp.hostinger.com` (do seu provedor) |
-| `SMTP_PORT` | `587` |
-| `SMTP_USER` / `SMTP_PASS` | credenciais SMTP |
+1. Copie `.env.example` para `.env` (ou use o `.env` já criado no projeto)
+2. Preencha **`SMTP_PASS`** com a senha da caixa `hi@layanemoura.com.br` (Hostinger → E-mails)
+3. Reinicie `npm run dev`
+4. Teste: `npm run contact:test-smtp` (ligaçao) ou `npm run contact:test-smtp -- --send` (envia teste)
 
-Em desenvolvimento, sem SMTP o envio falha com mensagem clara na UI. Use a senha de app do Gmail ou SMTP do alojamento do domínio.
+Guia completo: [Projeto/email-hostinger.md](./Projeto/email-hostinger.md)
 
 ### Aviso no WhatsApp (opcional)
 
