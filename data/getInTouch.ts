@@ -9,7 +9,7 @@ export const getInTouchFallback: GetInTouchInput = {
       pt: '{name} — ilustradora',
     },
   },
-  email: 'hi@layanemoura.com.br',
+  email: 'hi@layanemoura.com',
   eyebrow: {
     en: 'Get in touch!',
     pt: 'Entre em Contato!',

@@ -24,7 +24,7 @@ npm run build
 O formulário em `/get-in-touch` envia e-mail pelo servidor (`POST /api/contact`). Sem SMTP configurado → erro **503** na UI.
 
 1. Copie `.env.example` para `.env` (ou use o `.env` já criado no projeto)
-2. Preencha **`SMTP_PASS`** com a senha da caixa `hi@layanemoura.com.br` (Hostinger → E-mails)
+2. Preencha **`SMTP_PASS`** com a senha da caixa `hi@layanemoura.com` (Hostinger → E-mails)
 3. Reinicie `npm run dev`
 4. Teste: `npm run contact:test-smtp` (ligaçao) ou `npm run contact:test-smtp -- --send` (envia teste)
 

@@ -6,7 +6,7 @@ Se faltar SMTP, a UI mostra: *"The contact form is not configured on the server 
 ## 1. Criar a caixa de correio (se ainda não existir)
 
 1. [hPanel Hostinger](https://hpanel.hostinger.com) → **E-mails** → **Contas de e-mail**
-2. Criar ou confirmar: `hi@layanemoura.com.br`
+2. Criar ou confirmar: `hi@layanemoura.com`
 3. Definir uma **senha forte** (é a `SMTP_PASS`)
 
 ## 2. Dados SMTP (Hostinger)
@@ -16,10 +16,10 @@ Se faltar SMTP, a UI mostra: *"The contact form is not configured on the server 
 | `SMTP_HOST` | `smtp.hostinger.com` |
 | `SMTP_PORT` | `587` |
 | `SMTP_SECURE` | `false` (TLS na porta 587) |
-| `SMTP_USER` | `hi@layanemoura.com.br` |
+| `SMTP_USER` | `hi@layanemoura.com` |
 | `SMTP_PASS` | senha da caixa de e-mail |
-| `CONTACT_TO_EMAIL` | para onde chegam as mensagens (`hi@layanemoura.com.br`) |
-| `CONTACT_FROM_EMAIL` | mesmo e-mail autenticado (`hi@layanemoura.com.br`) |
+| `CONTACT_TO_EMAIL` | para onde chegam as mensagens (`hi@layanemoura.com`) |
+| `CONTACT_FROM_EMAIL` | mesmo e-mail autenticado (`hi@layanemoura.com`) |
 
 Alternativa SSL: `SMTP_PORT=465` e `SMTP_SECURE=true`.
 

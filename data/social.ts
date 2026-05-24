@@ -6,7 +6,7 @@ export const socialLinksFallback: SocialLink[] = [
   {
     id: 'email',
     label: socialLabelFromIcon('email'),
-    href: 'mailto:hi@layanemoura.com.br',
+    href: 'mailto:hi@layanemoura.com',
     icon: 'email',
   },
   {

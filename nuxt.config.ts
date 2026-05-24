@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     studioGithubClientId: process.env.STUDIO_GITHUB_CLIENT_ID || '',
     studioGithubClientSecret: process.env.STUDIO_GITHUB_CLIENT_SECRET || '',
     /** Formulário de contacto (SMTP). Ver `.env.example`. */
-    contactToEmail: process.env.CONTACT_TO_EMAIL || 'hi@layanemoura.com.br',
+    contactToEmail: process.env.CONTACT_TO_EMAIL || 'hi@layanemoura.com',
     contactFromEmail: process.env.CONTACT_FROM_EMAIL || '',
     contactFromName: process.env.CONTACT_FROM_NAME || 'Layane Moura Website',
     smtpHost: process.env.SMTP_HOST || '',

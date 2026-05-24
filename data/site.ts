@@ -1,6 +1,6 @@
 export const site = {
   name: 'Layane Moura',
-  email: 'hi@layanemoura.com.br',
+  email: 'hi@layanemoura.com',
   photo: '/images/about.JPG',
 } as const;
 
