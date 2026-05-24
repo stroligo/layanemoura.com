@@ -19,7 +19,8 @@
     "content:sync-contact": "tsx scripts/sync-get-in-touch-to-content.ts",
     "content:sync-social": "tsx scripts/sync-social-to-content.ts",
     "content:reset": "rm -rf .data && nuxt prepare",
-    "contact:test-smtp": "tsx scripts/test-contact-smtp.ts"
+    "contact:test-smtp": "tsx scripts/test-contact-smtp.ts",
+    "sitemap:generate": "tsx scripts/generate-sitemap.ts"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
