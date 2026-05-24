@@ -33,6 +33,12 @@
 
     <ReviewsCarousel />
 
+    <HomeMapsSection />
+
+    <HomeServicesSection />
+
+    <HomeAboutSection />
+
     <ProjectModal
       :project="selectedProject"
       :show-project-nav="canNavigateProjects"
@@ -64,6 +70,11 @@ const {
 const projectsLoadFailed = computed(
   () => !projectsPending.value && Boolean(projectsError.value) && projects.value.length === 0,
 );
+
+// Prefetch home sections on SSR (deduped with child components via useAsyncData keys).
+useHomeContent();
+useServiceCollection();
+useGetInTouchContent();
 
 const {
   galleryGroups,

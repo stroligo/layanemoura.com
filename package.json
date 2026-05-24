@@ -17,6 +17,8 @@
     "content:sync": "tsx scripts/sync-projects-to-content.ts",
     "content:sync-reviews": "tsx scripts/sync-reviews-to-content.ts",
     "content:sync-contact": "tsx scripts/sync-get-in-touch-to-content.ts",
+    "content:sync-home": "tsx scripts/sync-home-to-content.ts",
+    "content:sync-services": "tsx scripts/sync-services-to-content.ts",
     "content:sync-social": "tsx scripts/sync-social-to-content.ts",
     "content:reset": "rm -rf .data && nuxt prepare",
     "contact:test-smtp": "tsx scripts/test-contact-smtp.ts",

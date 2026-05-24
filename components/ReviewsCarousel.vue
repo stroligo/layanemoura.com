@@ -55,19 +55,19 @@
                 </blockquote>
 
                 <footer class="review-author">
-                  <p class="review-author-name">{{ review.clientName }}</p>
+                  <p class="review-author-name">
+                    {{ review.clientName }}
+                    <template v-if="review.projectType">
+                      <span class="review-author-sep" aria-hidden="true"> · </span>
+                      <span class="review-project-type">{{ review.projectType }}</span>
+                    </template>
+                  </p>
                   <p class="review-author-meta">
                     <span>{{ review.clientRole }}</span>
                     <template v-if="review.clientCompany">
                       <span class="review-author-sep" aria-hidden="true"> · </span>
                       <span>{{ review.clientCompany }}</span>
                     </template>
-                  </p>
-                  <p
-                    v-if="review.projectType"
-                    class="review-project-type"
-                  >
-                    {{ review.projectType }}
                   </p>
                 </footer>
               </article>
@@ -145,7 +145,7 @@ const reviewPages = computed((): ClientReview[][] => {
 
 function updatePerView() {
   if (!import.meta.client) return;
-  perView.value = window.matchMedia(DESKTOP_QUERY).matches ? 3 : 1;
+  perView.value = window.matchMedia(DESKTOP_QUERY).matches ? 2 : 1;
   clampActivePage();
 }
 

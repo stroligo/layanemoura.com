@@ -133,6 +133,34 @@ Assunto/corpo do `mailto:` continuam em `i18n` (`contact.mailSubject`, `contact.
 npm run content:sync-contact
 ```
 
+## Home (secções da página inicial)
+
+### `home.yml`
+
+Coleção **Home** no Studio — textos das secções Map making, Services (cabeçalho) e About (rótulos).
+
+- **mapsAbout** — secção de mapas (foto, títulos, texto, botão)
+- **servicesHeader** — eyebrow, título e CTA da grelha de serviços (os cards vêm da coleção Services)
+- **aboutTeaser** — eyebrow e botão da secção sobre; biografia, foto e contacto vêm de **Get in touch**
+
+Cada bloco tem **published** — desligar oculta a secção na home.
+
+### `services/*.yml`
+
+Coleção **Services** — um ficheiro por card de serviço na home.
+
+- **published** — mostrar ou ocultar
+- **order** — ordem (menor = primeiro)
+- **icon** — ícone do card (`fantasyMaps`, `travelMaps`, `bookCovers`, `editorial`, `commercial`, `commissions`)
+- **title**, **description** — EN/PT
+
+### Sincronizar mock legado
+
+```bash
+npm run content:sync-home
+npm run content:sync-services
+```
+
 ## Redes sociais
 
 Cada arquivo em `social/{slug}.yml` é um link (footer e página de contacto).

@@ -200,6 +200,79 @@ const getInTouchSchema = z.object({
   availability: detailBlock('Availability'),
 });
 
+const serviceIcon = z
+  .enum([
+    'fantasyMaps',
+    'travelMaps',
+    'bookCovers',
+    'editorial',
+    'commercial',
+    'commissions',
+  ])
+  .describe('Icon shown on the service card in the home page.');
+
+const serviceSchema = z.object({
+  published: property(z.boolean().default(true)).editor({
+    label: 'Published',
+    description: 'When off, the service card is hidden from the home page.',
+  }),
+  order: z
+    .number()
+    .int()
+    .default(0)
+    .describe('Sort order on the home page (lower = first)'),
+  icon: serviceIcon,
+  title: localeLine('Title (EN)', 'Título (PT)'),
+  description: localeLine('Description (EN)', 'Descrição (PT)'),
+});
+
+const homeSectionToggle = (label: string) =>
+  property(z.boolean().default(true)).editor({
+    label: 'Published',
+    description: `When off, the ${label} section is hidden from the home page.`,
+  });
+
+const homeSchema = z.object({
+  mapsAbout: z
+    .object({
+      published: homeSectionToggle('map making'),
+      photo: z.object({
+        src: property(z.string().min(1)).editor({
+          input: 'media',
+          label: 'Photo',
+          description: 'Illustration shown in the map making section.',
+        }),
+        alt: localeLine('Photo alt (EN)', 'Alt da foto (PT)').describe(
+          'Use {name} for the site owner name.',
+        ),
+      }),
+      eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
+      title: localeLine('Title (EN)', 'Título (PT)'),
+      body: localeLine('Body (EN)', 'Texto (PT)').describe(
+        'Section copy — separate paragraphs with a blank line.',
+      ),
+      cta: localeLine('Button (EN)', 'Botão (PT)'),
+    })
+    .describe('Home — map making section'),
+  servicesHeader: z
+    .object({
+      published: homeSectionToggle('services'),
+      eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
+      title: localeLine('Title (EN)', 'Título (PT)'),
+      cta: localeLine('Button (EN)', 'Botão (PT)'),
+    })
+    .describe('Home — services section header and CTA'),
+  aboutTeaser: z
+    .object({
+      published: homeSectionToggle('about'),
+      eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
+      cta: localeLine('Button (EN)', 'Botão (PT)'),
+    })
+    .describe(
+      'Home — about section labels. Biography and photo come from Get in touch.',
+    ),
+});
+
 export default defineContentConfig({
   collections: {
     projects: defineCollection({
@@ -216,6 +289,16 @@ export default defineContentConfig({
       type: 'data',
       source: 'pages/*.yml',
       schema: getInTouchSchema,
+    }),
+    home: defineCollection({
+      type: 'data',
+      source: 'home.yml',
+      schema: homeSchema,
+    }),
+    services: defineCollection({
+      type: 'data',
+      source: 'services/*.yml',
+      schema: serviceSchema,
     }),
     social: defineCollection({
       type: 'data',
