@@ -18,6 +18,7 @@ import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { generateOgShareImage } from './generate-og-share';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const imagesRoot = join(root, 'public', 'images');
@@ -133,6 +134,10 @@ async function processOne(source: string) {
 }
 
 async function main() {
+  if (!dryRun) {
+    await generateOgShareImage();
+  }
+
   if (!existsSync(imagesRoot)) {
     console.error('Missing public/images');
     process.exit(1);

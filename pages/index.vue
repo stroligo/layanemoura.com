@@ -124,7 +124,7 @@ useSiteSeo(() => ({
   type: 'website',
   jsonLd: [
     buildWebSiteJsonLd(publicSiteUrl.value),
-    buildPersonJsonLd(publicSiteUrl.value),
+    buildPersonJsonLd(publicSiteUrl.value, seoConfig.defaultOgImage),
     ...buildReviewsJsonLd(publicSiteUrl.value, reviews.value),
   ],
 }));

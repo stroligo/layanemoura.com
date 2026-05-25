@@ -126,6 +126,8 @@ Não uses pasta `build` como raiz do site — o Nitro gera `.output/public` + `.
 - Ativo em **produção**; em dev: `NUXT_PUBLIC_GTAG_DEV=true`
 - Desligar: `NUXT_PUBLIC_GTAG_ID=` (vazio)
 
+Imagem de partilha (Open Graph): `/images/og-share.jpg` (logo 1200×630, gerada com `npm run og:generate` no build).
+
 ## Tokens
 
 `src/css/tokens.css` — cores e tipografia (**Delius**, **Cormorant Garamond**, **Inter** via Google Fonts).

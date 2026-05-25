@@ -91,7 +91,7 @@ const publicSiteUrl = usePublicSiteUrl();
 useSiteSeo(() => ({
   title: t('meta.contactTitle'),
   description: t('meta.contactDescription'),
-  image: content.value.photoSrc || seoConfig.contactOgImage,
+  image: seoConfig.defaultOgImage,
   imageAlt: content.value.photoAlt,
   type: 'profile',
   jsonLd: [

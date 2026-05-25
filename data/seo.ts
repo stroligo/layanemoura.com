@@ -14,11 +14,11 @@ export const seoConfig = {
   defaultSiteUrl: 'https://layanemoura.com',
   siteName: site.name,
   email: site.email,
-  /** Imagem padrão para redes (retrato / marca). */
-  defaultOgImage: '/images/layane.jpg',
+  /** Open Graph / WhatsApp — logo em fundo marca (gerada por scripts/generate-og-share.ts). */
+  defaultOgImage: '/images/og-share.jpg',
   defaultOgImageWidth: 1200,
-  defaultOgImageHeight: 1200,
-  contactOgImage: '/images/about.JPG',
+  defaultOgImageHeight: 630,
+  contactOgImage: '/images/og-share.jpg',
   twitterHandle: '@layanemoura',
   localeOg: {
     en: 'en_US',
