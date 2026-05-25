@@ -23,6 +23,33 @@ function buildPublicSiteUrl() {
 
 const siteUrl = buildPublicSiteUrl();
 
+const gtagId = process.env.NUXT_PUBLIC_GTAG_ID?.trim() || 'G-75RXBJWSZC';
+const gtagDisabled = process.env.NUXT_PUBLIC_GTAG_ID === '';
+
+/** Tag no <head> do HTML (SSR) — o verificador do Google exige isto, não só JS no cliente. */
+function buildGtagHeadScripts() {
+  if (gtagDisabled || !/^G-[A-Z0-9]+$/.test(gtagId)) return [];
+  if (process.env.NODE_ENV !== 'production') return [];
+
+  const init = [
+    'window.dataLayer=window.dataLayer||[];',
+    'function gtag(){dataLayer.push(arguments);}',
+    "gtag('js',new Date());",
+    `gtag('config','${gtagId}');`,
+  ].join('');
+
+  return [
+    {
+      src: `https://www.googletagmanager.com/gtag/js?id=${gtagId}`,
+      async: true,
+    },
+    {
+      innerHTML: init,
+      type: 'text/javascript',
+    },
+  ];
+}
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-08',
 
@@ -47,7 +74,7 @@ export default defineNuxtConfig({
     public: {
       siteUrl,
       /** Google Analytics 4 (gtag). Vazio = desligado. */
-      gtagId: process.env.NUXT_PUBLIC_GTAG_ID?.trim() || 'G-75RXBJWSZC',
+      gtagId: gtagDisabled ? '' : gtagId,
       /** true = carregar gtag também em `nuxt dev` */
       gtagDev: process.env.NUXT_PUBLIC_GTAG_DEV === 'true',
       /** Indica modo dev do Studio (botão local); não é segredo. */
@@ -198,6 +225,7 @@ export default defineNuxtConfig({
         },
         { rel: 'preconnect', href: 'https://www.googletagmanager.com' },
       ],
+      script: buildGtagHeadScripts(),
     },
   },
 

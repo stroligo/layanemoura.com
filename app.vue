@@ -7,3 +7,7 @@
     <FloatingPageActions />
   </ClientOnly>
 </template>
+
+<script setup lang="ts">
+useGtag();
+</script>
