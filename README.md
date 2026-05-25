@@ -120,6 +120,12 @@ Não uses pasta `build` como raiz do site — o Nitro gera `.output/public` + `.
 - Produção: `NUXT_PUBLIC_SITE_URL=https://layanemoura.com` **antes** de `npm run build` (ver `.env.example`)
 - Preview local do sitemap: `npm run sitemap:generate` → `sitemap.preview.xml`
 
+## Analytics
+
+- Google Analytics 4 (`G-75RXBJWSZC`) via `plugins/gtag.client.ts`
+- Ativo em **produção**; em dev: `NUXT_PUBLIC_GTAG_DEV=true`
+- Desligar: `NUXT_PUBLIC_GTAG_ID=` (vazio)
+
 ## Tokens
 
 `src/css/tokens.css` — cores e tipografia (**Delius**, **Cormorant Garamond**, **Inter** via Google Fonts).

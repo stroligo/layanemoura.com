@@ -8,10 +8,17 @@ export function buildContentSecurityPolicy(options?: {
   /** Nuxt Studio (editor): ícones Iconify + WASM/SQLite no cliente. */
   relaxForStudio?: boolean;
 }) {
-  const scriptSrc = ["'self'", "'unsafe-inline'"];
+  const scriptSrc = ["'self'", "'unsafe-inline'", 'https://www.googletagmanager.com'];
   if (options?.nonce) scriptSrc.push(`'nonce-${options.nonce}'`);
 
-  const connectSrc = ["'self'"];
+  const connectSrc = [
+    "'self'",
+    'https://www.google-analytics.com',
+    'https://analytics.google.com',
+    'https://www.googletagmanager.com',
+    'https://region1.google-analytics.com',
+    'https://region1.analytics.google.com',
+  ];
   const frameSrc = ["'none'"];
   if (options?.relaxForStudio) {
     scriptSrc.push("'unsafe-eval'", "'wasm-unsafe-eval'");

@@ -46,6 +46,10 @@ export default defineNuxtConfig({
     whatsappNotifyWebhook: process.env.WHATSAPP_NOTIFY_WEBHOOK || '',
     public: {
       siteUrl,
+      /** Google Analytics 4 (gtag). Vazio = desligado. */
+      gtagId: process.env.NUXT_PUBLIC_GTAG_ID?.trim() || 'G-75RXBJWSZC',
+      /** true = carregar gtag também em `nuxt dev` */
+      gtagDev: process.env.NUXT_PUBLIC_GTAG_DEV === 'true',
       /** Indica modo dev do Studio (botão local); não é segredo. */
       studioDev: process.env.NODE_ENV === 'development',
       /** false = build sem nuxt-studio → /_studio mostra guia de configuração */
@@ -192,6 +196,7 @@ export default defineNuxtConfig({
           href: 'https://fonts.gstatic.com',
           crossorigin: '',
         },
+        { rel: 'preconnect', href: 'https://www.googletagmanager.com' },
       ],
     },
   },
