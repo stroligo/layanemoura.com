@@ -1,8 +1,8 @@
 import type { HomeCollectionItem } from '@nuxt/content';
 import { homeFallback } from '~/data/home';
 import { site } from '~/data/site';
-import type { HomeInput, HomePage } from '~/types/home';
-import { normalizeHome } from '~/types/home';
+import type { HomeInput, HomeLocales, HomePage } from '~/types/home';
+import { mergeHomeLocales, normalizeHome, pickHomeLocales } from '~/types/home';
 
 export interface HomeContentState {
   page: HomePage;
@@ -11,45 +11,79 @@ export interface HomeContentState {
   aboutTeaserPublished: boolean;
 }
 
-function toHomeInput(item: HomeCollectionItem): HomeInput {
-  const row = item as HomeCollectionItem & HomeInput & {
+type HomeRow = HomeCollectionItem &
+  HomeInput & {
     mapsAbout?: HomeInput['mapsAbout'] & {
-      body?: HomeInput['mapsAbout']['content'];
-      copy?: HomeInput['mapsAbout']['content'];
+      title?: HomeLocales;
+      content?: HomeLocales;
+      body?: HomeLocales;
+      copy?: HomeLocales;
+    };
+    servicesHeader?: HomeInput['servicesHeader'] & { title?: HomeLocales };
+    aboutTeaser?: HomeInput['aboutTeaser'] & {
+      title?: HomeLocales;
+      content?: HomeLocales;
+      body?: HomeLocales;
+      copy?: HomeLocales;
     };
   };
+
+function toHomeInput(item: HomeCollectionItem): HomeInput {
+  const row = item as HomeRow;
+  const maps = row.mapsAbout;
+  const services = row.servicesHeader;
+  const about = row.aboutTeaser;
+
   return {
     mapsAbout: {
-      published: row.mapsAbout?.published ?? homeFallback.mapsAbout.published,
+      published: maps?.published ?? homeFallback.mapsAbout.published,
       photo: {
-        src: row.mapsAbout?.photo?.src ?? homeFallback.mapsAbout.photo.src,
-        alt: {
-          en: row.mapsAbout?.photo?.alt?.en ?? homeFallback.mapsAbout.photo.alt.en,
-          pt: row.mapsAbout?.photo?.alt?.pt ?? homeFallback.mapsAbout.photo.alt.pt,
-        },
+        src: maps?.photo?.src ?? homeFallback.mapsAbout.photo.src,
+        alt: mergeHomeLocales(maps?.photo?.alt, homeFallback.mapsAbout.photo.alt),
       },
-      eyebrow: row.mapsAbout?.eyebrow ?? homeFallback.mapsAbout.eyebrow,
-      title: row.mapsAbout?.title ?? homeFallback.mapsAbout.title,
-      content:
-        row.mapsAbout?.content
-        ?? row.mapsAbout?.copy
-        ?? row.mapsAbout?.body
-        ?? homeFallback.mapsAbout.content,
-      cta: row.mapsAbout?.cta ?? homeFallback.mapsAbout.cta,
+      eyebrow: mergeHomeLocales(maps?.eyebrow, homeFallback.mapsAbout.eyebrow),
+      heading: pickHomeLocales(
+        { heading: maps?.heading, title: maps?.title },
+        homeFallback.mapsAbout.heading,
+      ),
+      text: pickHomeLocales(
+        {
+          text: maps?.text,
+          content: maps?.content,
+          body: maps?.body,
+          copy: maps?.copy,
+        },
+        homeFallback.mapsAbout.text,
+      ),
+      cta: mergeHomeLocales(maps?.cta, homeFallback.mapsAbout.cta),
     },
     servicesHeader: {
-      published: row.servicesHeader?.published ?? homeFallback.servicesHeader.published,
-      eyebrow: row.servicesHeader?.eyebrow ?? homeFallback.servicesHeader.eyebrow,
-      title: row.servicesHeader?.title ?? homeFallback.servicesHeader.title,
-      cta: row.servicesHeader?.cta ?? homeFallback.servicesHeader.cta,
+      published: services?.published ?? homeFallback.servicesHeader.published,
+      eyebrow: mergeHomeLocales(services?.eyebrow, homeFallback.servicesHeader.eyebrow),
+      heading: pickHomeLocales(
+        { heading: services?.heading, title: services?.title },
+        homeFallback.servicesHeader.heading,
+      ),
+      cta: mergeHomeLocales(services?.cta, homeFallback.servicesHeader.cta),
     },
     aboutTeaser: {
-      published: row.aboutTeaser?.published ?? homeFallback.aboutTeaser.published,
-      eyebrow: row.aboutTeaser?.eyebrow ?? homeFallback.aboutTeaser.eyebrow,
-      title: row.aboutTeaser?.title ?? homeFallback.aboutTeaser.title,
-      content: row.aboutTeaser?.content ?? homeFallback.aboutTeaser.content,
-      aboutEmail: row.aboutTeaser?.aboutEmail ?? homeFallback.aboutTeaser.aboutEmail,
-      cta: row.aboutTeaser?.cta ?? homeFallback.aboutTeaser.cta,
+      published: about?.published ?? homeFallback.aboutTeaser.published,
+      eyebrow: mergeHomeLocales(about?.eyebrow, homeFallback.aboutTeaser.eyebrow),
+      heading: pickHomeLocales(
+        { heading: about?.heading, title: about?.title },
+        homeFallback.aboutTeaser.heading,
+      ),
+      text: pickHomeLocales(
+        {
+          text: about?.text,
+          content: about?.content,
+          body: about?.body,
+          copy: about?.copy,
+        },
+        homeFallback.aboutTeaser.text,
+      ),
+      aboutEmail: mergeHomeLocales(about?.aboutEmail, homeFallback.aboutTeaser.aboutEmail),
+      cta: mergeHomeLocales(about?.cta, homeFallback.aboutTeaser.cta),
     },
   };
 }

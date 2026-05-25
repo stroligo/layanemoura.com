@@ -247,10 +247,13 @@ const homeSchema = z.object({
         ),
       }),
       eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
-      title: localeLine('Title (EN)', 'Título (PT)'),
-      content: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
+      heading: localeLine('Title (EN)', 'Título (PT)'),
+      text: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
         'Section text — separate paragraphs with a blank line.',
       ),
+      /** Legado (reservados no payload Nuxt) — migrar para heading / text. */
+      title: localeLine('Title (EN)', 'Título (PT)').optional(),
+      content: localeLine('Content (EN)', 'Conteúdo (PT)').optional(),
       cta: localeLine('Button (EN)', 'Botão (PT)'),
     })
     .describe('Home — map making section'),
@@ -258,7 +261,8 @@ const homeSchema = z.object({
     .object({
       published: homeSectionToggle('services'),
       eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
-      title: localeLine('Title (EN)', 'Título (PT)'),
+      heading: localeLine('Title (EN)', 'Título (PT)'),
+      title: localeLine('Title (EN)', 'Título (PT)').optional(),
       cta: localeLine('Button (EN)', 'Botão (PT)'),
     })
     .describe('Home — services section header and CTA'),
@@ -266,10 +270,12 @@ const homeSchema = z.object({
     .object({
       published: homeSectionToggle('about'),
       eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
-      title: localeLine('Title (EN)', 'Título (PT)'),
-      content: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
+      heading: localeLine('Title (EN)', 'Título (PT)'),
+      text: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
         'About text — separate paragraphs with a blank line.',
       ),
+      title: localeLine('Title (EN)', 'Título (PT)').optional(),
+      content: localeLine('Content (EN)', 'Conteúdo (PT)').optional(),
       aboutEmail: localeLine('Email line (EN)', 'Linha do e-mail (PT)').describe(
         'Use {email} where the address should appear.',
       ),

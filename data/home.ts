@@ -16,11 +16,11 @@ export const homeFallback: HomeInput = {
       en: 'Map making',
       pt: 'Criação de mapas',
     },
-    title: {
+    heading: {
       en: 'Illustrative maps for real & imagined worlds',
       pt: 'Mapas ilustrados para mundos reais e imaginários',
     },
-    content: {
+    text: {
       en: [
         'Layane specializes in hand-crafted cartography — from fantasy realms and RPG worlds to travel posters, city atlases and visitor guides.',
         'Each map balances clarity and storytelling: coastlines, towns, paths and small hidden details that invite viewers to linger and explore.',
@@ -43,7 +43,7 @@ export const homeFallback: HomeInput = {
       en: 'What I offer',
       pt: 'O que ofereço',
     },
-    title: {
+    heading: {
       en: 'Illustration services',
       pt: 'Serviços de ilustração',
     },
@@ -58,9 +58,9 @@ export const homeFallback: HomeInput = {
       en: 'About',
       pt: 'Sobre',
     },
-    title: getInTouchFallback.title,
-    content: getInTouchFallback.about,
-    aboutEmail: getInTouchFallback.aboutEmail,
+    heading: { ...getInTouchFallback.title },
+    text: { ...getInTouchFallback.about },
+    aboutEmail: { ...getInTouchFallback.aboutEmail },
     cta: {
       en: 'Send a message',
       pt: 'Enviar mensagem',

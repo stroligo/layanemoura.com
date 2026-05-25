@@ -39,23 +39,24 @@ export interface HomeMapsAboutInput {
   published?: boolean;
   photo: { src: string; alt: HomeLocales };
   eyebrow: HomeLocales;
-  title: HomeLocales;
-  content: HomeLocales;
+  /** Evita colisão com campos reservados do Nuxt Content (`title`, `content`). */
+  heading: HomeLocales;
+  text: HomeLocales;
   cta: HomeLocales;
 }
 
 export interface HomeSectionHeaderInput {
   published?: boolean;
   eyebrow: HomeLocales;
-  title: HomeLocales;
+  heading: HomeLocales;
   cta: HomeLocales;
 }
 
 export interface HomeAboutTeaserInput {
   published?: boolean;
   eyebrow: HomeLocales;
-  title: HomeLocales;
-  content: HomeLocales;
+  heading: HomeLocales;
+  text: HomeLocales;
   aboutEmail: HomeLocales;
   cta: HomeLocales;
 }
@@ -75,6 +76,39 @@ export function localeTextForHome(
   return (field[code] || field.en || '').trim();
 }
 
+/** Preenche EN/PT vazios com fallback (Studio ou payload sem o campo). */
+export function mergeHomeLocales(
+  field: HomeLocales | undefined,
+  fallback: HomeLocales,
+): HomeLocales {
+  return {
+    en: (field?.en ?? '').trim() || fallback.en,
+    pt: (field?.pt ?? '').trim() || fallback.pt,
+  };
+}
+
+/** Lê locale com chaves novas (`heading`, `text`) ou legadas (`title`, `content`, `body`). */
+export function pickHomeLocales(
+  sources: {
+    heading?: HomeLocales;
+    title?: HomeLocales;
+    text?: HomeLocales;
+    content?: HomeLocales;
+    body?: HomeLocales;
+    copy?: HomeLocales;
+  },
+  fallback: HomeLocales,
+): HomeLocales {
+  const field =
+    sources.heading
+    ?? sources.title
+    ?? sources.text
+    ?? sources.content
+    ?? sources.body
+    ?? sources.copy;
+  return mergeHomeLocales(field, fallback);
+}
+
 export function paragraphsFromHomeBody(text: string): string[] {
   return text
     .split(/\n\s*\n/)
@@ -92,13 +126,13 @@ export function normalizeHomeMapsAbout(
     ? photoSrc
     : '/images/projects/valebrook-final-chart.jpg';
   const photoAltRaw = localeTextForHome(input.photo.alt, locale);
-  const bodyRaw = localeTextForHome(input.content, locale);
+  const bodyRaw = localeTextForHome(input.text, locale);
 
   return {
     photoSrc: safePhotoSrc,
     photoAlt: photoAltRaw.replace(/\{name\}/g, siteName),
     eyebrow: localeTextForHome(input.eyebrow, locale),
-    title: localeTextForHome(input.title, locale),
+    title: localeTextForHome(input.heading, locale),
     paragraphs: paragraphsFromHomeBody(bodyRaw),
     cta: localeTextForHome(input.cta, locale),
   };
@@ -110,7 +144,7 @@ export function normalizeHomeServicesHeader(
 ): HomeServicesHeader {
   return {
     eyebrow: localeTextForHome(input.eyebrow, locale),
-    title: localeTextForHome(input.title, locale),
+    title: localeTextForHome(input.heading, locale),
     cta: localeTextForHome(input.cta, locale),
   };
 }
@@ -120,12 +154,12 @@ export function normalizeHomeAboutTeaser(
   locale: string,
   email: string,
 ): HomeAboutTeaser {
-  const contentRaw = localeTextForHome(input.content, locale);
+  const contentRaw = localeTextForHome(input.text, locale);
   const aboutEmailRaw = localeTextForHome(input.aboutEmail, locale);
 
   return {
     eyebrow: localeTextForHome(input.eyebrow, locale),
-    title: localeTextForHome(input.title, locale),
+    title: localeTextForHome(input.heading, locale),
     paragraphs: paragraphsFromHomeBody(contentRaw),
     aboutEmail: aboutEmailRaw.replace(/\{email\}/g, email),
     cta: localeTextForHome(input.cta, locale),
