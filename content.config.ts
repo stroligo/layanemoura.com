@@ -248,8 +248,8 @@ const homeSchema = z.object({
       }),
       eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
       title: localeLine('Title (EN)', 'Título (PT)'),
-      body: localeLine('Body (EN)', 'Texto (PT)').describe(
-        'Section copy — separate paragraphs with a blank line.',
+      content: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
+        'Section text — separate paragraphs with a blank line.',
       ),
       cta: localeLine('Button (EN)', 'Botão (PT)'),
     })
@@ -266,11 +266,16 @@ const homeSchema = z.object({
     .object({
       published: homeSectionToggle('about'),
       eyebrow: localeLine('Eyebrow (EN)', 'Eyebrow (PT)'),
+      title: localeLine('Title (EN)', 'Título (PT)'),
+      content: localeLine('Content (EN)', 'Conteúdo (PT)').describe(
+        'About text — separate paragraphs with a blank line.',
+      ),
+      aboutEmail: localeLine('Email line (EN)', 'Linha do e-mail (PT)').describe(
+        'Use {email} where the address should appear.',
+      ),
       cta: localeLine('Button (EN)', 'Botão (PT)'),
     })
-    .describe(
-      'Home — about section labels. Biography and photo come from Get in touch.',
-    ),
+    .describe('Home — about section'),
 });
 
 export default defineContentConfig({

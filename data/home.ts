@@ -1,4 +1,5 @@
 import type { HomeInput } from '~/types/home';
+import { getInTouchFallback } from '~/data/getInTouch';
 
 /** Mock / fallback — sincronizar com `npm run content:sync-home`. */
 export const homeFallback: HomeInput = {
@@ -19,7 +20,7 @@ export const homeFallback: HomeInput = {
       en: 'Illustrative maps for real & imagined worlds',
       pt: 'Mapas ilustrados para mundos reais e imaginários',
     },
-    body: {
+    content: {
       en: [
         'Layane specializes in hand-crafted cartography — from fantasy realms and RPG worlds to travel posters, city atlases and visitor guides.',
         'Each map balances clarity and storytelling: coastlines, towns, paths and small hidden details that invite viewers to linger and explore.',
@@ -57,6 +58,9 @@ export const homeFallback: HomeInput = {
       en: 'About',
       pt: 'Sobre',
     },
+    title: getInTouchFallback.title,
+    content: getInTouchFallback.about,
+    aboutEmail: getInTouchFallback.aboutEmail,
     cta: {
       en: 'Send a message',
       pt: 'Enviar mensagem',

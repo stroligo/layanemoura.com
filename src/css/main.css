@@ -1569,6 +1569,10 @@
     isolation: isolate;
   }
 
+  .gallery-item-visual picture {
+    @apply block h-full w-full;
+  }
+
   .gallery-item-visual--loading {
     @apply bg-border/25;
   }
@@ -1696,22 +1700,29 @@
     @apply relative m-0 block w-full cursor-zoom-in border-0 bg-transparent p-0;
   }
 
-  .project-detail-carousel-zoom-hint {
-    @apply pointer-events-none absolute inset-0 flex items-center justify-center opacity-0;
-    background: color-mix(in srgb, var(--color-cocoa) 30%, transparent);
-    transition: opacity 0.35s var(--ease-organic);
+  .project-detail-carousel-zoom-badge {
+    @apply pointer-events-none absolute bottom-3 right-3 z-[2] flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-paper/95 text-terracotta opacity-0 shadow-elevation-2;
+    transform: scale(0.92);
+    transition:
+      opacity 0.35s var(--ease-organic),
+      transform 0.35s var(--ease-organic);
   }
 
-  .project-detail-carousel-zoom-hint__icon {
-    @apply h-10 w-10 text-paper;
-    filter: drop-shadow(0 1px 6px color-mix(in srgb, var(--color-cocoa) 45%, transparent));
+  .project-detail-carousel-zoom-badge__icon {
+    @apply h-5 w-5;
   }
 
   @media (hover: hover) {
-    .project-detail-carousel-zoom-trigger:hover .project-detail-carousel-zoom-hint,
-    .project-detail-carousel-zoom-trigger:focus-visible .project-detail-carousel-zoom-hint {
+    .project-detail-carousel-zoom-trigger:hover .project-detail-carousel-zoom-badge,
+    .project-detail-carousel-zoom-trigger:focus-visible .project-detail-carousel-zoom-badge {
       opacity: 1;
+      transform: scale(1);
     }
+  }
+
+  .project-detail-carousel-zoom-trigger:hover .project-detail-carousel-img,
+  .project-detail-carousel-zoom-trigger:focus-visible .project-detail-carousel-img {
+    filter: none;
   }
 
   .project-detail-carousel-stage .project-detail-carousel-zoom-trigger {
@@ -1720,6 +1731,7 @@
 
   .project-detail-carousel-img {
     @apply absolute inset-0 m-auto block h-full max-h-full w-full max-w-full object-contain object-center;
+    image-rendering: auto;
   }
 
   @media (max-width: 767px) {
@@ -1861,13 +1873,14 @@
   }
 
   .image-lightbox__img {
-    @apply max-h-[calc(100dvh-7rem)] max-w-full select-none object-contain;
+    @apply max-h-[calc(100dvh-7rem)] max-w-[min(100%,96rem)] select-none object-contain;
     transform-origin: center center;
     will-change: transform;
+    image-rendering: auto;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .project-detail-carousel-zoom-hint {
+    .project-detail-carousel-zoom-badge {
       transition-duration: 0.01ms;
     }
   }

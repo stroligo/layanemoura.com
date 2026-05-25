@@ -114,10 +114,11 @@ Não uses pasta `build` como raiz do site — o Nitro gera `.output/public` + `.
 ## SEO
 
 - Meta tags, Open Graph e Twitter Card via `useSiteSeo` (por página)
-- `hreflang` + canonical automáticos (`@nuxtjs/i18n` + `useLocaleHead`)
-- JSON-LD (`Person`, `WebSite`, `ContactPage`)
-- `/sitemap.xml` e `/robots.txt` (dinâmicos)
-- Em produção, defina `NUXT_PUBLIC_SITE_URL` no `.env` (ver `.env.example`)
+- `hreflang` + canonical (`@nuxtjs/i18n`); URLs corrigidas se `.env` tiver localhost
+- JSON-LD (`Person`, `WebSite`, `ContactPage`, `Review`)
+- `/sitemap.xml` e `/robots.txt` dinâmicos (não commitar `public/sitemap.xml`)
+- Produção: `NUXT_PUBLIC_SITE_URL=https://layanemoura.com` **antes** de `npm run build` (ver `.env.example`)
+- Preview local do sitemap: `npm run sitemap:generate` → `sitemap.preview.xml`
 
 ## Tokens
 

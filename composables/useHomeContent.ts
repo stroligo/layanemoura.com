@@ -12,7 +12,12 @@ export interface HomeContentState {
 }
 
 function toHomeInput(item: HomeCollectionItem): HomeInput {
-  const row = item as HomeCollectionItem & HomeInput;
+  const row = item as HomeCollectionItem & HomeInput & {
+    mapsAbout?: HomeInput['mapsAbout'] & {
+      body?: HomeInput['mapsAbout']['content'];
+      copy?: HomeInput['mapsAbout']['content'];
+    };
+  };
   return {
     mapsAbout: {
       published: row.mapsAbout?.published ?? homeFallback.mapsAbout.published,
@@ -25,7 +30,11 @@ function toHomeInput(item: HomeCollectionItem): HomeInput {
       },
       eyebrow: row.mapsAbout?.eyebrow ?? homeFallback.mapsAbout.eyebrow,
       title: row.mapsAbout?.title ?? homeFallback.mapsAbout.title,
-      body: row.mapsAbout?.body ?? homeFallback.mapsAbout.body,
+      content:
+        row.mapsAbout?.content
+        ?? row.mapsAbout?.copy
+        ?? row.mapsAbout?.body
+        ?? homeFallback.mapsAbout.content,
       cta: row.mapsAbout?.cta ?? homeFallback.mapsAbout.cta,
     },
     servicesHeader: {
@@ -37,6 +46,9 @@ function toHomeInput(item: HomeCollectionItem): HomeInput {
     aboutTeaser: {
       published: row.aboutTeaser?.published ?? homeFallback.aboutTeaser.published,
       eyebrow: row.aboutTeaser?.eyebrow ?? homeFallback.aboutTeaser.eyebrow,
+      title: row.aboutTeaser?.title ?? homeFallback.aboutTeaser.title,
+      content: row.aboutTeaser?.content ?? homeFallback.aboutTeaser.content,
+      aboutEmail: row.aboutTeaser?.aboutEmail ?? homeFallback.aboutTeaser.aboutEmail,
       cta: row.aboutTeaser?.cta ?? homeFallback.aboutTeaser.cta,
     },
   };

@@ -16,6 +16,8 @@ export const seoConfig = {
   email: site.email,
   /** Imagem padrão para redes (retrato / marca). */
   defaultOgImage: '/images/layane.jpg',
+  defaultOgImageWidth: 1200,
+  defaultOgImageHeight: 1200,
   contactOgImage: '/images/about.JPG',
   twitterHandle: '@layanemoura',
   localeOg: {

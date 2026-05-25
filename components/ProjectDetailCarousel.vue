@@ -31,9 +31,10 @@
               :alt="slideAlt"
               class="project-detail-carousel-img"
               decoding="async"
+              fetchpriority="high"
             />
           </Transition>
-          <span class="project-detail-carousel-zoom-hint" aria-hidden="true">
+          <span class="project-detail-carousel-zoom-badge" aria-hidden="true">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -42,7 +43,7 @@
               stroke-width="1.75"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="project-detail-carousel-zoom-hint__icon"
+              class="project-detail-carousel-zoom-badge__icon"
             >
               <circle cx="11" cy="11" r="7" />
               <path d="m21 21-4.35-4.35M11 8v6M8 11h6" />
@@ -90,10 +91,11 @@
           :aria-label="t('modal.galleryGoTo', { n: index + 1 })"
           @click="goTo(index)"
         >
-          <img
+          <OptimizedImage
             :src="src"
+            variant="modalThumb"
             alt=""
-            class="project-detail-carousel-thumb-img"
+            img-class="project-detail-carousel-thumb-img"
             decoding="async"
             loading="lazy"
           />
@@ -111,6 +113,8 @@
 </template>
 
 <script setup lang="ts">
+import { preloadAll } from '~/utils/imageLoading';
+
 const props = defineProps<{
   images: string[];
   alt: string;
@@ -145,6 +149,15 @@ function closeLightbox() {
 watch(activeSrc, () => {
   if (lightboxOpen.value) closeLightbox();
 });
+
+watch(
+  () => props.images,
+  (urls) => {
+    if (!import.meta.client || !urls.length) return;
+    preloadAll(urls);
+  },
+  { immediate: true },
+);
 
 const slideAlt = computed(() => {
   if (!hasMultiple.value) return props.alt;

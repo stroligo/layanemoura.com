@@ -75,8 +75,6 @@
 <script setup lang="ts">
 import { seoConfig } from '~/data/seo';
 import { buildContactPageJsonLd, buildPersonJsonLd, useSiteSeo } from '~/composables/useSiteSeo';
-import { resolveSiteUrl } from '~/utils/seo';
-
 const { t } = useI18n();
 const {
   content,
@@ -88,9 +86,7 @@ const {
 const contactLoadFailed = computed(() => !contactPending.value && Boolean(contactError.value));
 
 const localePath = useLocalePath();
-const runtimeConfig = useRuntimeConfig();
-
-const publicSiteUrl = computed(() => resolveSiteUrl(runtimeConfig.public.siteUrl as string | undefined));
+const publicSiteUrl = usePublicSiteUrl();
 
 useSiteSeo(() => ({
   title: t('meta.contactTitle'),

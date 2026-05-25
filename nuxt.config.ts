@@ -11,8 +11,17 @@ const studioRepositoryConfigured = Boolean(
 const studioModuleEnabled =
   process.env.NODE_ENV === 'development' || studioRepositoryConfigured;
 
-const siteUrl =
-  process.env.NUXT_PUBLIC_SITE_URL?.trim() || 'https://layanemoura.com';
+/** Evita canonical/OG com localhost se o .env de build estiver errado. */
+function buildPublicSiteUrl() {
+  const raw = process.env.NUXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return 'https://layanemoura.com';
+  if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(raw)) {
+    return 'https://layanemoura.com';
+  }
+  return raw.replace(/\/+$/, '');
+}
+
+const siteUrl = buildPublicSiteUrl();
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-05-08',

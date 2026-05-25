@@ -1,4 +1,5 @@
 import { isSafeHttpUrl } from '~/utils/security';
+import { site } from '~/data/site';
 
 export interface HomeLocales {
   en: string;
@@ -22,6 +23,9 @@ export interface HomeServicesHeader {
 
 export interface HomeAboutTeaser {
   eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  aboutEmail: string;
   cta: string;
 }
 
@@ -36,7 +40,7 @@ export interface HomeMapsAboutInput {
   photo: { src: string; alt: HomeLocales };
   eyebrow: HomeLocales;
   title: HomeLocales;
-  body: HomeLocales;
+  content: HomeLocales;
   cta: HomeLocales;
 }
 
@@ -50,6 +54,9 @@ export interface HomeSectionHeaderInput {
 export interface HomeAboutTeaserInput {
   published?: boolean;
   eyebrow: HomeLocales;
+  title: HomeLocales;
+  content: HomeLocales;
+  aboutEmail: HomeLocales;
   cta: HomeLocales;
 }
 
@@ -85,7 +92,7 @@ export function normalizeHomeMapsAbout(
     ? photoSrc
     : '/images/projects/valebrook-final-chart.jpg';
   const photoAltRaw = localeTextForHome(input.photo.alt, locale);
-  const bodyRaw = localeTextForHome(input.body, locale);
+  const bodyRaw = localeTextForHome(input.content, locale);
 
   return {
     photoSrc: safePhotoSrc,
@@ -111,9 +118,16 @@ export function normalizeHomeServicesHeader(
 export function normalizeHomeAboutTeaser(
   input: HomeAboutTeaserInput,
   locale: string,
+  email: string,
 ): HomeAboutTeaser {
+  const contentRaw = localeTextForHome(input.content, locale);
+  const aboutEmailRaw = localeTextForHome(input.aboutEmail, locale);
+
   return {
     eyebrow: localeTextForHome(input.eyebrow, locale),
+    title: localeTextForHome(input.title, locale),
+    paragraphs: paragraphsFromHomeBody(contentRaw),
+    aboutEmail: aboutEmailRaw.replace(/\{email\}/g, email),
     cta: localeTextForHome(input.cta, locale),
   };
 }
@@ -126,6 +140,6 @@ export function normalizeHome(
   return {
     mapsAbout: normalizeHomeMapsAbout(input.mapsAbout, locale, siteName),
     servicesHeader: normalizeHomeServicesHeader(input.servicesHeader, locale),
-    aboutTeaser: normalizeHomeAboutTeaser(input.aboutTeaser, locale),
+    aboutTeaser: normalizeHomeAboutTeaser(input.aboutTeaser, locale, site.email),
   };
 }

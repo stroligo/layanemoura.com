@@ -26,15 +26,22 @@
       :class="{ 'gallery-item-visual--loading': coverImage && !isVisible }"
       :style="visualAspectStyle"
     >
-      <img
+      <OptimizedImage
         v-if="coverImage"
         :src="coverImage"
-        alt=""
-        class="gallery-item-img"
-        :class="{ 'gallery-item-img--visible': isVisible }"
+        variant="thumb"
+        :alt="
+          t('gallery.viewProject', {
+            title: project.title,
+            subtitle: project.subtitle,
+          })
+        "
+        :img-class="
+          isVisible ? 'gallery-item-img gallery-item-img--visible' : 'gallery-item-img'
+        "
         :width="imageWidth"
         :height="imageHeight"
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 400px"
         :loading="priority ? 'eager' : 'lazy'"
         decoding="async"
         :fetchpriority="priority ? 'high' : 'auto'"

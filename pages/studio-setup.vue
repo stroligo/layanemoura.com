@@ -4,6 +4,12 @@ definePageMeta({
   i18n: false,
 });
 
+useSiteSeo({
+  title: 'Studio setup — Layane Moura',
+  description: 'Internal Studio configuration guide. Not indexed.',
+  noindex: true,
+});
+
 const config = useRuntimeConfig();
 const oauthCallback = `${config.public.siteUrl}/__nuxt_studio/auth/github`;
 

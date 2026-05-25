@@ -11,14 +11,14 @@
             {{ content.aboutTeaser.eyebrow }}
           </p>
           <h2 id="home-about-heading" class="home-about__title">
-            {{ contactContent.title }}
+            {{ content.aboutTeaser.title }}
           </h2>
 
           <div class="prose-site home-about__prose">
-            <p v-for="(paragraph, index) in contactContent.aboutParagraphs" :key="index">
+            <p v-for="(paragraph, index) in content.aboutTeaser.paragraphs" :key="index">
               {{ paragraph }}
             </p>
-            <p>{{ contactContent.aboutEmail }}</p>
+            <p>{{ content.aboutTeaser.aboutEmail }}</p>
           </div>
 
           <div class="home-about__connect">

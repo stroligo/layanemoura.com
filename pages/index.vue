@@ -53,15 +53,19 @@
 import { site } from '~/data/site';
 import { GALLERY_HEAD_PRELOAD_COUNT } from '~/data/performance';
 import { projectCoverImage } from '~/types/project';
-import { resolveSiteUrl } from '~/utils/seo';
-import { buildPersonJsonLd, buildWebSiteJsonLd, useSiteSeo } from '~/composables/useSiteSeo';
+import { galleryCoverSources } from '~/utils/imageVariants';
+import { seoConfig } from '~/data/seo';
+import {
+  buildPersonJsonLd,
+  buildReviewsJsonLd,
+  buildWebSiteJsonLd,
+  useSiteSeo,
+} from '~/composables/useSiteSeo';
 
 const { t } = useI18n();
-const runtimeConfig = useRuntimeConfig();
 
 const {
   pending: projectsPending,
-  highlightProjects,
   error: projectsError,
   refresh: refreshProjects,
   projects,
@@ -75,6 +79,7 @@ const projectsLoadFailed = computed(
 useHomeContent();
 useServiceCollection();
 useGetInTouchContent();
+const { reviews } = useReviewCollection();
 
 const {
   galleryGroups,
@@ -94,7 +99,10 @@ const {
 const galleryCoverUrls = computed(() => {
   const group = galleryGroups.value[0];
   if (!group) return [];
-  return group.projects.map((p) => projectCoverImage(p)).filter((url): url is string => Boolean(url));
+  return group.projects
+    .map((p) => projectCoverImage(p))
+    .filter((url): url is string => Boolean(url))
+    .map((href) => galleryCoverSources(href).webp);
 });
 
 useHead(() => ({
@@ -102,25 +110,22 @@ useHead(() => ({
     rel: 'preload',
     as: 'image',
     href,
+    type: 'image/webp',
     fetchpriority: 'high' as const,
   })),
 }));
 
-const highlightOgImage = computed(() => {
-  const cover = highlightProjects.value[0];
-  return cover ? projectCoverImage(cover) : undefined;
-});
-
-const publicSiteUrl = computed(() => resolveSiteUrl(runtimeConfig.public.siteUrl as string | undefined));
+const publicSiteUrl = usePublicSiteUrl();
 
 useSiteSeo(() => ({
   title: t('meta.homeTitle'),
   description: t('meta.homeDescription'),
-  image: highlightOgImage.value,
+  image: seoConfig.defaultOgImage,
   type: 'website',
   jsonLd: [
     buildWebSiteJsonLd(publicSiteUrl.value),
-    buildPersonJsonLd(publicSiteUrl.value, highlightOgImage.value),
+    buildPersonJsonLd(publicSiteUrl.value),
+    ...buildReviewsJsonLd(publicSiteUrl.value, reviews.value),
   ],
 }));
 </script>

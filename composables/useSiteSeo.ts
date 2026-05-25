@@ -1,6 +1,13 @@
 import { seoConfig } from '~/data/seo';
 import { site } from '~/data/site';
-import { escapeJsonLd, resolveSiteUrl, toAbsoluteUrl } from '~/utils/seo';
+import type { ClientReview } from '~/types/review';
+import {
+  escapeJsonLd,
+  normalizeSeoHeadLinks,
+  rewriteUrlOrigin,
+  toAbsoluteUrl,
+} from '~/utils/seo';
+import { usePublicSiteUrl } from '~/composables/usePublicSiteUrl';
 
 export interface SiteSeoOptions {
   title?: string;
@@ -8,6 +15,8 @@ export interface SiteSeoOptions {
   /** Caminho em /public ou URL absoluta. */
   image?: string;
   imageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   type?: 'website' | 'article' | 'profile';
   robots?: string;
   noindex?: boolean;
@@ -27,10 +36,7 @@ function toGraph(
 export function useSiteSeo(pageOptions?: SiteSeoInput) {
   const { t, locale } = useI18n();
   const route = useRoute();
-  const runtimeConfig = useRuntimeConfig();
-  const siteUrl = computed(() =>
-    resolveSiteUrl(runtimeConfig.public.siteUrl as string | undefined),
-  );
+  const siteUrl = usePublicSiteUrl();
 
   const i18nHead = useLocaleHead({ seo: true });
 
@@ -41,6 +47,8 @@ export function useSiteSeo(pageOptions?: SiteSeoInput) {
       description: input.description ?? t('meta.homeDescription'),
       image: input.image ?? seoConfig.defaultOgImage,
       imageAlt: input.imageAlt ?? t('seo.ogImageAlt', { name: site.name }),
+      ogImageWidth: input.ogImageWidth ?? seoConfig.defaultOgImageWidth,
+      ogImageHeight: input.ogImageHeight ?? seoConfig.defaultOgImageHeight,
       type: input.type ?? 'website',
       robots:
         input.robots ??
@@ -59,6 +67,8 @@ export function useSiteSeo(pageOptions?: SiteSeoInput) {
       : seoConfig.localeOg.en,
   );
 
+  const pageUrl = computed(() => toAbsoluteUrl(route.path, siteUrl.value));
+
   useSeoMeta({
     title: () => resolved.value.title,
     description: () => resolved.value.description,
@@ -68,9 +78,13 @@ export function useSiteSeo(pageOptions?: SiteSeoInput) {
     ogSiteName: seoConfig.siteName,
     ogImage: () => ogImage.value,
     ogImageAlt: () => resolved.value.imageAlt,
+    ogImageWidth: () => resolved.value.ogImageWidth,
+    ogImageHeight: () => resolved.value.ogImageHeight,
     ogLocale: () => ogLocale.value,
-    ogUrl: () => toAbsoluteUrl(route.path, siteUrl.value),
+    ogUrl: () => pageUrl.value,
     twitterCard: 'summary_large_image',
+    twitterSite: seoConfig.twitterHandle,
+    twitterCreator: seoConfig.twitterHandle,
     twitterTitle: () => resolved.value.title,
     twitterDescription: () => resolved.value.description,
     twitterImage: () => ogImage.value,
@@ -88,14 +102,23 @@ export function useSiteSeo(pageOptions?: SiteSeoInput) {
         ]
       : [];
 
+    const i18nMeta = (i18nHead.value.meta ?? [])
+      .filter((m) => m.id !== 'i18n-og-alt-pt')
+      .map((m) => {
+        if (m.property === 'og:url' && typeof m.content === 'string') {
+          return { ...m, content: rewriteUrlOrigin(m.content, siteUrl.value) };
+        }
+        return m;
+      });
+
     return {
       htmlAttrs: {
         lang: i18nHead.value.htmlAttrs?.lang,
         dir: i18nHead.value.htmlAttrs?.dir,
       },
-      link: [...(i18nHead.value.link ?? [])],
+      link: normalizeSeoHeadLinks(i18nHead.value.link, siteUrl.value),
       meta: [
-        ...(i18nHead.value.meta ?? []),
+        ...i18nMeta,
         { name: 'author', content: site.name },
         { name: 'theme-color', content: '#2d4a3e' },
       ],
@@ -103,7 +126,7 @@ export function useSiteSeo(pageOptions?: SiteSeoInput) {
     };
   });
 
-  return { siteUrl, ogImage };
+  return { siteUrl, ogImage, pageUrl };
 }
 
 export function buildWebSiteJsonLd(siteUrl: string) {
@@ -125,7 +148,7 @@ export function buildPersonJsonLd(siteUrl: string, imagePath?: string) {
     url: siteUrl,
     image: toAbsoluteUrl(imagePath ?? seoConfig.defaultOgImage, siteUrl),
     email: `mailto:${site.email}`,
-    jobTitle: ['Illustrator', 'Map Maker'],
+    jobTitle: 'Illustrator and Map Maker',
     knowsAbout: [
       'Illustration',
       'Fantasy maps',
@@ -145,4 +168,18 @@ export function buildContactPageJsonLd(siteUrl: string, contactPath: string) {
     url: toAbsoluteUrl(contactPath, siteUrl),
     about: { '@type': 'Person', name: site.name, url: siteUrl },
   };
+}
+
+/** Depoimentos publicados (máx. 8) para rich results. */
+export function buildReviewsJsonLd(siteUrl: string, reviews: ClientReview[]) {
+  return reviews.slice(0, 8).map((review) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.clientName },
+    reviewBody: review.text,
+    itemReviewed: {
+      '@type': 'Person',
+      name: site.name,
+      url: siteUrl,
+    },
+  }));
 }

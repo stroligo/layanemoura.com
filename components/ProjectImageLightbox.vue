@@ -73,6 +73,7 @@
           class="image-lightbox__img"
           :style="transformStyle"
           decoding="async"
+          fetchpriority="high"
           draggable="false"
         />
       </div>

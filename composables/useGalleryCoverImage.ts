@@ -1,4 +1,5 @@
 import { preloadImage } from '~/utils/imageLoading';
+import { galleryCoverSources } from '~/utils/imageVariants';
 
 /**
  * Pré-carrega a capa e expõe quando pode aparecer com fade-in.
@@ -28,7 +29,8 @@ export function useGalleryCoverImage(
     }
 
     isVisible.value = false;
-    await preloadImage(url);
+    const { webp, jpeg } = galleryCoverSources(url);
+    await preloadImage(webp).catch(() => preloadImage(jpeg));
     if (run === activeRun) reveal();
   }
 
