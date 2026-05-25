@@ -19,7 +19,7 @@ about:
 
     Por que não nos mantemos em contato? :)
 aboutEmail:
-  en: Send me a message to {email}!
+  en: Send a message to {email}!
   pt: Fale comigo pelo {email}!
 availability:
   label:
@@ -37,8 +37,8 @@ basedIn:
     pt: Europa (nômade)
 email: hi@layanemoura.com
 eyebrow:
-  en: Get in touch
-  pt: Contato
+  en: Get in touch!
+  pt: Entre em contato!
 heading:
   en: Contact
   pt: Contato

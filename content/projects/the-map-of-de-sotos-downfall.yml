@@ -1,19 +1,17 @@
-published: true
-highlight: false
-title: Amber Quay
-subtitle: Travel Poster
+title: The Map of De Soto's Downfall
 category: maps
-tags:
-  - travel
-year: 2024
 description:
   en: ""
   pt: ""
-images:
-  - src: /images/projects/amber-quay-travel.jpg
+highlight: false
 layout: wide
 links:
   - label:
       en: View on Behance
       pt: Ver no Behance
     url: https://www.behance.net/layanemds
+published: true
+subtitle: Travel Print
+tags:
+  - travel
+year: 2022
