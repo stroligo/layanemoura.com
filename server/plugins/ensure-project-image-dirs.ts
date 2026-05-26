@@ -14,10 +14,13 @@ function syncProjectImageDirs(root: string) {
 }
 
 export default defineNitroPlugin(() => {
+  // Em produção o arranque costuma ser `node .output/server/index.mjs` (cwd = .output).
+  // sync + prune apagaria `public/images/projects/` dentro de `.output/public` → 500 nas capas.
+  // Pastas de projeto: `npm run images:optimize` no build; em dev, sync abaixo.
+  if (!import.meta.dev) return;
+
   const root = process.cwd();
   syncProjectImageDirs(root);
-
-  if (!import.meta.dev) return;
 
   const projectsDir = join(root, 'content/projects');
 

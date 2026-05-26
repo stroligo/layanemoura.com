@@ -64,7 +64,8 @@ export function removeProjectImageDir(slug: string, root = process.cwd()) {
 export function pruneOrphanProjectImageDirs(root = process.cwd()) {
   const projectsDir = join(root, 'content/projects');
   const imagesDir = join(root, 'public/images/projects');
-  if (!existsSync(imagesDir)) return [];
+  // Sem YAML no disco (ex. cwd = .output) não apagar pastas — evita limpar assets do build.
+  if (!existsSync(projectsDir) || !existsSync(imagesDir)) return [];
 
   const yamlSlugs = new Set<string>();
   if (existsSync(projectsDir)) {
