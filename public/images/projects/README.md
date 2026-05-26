@@ -15,6 +15,18 @@ projects/
     02.jpg
 ```
 
+## Pasta automática (Studio)
+
+Ao criar ou gravar `content/projects/{slug}.yml`, o servidor cria **`public/images/projects/{slug}/`** (com `.gitkeep` para o Git).
+
+No media picker do Studio, abre essa pasta e faz upload de `01.jpg`, `02.jpg`, etc.
+
+**Apagar o projeto** (`content/projects/{slug}.yml`) remove automaticamente `public/images/projects/{slug}/` (em dev ao gravar; em deploy corre `npm run projects:ensure-dirs` para sincronizar).
+
+```bash
+npm run projects:ensure-dirs   # criar pastas em falta manualmente
+```
+
 ## Regras
 
 | Ficheiro | Função |

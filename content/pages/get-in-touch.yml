@@ -21,20 +21,6 @@ about:
 aboutEmail:
   en: Send a message to {email}!
   pt: Fale comigo pelo {email}!
-availability:
-  label:
-    en: Availability
-    pt: Disponibilidade
-  value:
-    en: Freelance & remote full-time
-    pt: Freela e remoto em tempo integral
-basedIn:
-  label:
-    en: Based in
-    pt: Base
-  value:
-    en: Europe (nomad)
-    pt: Europa (nômade)
 email: hi@layanemoura.com
 eyebrow:
   en: Get in touch!
@@ -42,13 +28,6 @@ eyebrow:
 heading:
   en: Contact
   pt: Contato
-languages:
-  label:
-    en: Languages
-    pt: Idiomas
-  value:
-    en: PT · EN · FR (basic)
-    pt: PT · EN · FR (básico)
 photo:
   src: /images/about.JPG
   alt:

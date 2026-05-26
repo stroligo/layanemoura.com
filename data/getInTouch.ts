@@ -40,19 +40,4 @@ export const getInTouchFallback: GetInTouchInput = {
     en: 'Contact',
     pt: 'Contato',
   },
-  basedIn: {
-    label: { en: 'Based in', pt: 'Base' },
-    value: { en: 'Europe (nomad)', pt: 'Europa (nômade)' },
-  },
-  languages: {
-    label: { en: 'Languages', pt: 'Idiomas' },
-    value: { en: 'PT · EN · FR (basic)', pt: 'PT · EN · FR (básico)' },
-  },
-  availability: {
-    label: { en: 'Availability', pt: 'Disponibilidade' },
-    value: {
-      en: 'Freelance & remote full-time',
-      pt: 'Freela e remoto em tempo integral',
-    },
-  },
 };

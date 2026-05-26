@@ -22,9 +22,6 @@ function toGetInTouchInput(item: PagesCollectionItem): GetInTouchInput {
     about: row.about ?? getInTouchFallback.about,
     aboutEmail: row.aboutEmail ?? getInTouchFallback.aboutEmail,
     heading: row.heading ?? getInTouchFallback.heading,
-    basedIn: row.basedIn ?? getInTouchFallback.basedIn,
-    languages: row.languages ?? getInTouchFallback.languages,
-    availability: row.availability ?? getInTouchFallback.availability,
   };
 }
 

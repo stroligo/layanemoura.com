@@ -6,4 +6,6 @@
 | `about.JPG` | Foto na página Contact e secção About na home |
 | `og-share.jpg` | Partilha em redes (Open Graph) — gerada com `npm run og:generate` |
 
+**Design / layout** (favicons, loading, UI kit): pasta **`public/design/`** — separada no Media do Studio.
+
 **Não colocar** retratos ou OG aqui com variantes manuais — o script de otimização só processa `projects/`.

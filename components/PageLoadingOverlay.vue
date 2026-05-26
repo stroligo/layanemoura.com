@@ -10,7 +10,7 @@
         :aria-label="t('loading.aria')"
       >
         <img
-          src="/loading.png"
+          src="/design/loading.png"
           alt=""
           class="page-loading-spinner"
           width="50"

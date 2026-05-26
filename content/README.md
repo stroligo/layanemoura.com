@@ -73,7 +73,7 @@ images:
 layout: wide
 ```
 
-Crie a pasta `public/images/projects/meu-projeto/` e coloque lá os JPGs. Se só houver uma foto, basta `01.jpg`.
+Ao gravar `content/projects/meu-projeto.yml`, a pasta `public/images/projects/meu-projeto/` é criada automaticamente. **Apagar o YAML** remove essa pasta (e imagens). No Studio, media picker → `images/projects/meu-projeto/`. Favicons e loading ficam em **`public/design/`** (não misturar com projetos). `npm run projects:ensure-dirs` sincroniza pastas em falta e remove órfãs.
 
 Um projeto pode ter **várias tags** (ex.: `tags: [travel, fantasy-maps]` só se ambas fizerem sentido na mesma secção `category`).
 
@@ -151,7 +151,6 @@ Ficheiros em `pages/*.yml` — coleção **Pages** no Studio (não aparece em �
 - **eyebrow**, **title**, **heading** — títulos EN/PT
 - **about** — biografia (parágrafos separados por linha em branco)
 - **aboutEmail** — linha com `{email}`
-- **basedIn**, **languages**, **availability** — rótulo + valor (EN/PT)
 - Rótulos do formulário ficam em `i18n/locales/*.json` (`contact.form.*`), não no Studio
 
 Assunto/corpo do `mailto:` continuam em `i18n` (`contact.mailSubject`, `contact.mailBody`).

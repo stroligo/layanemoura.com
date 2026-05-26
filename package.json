@@ -24,7 +24,8 @@
     "dev:clean": "npm run content:reset && nuxt dev",
     "contact:test-smtp": "tsx scripts/test-contact-smtp.ts",
     "sitemap:generate": "tsx scripts/generate-sitemap.ts",
-    "images:optimize": "tsx scripts/optimize-images.ts",
+    "projects:ensure-dirs": "tsx scripts/ensure-project-image-dirs.ts",
+    "images:optimize": "npm run projects:ensure-dirs && tsx scripts/optimize-images.ts",
     "og:generate": "tsx scripts/generate-og-share.ts",
     "images:optimize:dry": "tsx scripts/optimize-images.ts --dry-run"
   },

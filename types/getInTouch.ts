@@ -6,11 +6,6 @@ export interface GetInTouchLocales {
   pt: string;
 }
 
-export interface GetInTouchDetailLocales {
-  label: GetInTouchLocales;
-  value: GetInTouchLocales;
-}
-
 /** Conteúdo da página /get-in-touch no idioma ativo. */
 export interface GetInTouchPage {
   photoSrc: string;
@@ -21,9 +16,6 @@ export interface GetInTouchPage {
   aboutParagraphs: string[];
   aboutEmail: string;
   heading: string;
-  basedIn: { label: string; value: string };
-  languages: { label: string; value: string };
-  availability: { label: string; value: string };
 }
 
 export interface GetInTouchInput {
@@ -34,9 +26,6 @@ export interface GetInTouchInput {
   about: GetInTouchLocales;
   aboutEmail: GetInTouchLocales;
   heading: GetInTouchLocales;
-  basedIn: GetInTouchDetailLocales;
-  languages: GetInTouchDetailLocales;
-  availability: GetInTouchDetailLocales;
 }
 
 export function localeTextForGetInTouch(
@@ -77,17 +66,5 @@ export function normalizeGetInTouch(
     aboutParagraphs: paragraphsFromAbout(aboutRaw),
     aboutEmail: aboutEmailRaw.replace(/\{email\}/g, email),
     heading: localeTextForGetInTouch(input.heading, locale),
-    basedIn: {
-      label: localeTextForGetInTouch(input.basedIn.label, locale),
-      value: localeTextForGetInTouch(input.basedIn.value, locale),
-    },
-    languages: {
-      label: localeTextForGetInTouch(input.languages.label, locale),
-      value: localeTextForGetInTouch(input.languages.value, locale),
-    },
-    availability: {
-      label: localeTextForGetInTouch(input.availability.label, locale),
-      value: localeTextForGetInTouch(input.availability.value, locale),
-    },
   };
 }

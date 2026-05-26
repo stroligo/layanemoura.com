@@ -37,7 +37,8 @@ const projectImageItem = z.object({
   src: property(z.string().min(1)).editor({
     input: 'media',
     label: 'Image',
-    description: 'From public/ (e.g. /images/projects/…).',
+    description:
+      'Upload em public/images/projects/NOME-DO-PROJETO/ (pasta criada ao gravar o YAML — use o mesmo nome do ficheiro, ex. meu-mapa.yml → meu-mapa/01.jpg).',
   }),
 });
 
@@ -132,12 +133,6 @@ const reviewSchema = z.object({
     .describe('Short label under the author (optional)'),
 });
 
-const detailBlock = (title: string) =>
-  z.object({
-    label: localeLine(`${title} — label (EN)`, `${title} — rótulo (PT)`),
-    value: localeLine(`${title} — value (EN)`, `${title} — valor (PT)`),
-  });
-
 const socialIcon = z
   .enum([
     'behance',
@@ -195,9 +190,6 @@ const getInTouchSchema = z.object({
     'Use {email} where the address should appear.',
   ),
   heading: localeLine('Contact heading (EN)', 'Título da secção contacto (PT)'),
-  basedIn: detailBlock('Based in'),
-  languages: detailBlock('Languages'),
-  availability: detailBlock('Availability'),
 });
 
 const serviceIcon = z

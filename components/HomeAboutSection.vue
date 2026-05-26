@@ -18,37 +18,14 @@
             <p v-for="(paragraph, index) in content.aboutTeaser.paragraphs" :key="index">
               {{ paragraph }}
             </p>
-            <p>{{ content.aboutTeaser.aboutEmail }}</p>
+            <AboutEmailLine
+              :line="content.aboutTeaser.aboutEmail"
+              :email="contactContent.email"
+            />
           </div>
 
           <div class="home-about__connect">
-            <h3 class="home-about__connect-title">
-              {{ contactContent.heading }}
-            </h3>
-            <a :href="`mailto:${contactContent.email}`" class="home-about__email">
-              {{ contactContent.email }}
-            </a>
             <SocialLinks class="home-about__social" />
-            <dl class="contact-meta">
-              <div class="contact-meta__item">
-                <dt class="contact-meta__label">
-                  {{ contactContent.basedIn.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ contactContent.basedIn.value }}</dd>
-              </div>
-              <div class="contact-meta__item">
-                <dt class="contact-meta__label">
-                  {{ contactContent.languages.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ contactContent.languages.value }}</dd>
-              </div>
-              <div class="contact-meta__item contact-meta__item--wide">
-                <dt class="contact-meta__label">
-                  {{ contactContent.availability.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ contactContent.availability.value }}</dd>
-              </div>
-            </dl>
           </div>
 
           <ContactForm

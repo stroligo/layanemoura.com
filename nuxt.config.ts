@@ -214,9 +214,18 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       title: 'Layane Moura',
       link: [
-        { rel: 'icon', href: '/favicon.png', type: 'image/png' },
-        { rel: 'icon', href: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+        { rel: 'icon', href: '/design/favicon.png', type: 'image/png' },
+        {
+          rel: 'icon',
+          href: '/design/favicon-32.png',
+          sizes: '32x32',
+          type: 'image/png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '/design/apple-touch-icon.png',
+          sizes: '180x180',
+        },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',
@@ -259,24 +268,16 @@ export default defineNuxtConfig({
         'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
       },
     },
-    '/favicon.png': {
+    '/design/**': {
       headers: {
         'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
       },
     },
-    '/favicon-32.png': {
-      headers: {
-        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
-      },
-    },
-    '/apple-touch-icon.png': {
-      headers: {
-        'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,
-      },
-    },
-    '/loading.png': {
-      headers: { 'cache-control': 'public, max-age=86400' },
-    },
+    '/favicon.png': { redirect: '/design/favicon.png' },
+    '/favicon-32.png': { redirect: '/design/favicon-32.png' },
+    '/apple-touch-icon.png': { redirect: '/design/apple-touch-icon.png' },
+    '/loading.png': { redirect: '/design/loading.png' },
+    '/uikit-reference.png': { redirect: '/design/uikit-reference.png' },
     '/_nuxt/**': {
       headers: {
         'cache-control': `public, max-age=${STATIC_CACHE_MAX_AGE}, immutable`,

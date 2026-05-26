@@ -31,39 +31,10 @@
             <p v-for="(paragraph, i) in content.aboutParagraphs" :key="i">
               {{ paragraph }}
             </p>
-            <p>{{ content.aboutEmail }}</p>
+            <AboutEmailLine :line="content.aboutEmail" :email="content.email" />
           </div>
 
-          <div class="mt-10 border-t border-border pt-10">
-            <h2 class="font-cormorant text-2xl text-cocoa">{{ content.heading }}</h2>
-            <a
-              :href="`mailto:${content.email}`"
-              class="mt-3 inline-block font-cormorant text-2xl text-terracotta transition-colors hover:text-terracotta-dark md:text-3xl"
-            >
-              {{ content.email }}
-            </a>
-            <SocialLinks class="mt-8" />
-            <dl class="contact-meta">
-              <div class="contact-meta__item">
-                <dt class="contact-meta__label">
-                  {{ content.basedIn.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ content.basedIn.value }}</dd>
-              </div>
-              <div class="contact-meta__item">
-                <dt class="contact-meta__label">
-                  {{ content.languages.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ content.languages.value }}</dd>
-              </div>
-              <div class="contact-meta__item contact-meta__item--wide">
-                <dt class="contact-meta__label">
-                  {{ content.availability.label }}
-                </dt>
-                <dd class="contact-meta__value">{{ content.availability.value }}</dd>
-              </div>
-            </dl>
-          </div>
+          <SocialLinks class="mt-8" />
 
           <ContactForm :contact-email="content.email" form-id="contact-page" />
         </div>

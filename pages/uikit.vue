@@ -12,7 +12,7 @@
         </p>
         <div class="mt-8 overflow-hidden rounded-[var(--radius-ui)] border border-border shadow-elevation-2">
           <img
-            src="/uikit-reference.png"
+            src="/design/uikit-reference.png"
             alt="UI Kit de referência — Layane Moura"
             class="w-full"
             width="2400"
