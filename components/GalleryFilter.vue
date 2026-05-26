@@ -1,9 +1,12 @@
 <template>
   <div class="gallery-filter" role="group" :aria-label="t('gallery.filterAria')">
     <div class="container-fluid wrap">
-      <div class="gallery-filter-bar">
+      <div
+        class="gallery-filter-bar"
+        :class="{ 'gallery-filter-bar--no-tags': !showTagChips }"
+      >
         <ul
-          v-if="tagChips.length"
+          v-if="showTagChips"
           class="gallery-tag-chips"
           role="list"
           :aria-label="t('gallery.tagChipsAria')"
@@ -70,7 +73,7 @@ const { t } = useI18n();
 const localePath = useLocalePath();
 const { galleryGroupFilters } = useGalleryI18n();
 
-defineProps<{
+const props = defineProps<{
   group: GalleryGroup;
   highlightTag: ProjectTag | null;
   tagChips: { id: ProjectTag; label: string }[];
@@ -80,4 +83,7 @@ const emit = defineEmits<{
   'update:group': [value: GalleryGroup];
   'update:highlight-tag': [value: ProjectTag | null];
 }>();
+
+/** Só mostra chips se houver pelo menos uma tag nos projetos da secção. */
+const showTagChips = computed(() => props.tagChips.length > 0);
 </script>

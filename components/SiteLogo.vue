@@ -21,6 +21,7 @@ withDefaults(defineProps<{ variant?: 'default' | 'footer' }>(), {
 });
 
 const route = useRoute();
+const { resetGalleryHome } = useGalleryHomeState();
 
 function normalizePath(path: string) {
   const trimmed = path.replace(/\/+$/, '');
@@ -37,7 +38,11 @@ function scrollToTop() {
 }
 
 function onLogoClick(event: MouseEvent) {
-  if (!import.meta.client || !isOnHome()) return;
+  if (!import.meta.client) return;
+
+  resetGalleryHome();
+
+  if (!isOnHome()) return;
 
   event.preventDefault();
   scrollToTop();

@@ -79,8 +79,7 @@ export function useProjectCollection() {
     },
     {
       default: () => [] as Project[],
-      /** Sem payload antigo no browser (lista de projetos muda no Studio). */
-      getCachedData: () => undefined,
+      /** Recarrega quando YAML mudam no Studio (dev). */
       watch: import.meta.dev ? [yamlStamp] : undefined,
     },
   );

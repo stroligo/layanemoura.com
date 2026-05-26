@@ -1,31 +1,15 @@
 /**
- * Dev: invalida a lista de projetos quando o Studio grava YAML ou o Vite faz HMR.
+ * Dev: recarrega projetos quando o Studio grava YAML (HMR).
+ * Sem bust no visibilitychange — evitava atraso ao atualizar a página.
  */
-export default defineNuxtPlugin((nuxtApp) => {
-  if (!import.meta.dev) return;
+export default defineNuxtPlugin(() => {
+  if (!import.meta.dev || !import.meta.hot) return;
 
-  const bust = () => {
+  import.meta.hot.on('vite:beforeUpdate', () => {
     clearNuxtData('content-projects');
-    return refreshNuxtData('content-projects');
-  };
-
-  nuxtApp.hook('app:mounted', () => {
-    if (import.meta.hot) {
-      import.meta.hot.on('vite:beforeUpdate', () => {
-        clearNuxtData('content-projects');
-      });
-      import.meta.hot.on('vite:afterUpdate', () => {
-        void bust();
-      });
-    }
   });
 
-  // Studio grava ficheiros fora do HMR do iframe — ao voltar à home, recarrega.
-  if (import.meta.client) {
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        void bust();
-      }
-    });
-  }
+  import.meta.hot.on('vite:afterUpdate', () => {
+    void refreshNuxtData('content-projects');
+  });
 });

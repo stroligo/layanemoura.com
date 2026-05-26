@@ -216,8 +216,22 @@
     @apply flex flex-col gap-3 py-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4;
   }
 
+  /* Sem tags na secção: pills + CTA continuam à direita no desktop */
+  .gallery-filter-bar:not(:has(.gallery-tag-chips)) {
+    @apply sm:justify-end;
+  }
+
+  .gallery-filter-bar:not(:has(.gallery-tag-chips)) .gallery-filter-actions,
+  .gallery-filter-bar--no-tags .gallery-filter-actions {
+    @apply sm:ml-auto sm:w-auto sm:justify-end;
+  }
+
+  .gallery-filter-bar--no-tags {
+    @apply sm:justify-end;
+  }
+
   .gallery-filter-actions {
-    @apply flex w-full shrink-0 flex-wrap items-center md:justify-end justify-center gap-1.5 sm:w-auto;
+    @apply flex w-full shrink-0 flex-wrap items-center justify-center gap-1.5 sm:w-auto md:justify-end;
 
     .filter-pill {
       @apply px-2.5 py-1 text-xs;

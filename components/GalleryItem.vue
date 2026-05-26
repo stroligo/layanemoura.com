@@ -81,7 +81,9 @@ defineEmits<{
 }>();
 
 const coverImage = computed(() => projectCoverImage(props.project));
-const { isVisible, reveal } = useGalleryCoverImage(coverImage);
+const { isVisible, reveal } = useGalleryCoverImage(coverImage, {
+  eager: () => props.priority,
+});
 
 const root = ref<HTMLElement | null>(null);
 const { gridRowEnd, displayAspect, isPortrait, onImageLoad, remeasure } =

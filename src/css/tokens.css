@@ -41,7 +41,7 @@
   --font-sans: var(--font-inter);
 
   /* ——— Layout & motion ——— */
-  --height-top-bar-pad-y: 4px;
+  --height-top-bar-pad-y: 10px;
   --height-logo-nav-max: 80px;
   --height-logo-nav-compact: 44px;
   --height-top-bar-max: calc(

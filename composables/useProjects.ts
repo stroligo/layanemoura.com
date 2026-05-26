@@ -38,12 +38,11 @@ export function useProjects() {
   const { tagLabel, tagChipsForGroup } = useGalleryI18n();
   const { t } = useI18n();
   const { projects } = useProjectCollection();
+  const { activeGroup, highlightTag, selectedProject, resetGalleryHome } =
+    useGalleryHomeState();
 
-  const activeGroup = ref<GalleryGroup>('maps');
-  const highlightTag = ref<ProjectTag | null>(null);
   const sortField = ref<SortField>('date');
   const sortDirection = ref<SortDirection>('desc');
-  const selectedProject = ref<Project | null>(null);
 
   function sortList(list: Project[]): Project[] {
     return [...list].sort((a, b) =>
@@ -183,5 +182,6 @@ export function useProjects() {
     canNavigateProjects,
     goToPrevProject,
     goToNextProject,
+    resetGalleryHome,
   };
 }
