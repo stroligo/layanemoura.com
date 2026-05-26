@@ -14,6 +14,10 @@ node_modules
 logs
 *.log
 
+# Scripts locais / previews de arquivo
+.arq-match/
+.arq-preview/
+
 # Misc
 .DS_Store
 .fleet

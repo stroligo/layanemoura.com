@@ -1,17 +1,25 @@
-published: true
-highlight: true
 title: Hollow Crown
-subtitle: Realm Map
-year: 2025
-layout: wide
 category: maps
-tags:
-  - fantasy-maps
 description:
-  en: ""
-  pt: ""
+  en: |-
+    A hand-drawn fantasy realm map for a publishing project — coastlines, kingdoms and hidden details across the full composition.
+
+    Replace this text in the Studio with your project story.
+  pt: |-
+    Mapa de reino de fantasia desenhado à mão para um projeto editorial — costas, reinos e detalhes escondidos em toda a composição.
+
+    Substitua este texto no Studio pela história do seu projeto.
+highlight: true
+images:
+  - src: /images/projects/hollow-crown-realms/01.jpg
+layout: wide
 links:
   - label:
       en: View on Behance
       pt: Ver no Behance
     url: https://www.behance.net/layanemds
+published: true
+subtitle: Realm Map
+tags:
+  - fantasy-maps
+year: 2025

@@ -16,7 +16,7 @@ mkdirSync(outDir, { recursive: true });
 for (const service of servicesFallback) {
   const data = {
     published: service.published ?? true,
-    order: service.order ?? 0,
+    order: service.order ?? 99,
     icon: service.icon,
     title: service.title,
     description: service.description,

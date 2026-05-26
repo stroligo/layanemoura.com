@@ -5,7 +5,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'fantasy-maps',
     published: true,
-    order: 10,
+    order: 1,
     icon: 'fantasyMaps',
     title: {
       en: 'Fantasy maps',
@@ -19,7 +19,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'travel-maps',
     published: true,
-    order: 20,
+    order: 2,
     icon: 'travelMaps',
     title: {
       en: 'Travel illustration',
@@ -33,7 +33,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'book-covers',
     published: true,
-    order: 30,
+    order: 3,
     icon: 'bookCovers',
     title: {
       en: 'Book covers',
@@ -47,7 +47,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'editorial',
     published: true,
-    order: 40,
+    order: 4,
     icon: 'editorial',
     title: {
       en: 'Editorial illustration',
@@ -61,7 +61,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'commercial',
     published: true,
-    order: 50,
+    order: 5,
     icon: 'commercial',
     title: {
       en: 'Commercial illustration',
@@ -75,7 +75,7 @@ export const servicesFallback: ServiceInput[] = [
   {
     slug: 'commissions',
     published: true,
-    order: 60,
+    order: 6,
     icon: 'commissions',
     title: {
       en: 'Custom commissions',

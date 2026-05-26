@@ -1,18 +1,46 @@
 # Conteúdo (Nuxt Content + Studio)
 
+**Referência no repositório:** 1 projeto (`projects/hollow-crown-realms.yml`) e 1 depoimento (`reviews/sarah-mitchell.yml`). Duplique estes ficheiros no Studio para adicionar trabalhos reais.
+
+### Studio e a galeria — como funciona
+
+| O quê | Papel |
+|--------|--------|
+| **`content/projects/*.yml`** | Fonte de verdade — cada ficheiro = um projeto na galeria |
+| **Nuxt Studio (`/_studio`)** | Edita esses YAML (e grava no Git em produção) |
+| **`public/images/projects/{slug}/`** | Fotos referenciadas no YAML (`images[].src`) |
+| **Pasta `.data/`** | Índice local do Nuxt Content (cache). Limpar: `npm run content:reset` |
+
+### Cache e galeria “fantasma”
+
+Várias camadas podem mostrar dados antigos:
+
+| Camada | Sintoma | Solução |
+|--------|---------|---------|
+| **Índice `.data/`** | Projetos que já não têm YAML | `npm run content:reset` |
+| **Payload Nuxt / `useAsyncData`** | Lista antiga após editar no Studio | Reiniciar dev ou `npm run dev:clean`; hard refresh (Cmd+Shift+R) |
+| **HMR** | `published` alterado mas grelha igual | Código atualizado recarrega ao gravar YAML; mudar de separador e voltar à home |
+| **Imagens `.thumb.*`** | Fotos antigas no browser | Cache longo em `/images/**` — hard refresh ou janela anónima |
+| **Produção `swr`** | Home desatualizada ~1h após deploy | Removido SWR longo na home; novo deploy atualiza de imediato |
+
+Em **dev**, a galeria lê só `content/projects/*.yml` (não o SQLite).
+
+A galeria **não** lê uma base de dados separada que substitui o `content/` — lê a coleção **Projects** gerada a partir dos YAML.
+
 ## Projetos da galeria
 
 Cada arquivo em `projects/{slug}.yml` é um projeto da home.
 
-- **slug** = nome do arquivo (ex.: `elderfen-coast-chart.yml`)
+- **slug** = nome do arquivo (ex.: `hollow-crown-realms.yml`)
 - **published** = `true` mostra na galeria; `false` oculta (rascunho)
 - **highlight** = `true` fixa o projeto **no topo** da secção Maps ou More (destaque)
 - **category** = secção da galeria: `maps` ou `more`
 - **tags** = classificação livre (filtro dinâmico: só aparecem chips usados em algum projeto da secção)
   - Ex.: `travel`, `desert`, `fantasy-maps` — texto livre; gravamos como slug (`Desert` → `desert`)
   - Tradução opcional em `i18n` → `tags.desert`
-- **Capa na grelha**: primeira entrada de `images`, ou por padrão `public/images/projects/{slug}.jpg`
-- **Várias fotos no modal**: campo **Images** no Studio (seletor de ficheiros / media picker); ordem = slideshow; a primeira = capa na grelha
+- **Pasta de imagens**: `public/images/projects/{slug}/` (uma pasta por projeto — não deixar JPGs soltos na raiz)
+- **Capa na grelha**: primeira entrada de `images`, ou por padrão `{slug}/01.jpg`
+- **Várias fotos no modal**: `01.jpg`, `02.jpg`, `03.jpg`… no Studio (media picker); ordem = slideshow
 - **Descrição do modal** (`description.en` / `description.pt`) — textarea no Studio; suporta **Markdown** (`**negrito**`, `*itálico*`, parágrafos com linha em branco)
 - **links** = botões no modal (1 ou mais): `label.en` / `label.pt` + `url` (Behance, site do cliente, loja, etc.)
 
@@ -40,21 +68,22 @@ description:
   en: English description with **bold** highlights for the modal.
   pt: Descrição em português com **negrito** no modal.
 images:
-  - src: /images/projects/meu-projeto.jpg
+  - src: /images/projects/meu-projeto/01.jpg
   - src: /images/projects/meu-projeto/02.jpg
 layout: wide
 ```
 
-Ficheiros em `public/images/projects/`. Se só existir `{slug}.jpg`, pode omitir `images`.
+Crie a pasta `public/images/projects/meu-projeto/` e coloque lá os JPGs. Se só houver uma foto, basta `01.jpg`.
 
 Um projeto pode ter **várias tags** (ex.: `tags: [travel, fantasy-maps]` só se ambas fizerem sentido na mesma secção `category`).
 
 ### Editar no Studio
 
-1. `npm run dev` e `npm run content:reset` se a galeria estiver vazia
-2. Abra **http://localhost:3000** (ou a porta do terminal) e use o **botão flutuante** no canto inferior esquerdo
-3. Em desenvolvimento, `/_studio` redireciona para a home (middleware) — OAuth não é necessário no modo dev
-4. Em produção: configure `STUDIO_GITHUB_*` no `.env` (ver `.env.example`), deploy com SSR (`nuxt build`), e aceda a `/_studio`
+1. `npm run dev`
+2. A galeria lê **`content/projects/*.yml`** (o que editas no Studio). Apagar só imagens em `public/` **não** remove obras da galeria. Se aparecerem projetos que já não existem nos YAML, pare o servidor, corra **`npm run content:reset`** (limpa o índice local em `.data/`) e volte a `npm run dev`.
+3. Abra **http://localhost:3000** (ou a porta do terminal) e use o **botão flutuante** no canto inferior esquerdo
+4. Em desenvolvimento, `/_studio` redireciona para a home (middleware) — OAuth não é necessário no modo dev
+5. Em produção: configure `STUDIO_GITHUB_*` no `.env` (ver `.env.example`), deploy com SSR (`nuxt build`), e aceda a `/_studio`
 
 ### Sincronizar a partir do mock legado
 
@@ -150,7 +179,7 @@ Cada bloco tem **published** — desligar oculta a secção na home.
 Coleção **Services** — um ficheiro por card de serviço na home.
 
 - **published** — mostrar ou ocultar
-- **order** — ordem (menor = primeiro)
+- **order** (Posição na página) — `1` = primeiro card, `2` = segundo, `3` = terceiro…
 - **icon** — ícone do card (`fantasyMaps`, `travelMaps`, `bookCovers`, `editorial`, `commercial`, `commissions`)
 - **title**, **description** — EN/PT
 

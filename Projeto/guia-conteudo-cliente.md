@@ -72,7 +72,7 @@ Envie uma pasta (Google Drive, Dropbox, WeTransfer) com:
 layanemoura-conteudo/
 ├── projetos/
 │   ├── cedar-lane-atlas.yml      (um ficheiro por obra)
-│   ├── bruma-archipelago.yml
+│   ├── hollow-crown-realms.yml
 │   └── …
 ├── depoimentos/
 │   ├── sarah-mitchell.yml        (um ficheiro por pessoa)
@@ -91,7 +91,7 @@ Os ficheiros `.yml` são texto simples (pode copiar os modelos abaixo para Word/
 
 ## 3. Modelo — projeto (obra)
 
-**Nome do ficheiro:** `nome-do-projeto.yml` (ex.: `bruma-archipelago.yml`)
+**Nome do ficheiro:** `nome-do-projeto.yml` (ex.: `hollow-crown-realms.yml`)
 
 ```yaml
 published: true
@@ -118,8 +118,8 @@ description:
     Linha em branco entre parágrafos.
 
 images:
-  - src: /images/projects/bruma-archipelago.jpg
-  - src: /images/projects/bruma-archipelago/02.jpg
+  - src: /images/projects/meu-projeto.jpg
+  - src: /images/projects/meu-projeto/02.jpg
 
 links:
   - label:

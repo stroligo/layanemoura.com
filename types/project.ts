@@ -90,7 +90,6 @@ export type ProjectInput = Omit<Project, 'images' | 'links'> & {
 
 export function projectImagePath(slug: string, index = 0) {
   const clean = slug.replace(/^projects\/+/, '').replace(/\.ya?ml$/i, '');
-  if (index === 0) return `/images/projects/${clean}.jpg`;
   const pad = String(index + 1).padStart(2, '0');
   return `/images/projects/${clean}/${pad}.jpg`;
 }
@@ -102,6 +101,21 @@ export function projectSlugFromPath(path: string) {
     .split('/')
     .filter(Boolean)
     .pop() ?? path;
+}
+
+/** `/images/projects/foo.jpg` → `/images/projects/foo/01.jpg` (convenção por pasta). */
+export function migrateLegacyFlatProjectImagePath(path: string): string {
+  const flat = path.match(
+    /^\/images\/projects\/([^/]+)\.(jpe?g|png|webp|avif)$/i,
+  );
+  if (flat) return `/images/projects/${flat[1]}/01.jpg`;
+
+  const variantStem = path.match(
+    /^\/images\/projects\/([^/]+)\.(thumb|lg)\.(jpe?g|webp|avif)$/i,
+  );
+  if (variantStem) return `/images/projects/${variantStem[1]}/01.jpg`;
+
+  return path;
 }
 
 export function resolveProjectImage(slug: string, image?: string) {
@@ -119,7 +133,7 @@ export function resolveProjectImage(slug: string, image?: string) {
     const name = projectSlugFromPath(trimmed);
     return projectImagePath(name);
   }
-  return path;
+  return migrateLegacyFlatProjectImagePath(path);
 }
 
 /** Capa para a grelha e preload. */

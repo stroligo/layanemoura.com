@@ -14,7 +14,7 @@ function toServiceInput(item: ServicesCollectionItem): ServiceInput {
   return {
     slug: serviceSlugFromPath(item.stem ?? item.id ?? ''),
     published: item.published ?? true,
-    order: row.order ?? 0,
+    order: row.order ?? 99,
     icon: row.icon ?? 'fantasyMaps',
     title: {
       en: row.title?.en ?? '',
@@ -28,7 +28,9 @@ function toServiceInput(item: ServicesCollectionItem): ServiceInput {
 }
 
 function sortServices(a: ServiceInput, b: ServiceInput) {
-  return (a.order ?? 0) - (b.order ?? 0);
+  const byOrder = (a.order ?? 99) - (b.order ?? 99);
+  if (byOrder !== 0) return byOrder;
+  return a.slug.localeCompare(b.slug);
 }
 
 async function loadFromContent(locale: string): Promise<HomeService[]> {

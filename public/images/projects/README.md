@@ -1,24 +1,34 @@
-# Imagens dos projetos (mock)
+# Imagens por projeto (media / Studio)
 
-Capas geradas a partir de `ARQUIVOS/` via:
+Cada projeto tem **a sua pasta** — não misturar JPGs soltos na raiz de `projects/`.
 
-```bash
-node scripts/seed-mock-from-arquivos.mjs
+```
+projects/
+  hollow-crown-realms/
+    01.jpg          ← capa (grelha + 1.ª do modal)
+    02.jpg          ← 2.ª foto do modal (opcional)
+    03.jpg
+    01.thumb.webp   ← gerado no build (não editar)
+    01.lg.jpg
+  outro-projeto/
+    01.jpg
+    02.jpg
 ```
 
-Cada ficheiro: `{slug}.jpg` — nomes fictícios (ex.: `elderfen-coast-chart.jpg`).
+## Regras
 
-Para regenerar o mock após adicionar imagens em `ARQUIVOS/`, volte a correr o script.
+| Ficheiro | Função |
+|----------|--------|
+| `{slug}/01.jpg` | Capa na grelha e primeira imagem do modal |
+| `{slug}/02.jpg`, `03.jpg`… | Restantes fotos do slideshow |
+| `*.thumb.*` / `*.lg.*` | Gerados por `npm run build` — não apagar, não subir versões antigas à mão |
 
-## Variantes para o site (WebP + JPEG)
+No YAML (`content/projects/{slug}.yml`), liste os caminhos na ordem do modal; a **primeira** é a capa:
 
-As variantes (`*.thumb.*`, `*.lg.*`) são geradas **automaticamente** em `npm run build` (só imagens novas ou alteradas).
-
-Manual (opcional):
-
-```bash
-npm run images:optimize
-npm run images:optimize -- --force
+```yaml
+images:
+  - src: /images/projects/meu-projeto/01.jpg
+  - src: /images/projects/meu-projeto/02.jpg
 ```
 
-O **modal** e o **zoom** usam sempre o JPG original. A **grelha** usa as variantes `.thumb`.
+Variantes: `npm run images:optimize` (ou automático no `npm run build`).

@@ -2,6 +2,8 @@ import type { ProjectsCollectionItem } from '@nuxt/content';
 import { projects as legacyProjects } from '~/data/projects';
 import type { Project } from '~/types/project';
 import { normalizeProject, projectSlugFromPath } from '~/types/project';
+import { loadProjectsFromDiskYaml } from '~/utils/loadProjectsFromDiskYaml';
+import { projectsYamlFingerprint } from '~/utils/projectsYamlFingerprint';
 
 function slugFromItem(item: ProjectsCollectionItem): string {
   const raw = item.stem ?? item.id ?? '';
@@ -42,6 +44,10 @@ function sortProjects(list: Project[]) {
 }
 
 async function loadFromContent(): Promise<Project[]> {
+  if (import.meta.dev) {
+    return loadProjectsFromDiskYaml();
+  }
+
   const items = await queryCollection('projects').all();
   if (!items.length) return [];
   return sortProjects(items.map(toProject));
@@ -54,6 +60,10 @@ function loadFromLegacy(): Project[] {
 }
 
 export function useProjectCollection() {
+  const yamlStamp = computed(() =>
+    import.meta.dev ? projectsYamlFingerprint() : '',
+  );
+
   const { data, pending, refresh, error } = useAsyncData(
     'content-projects',
     async () => {
@@ -67,7 +77,12 @@ export function useProjectCollection() {
       }
       return loadFromLegacy();
     },
-    { default: () => [] as Project[] },
+    {
+      default: () => [] as Project[],
+      /** Sem payload antigo no browser (lista de projetos muda no Studio). */
+      getCachedData: () => undefined,
+      watch: import.meta.dev ? [yamlStamp] : undefined,
+    },
   );
 
   const projects = computed(() => data.value ?? []);

@@ -216,11 +216,11 @@ const serviceSchema = z.object({
     label: 'Published',
     description: 'When off, the service card is hidden from the home page.',
   }),
-  order: z
-    .number()
-    .int()
-    .default(0)
-    .describe('Sort order on the home page (lower = first)'),
+  order: property(z.number().int().min(1).default(99)).editor({
+    label: 'Posição na página',
+    description:
+      '1 = primeiro card, 2 = segundo, 3 = terceiro… Use números seguidos (1, 2, 3). Igualdade: ordem alfabética pelo nome do ficheiro.',
+  }),
   icon: serviceIcon,
   title: localeLine('Title (EN)', 'Título (PT)'),
   description: localeLine('Description (EN)', 'Descrição (PT)'),

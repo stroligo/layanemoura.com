@@ -124,7 +124,7 @@ export function normalizeHomeMapsAbout(
   const photoSrc = input.photo.src.trim();
   const safePhotoSrc = isSafeHttpUrl(photoSrc)
     ? photoSrc
-    : '/images/projects/valebrook-final-chart.jpg';
+    : '/images/projects/hollow-crown-realms/01.jpg';
   const photoAltRaw = localeTextForHome(input.photo.alt, locale);
   const bodyRaw = localeTextForHome(input.text, locale);
 

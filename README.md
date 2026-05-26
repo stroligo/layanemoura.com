@@ -54,7 +54,7 @@ A galeria lê os projetos de **`content/projects/*.yml`**, editáveis com [Nuxt 
 
 Capas em `public/images/projects/{slug}.jpg`. Ver `content/README.md` e `.env.example` para publicar em produção (GitHub OAuth + SSR).
 
-Foto da artista: `public/images/layane.jpg` (substituir quando houver retrato final).
+Foto da artista (contacto / about): `public/images/about.JPG`.
 
 ## Segurança
 

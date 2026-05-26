@@ -1,5 +1,5 @@
 /**
- * Gera variantes WebP + JPEG para imagens em public/images.
+ * Gera variantes WebP + JPEG para capas em public/images/projects/.
  *
  *   npm run images:optimize
  *   npm run images:optimize -- --dry-run
@@ -7,7 +7,7 @@
  *
  * Corre automaticamente em `npm run build` (só ficheiros novos ou alterados).
  *
- * Por ficheiro fonte (ex. hollow-crown-realms.jpg):
+ * Por ficheiro fonte (ex. hollow-crown-realms/01.jpg):
  *   *.thumb.* — grelha (~800px, alta qualidade, retina)
  *   *.lg.*    — fallback legado (~2400px máx., alta qualidade)
  *
@@ -21,7 +21,7 @@ import sharp from 'sharp';
 import { generateOgShareImage } from './generate-og-share';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const imagesRoot = join(root, 'public', 'images');
+const imagesRoot = join(root, 'public', 'images', 'projects');
 
 /** Grelha: ~2× para ecrãs retina (célula ~280–480px). */
 const THUMB_MAX = 800;
@@ -139,7 +139,7 @@ async function main() {
   }
 
   if (!existsSync(imagesRoot)) {
-    console.error('Missing public/images');
+    console.error('Missing public/images/projects');
     process.exit(1);
   }
 
