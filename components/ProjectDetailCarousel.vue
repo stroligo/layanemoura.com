@@ -5,9 +5,9 @@
     role="region"
     :aria-label="t('modal.galleryAria')"
     @mouseenter="stopAutoplay"
-    @mouseleave="startAutoplay"
+    @mouseleave="resumeAutoplay"
     @focusin="stopAutoplay"
-    @focusout="startAutoplay"
+    @focusout="resumeAutoplay"
   >
     <div v-if="images.length" class="project-detail-carousel-inner">
       <div
@@ -104,9 +104,9 @@
     </div>
 
     <ProjectImageLightbox
-      v-if="lightboxOpen && activeMasterSrc"
-      :src="activeMasterSrc"
-      :alt="slideAlt"
+      v-if="lightboxOpen && lightboxMasterSrc"
+      :src="lightboxMasterSrc"
+      :alt="lightboxAlt"
       @close="closeLightbox"
     />
   </div>
@@ -141,24 +141,37 @@ const {
   stopAutoplay,
 } = useProjectDetailCarousel(() => displayUrls.value);
 
-const activeMasterSrc = computed(
-  () => props.images[activeIndex.value] ?? props.images[0] ?? '',
-);
-
 const activeThumbId = computed(() => thumbId(activeIndex.value));
 const lightboxOpen = ref(false);
+const lightboxMasterSrc = ref('');
+const lightboxIndex = ref(0);
+
+const lightboxAlt = computed(() => {
+  if (!hasMultiple.value) return props.alt;
+  return t('modal.gallerySlide', {
+    alt: props.alt,
+    current: lightboxIndex.value + 1,
+    total: props.images.length,
+  });
+});
 
 function openLightbox() {
+  lightboxIndex.value = activeIndex.value;
+  lightboxMasterSrc.value =
+    props.images[lightboxIndex.value] ?? props.images[0] ?? '';
   lightboxOpen.value = true;
+  stopAutoplay();
 }
 
 function closeLightbox() {
   lightboxOpen.value = false;
+  resumeAutoplay();
 }
 
-watch(activeIndex, () => {
-  if (lightboxOpen.value) closeLightbox();
-});
+function resumeAutoplay() {
+  if (lightboxOpen.value) return;
+  startAutoplay();
+}
 
 watch(
   displayUrls,
