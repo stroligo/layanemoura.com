@@ -63,7 +63,7 @@
     "filterAria": "Filtros da galeria",
     "sectionGroupAria": "Secção da galeria",
     "tagChipsAria": "Destacar por tag",
-    "viewProject": "Ver projeto: {title} — {subtitle}",
+    "viewProject": "Ver projeto: {label}",
     "tags": {
       "all": "Todos"
     },
@@ -75,12 +75,10 @@
     "sortBy": "Ordenar por",
     "sortOption": "{field}: {direction}",
     "sort": {
-      "date": "Data",
       "tag": "Tag",
       "title": "Título"
     },
     "sortDirection": {
-      "date": { "desc": "Mais recentes", "asc": "Mais antigos" },
       "tag": { "desc": "Z → A", "asc": "A → Z" },
       "title": { "desc": "Z → A", "asc": "A → Z" }
     },
@@ -136,7 +134,8 @@
     "lightboxToolbar": "Controlos de zoom",
     "lightboxZoomIn": "Aumentar zoom",
     "lightboxZoomOut": "Reduzir zoom",
-    "lightboxReset": "Repor zoom"
+    "lightboxReset": "Repor zoom",
+    "lightboxLoading": "A carregar imagem em alta resolução…"
   },
   "floating": {
     "backToTop": "Voltar ao topo",

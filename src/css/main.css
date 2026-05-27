@@ -1860,11 +1860,37 @@
     cursor: grabbing;
   }
 
+  .image-lightbox__loading {
+    @apply absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 px-6 text-center;
+    pointer-events: none;
+  }
+
+  .image-lightbox__loading-spinner {
+    @apply h-[50px] w-[50px] object-contain;
+    animation: gallery-loading-spin 1.1s linear infinite;
+  }
+
+  .image-lightbox__loading-text {
+    font-family: var(--font-inter);
+    @apply max-w-xs text-sm tracking-wide text-paper/85;
+  }
+
   .image-lightbox__img {
-    @apply max-h-[calc(100dvh-7rem)] max-w-[min(100%,96rem)] select-none object-contain;
+    @apply max-h-[calc(100dvh-7rem)] max-w-[min(100%,96rem)] select-none object-contain opacity-0;
     transform-origin: center center;
     will-change: transform;
     image-rendering: auto;
+    transition: opacity 0.4s var(--ease-organic);
+  }
+
+  .image-lightbox__img--ready {
+    @apply opacity-100;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-lightbox__img {
+      transition-duration: 0.01ms;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

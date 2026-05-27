@@ -6,7 +6,7 @@ export const homeFallback: HomeInput = {
   mapsAbout: {
     published: true,
     photo: {
-      src: '/images/projects/hollow-crown-realms/01.jpg',
+      src: '/images/about.JPG',
       alt: {
         en: 'Fantasy kingdom map detail by {name}',
         pt: 'Detalhe de mapa de reino de fantasia por {name}',

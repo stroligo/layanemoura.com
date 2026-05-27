@@ -68,14 +68,13 @@ export function tagsUsedInGroup(
   return [...used].sort((a, b) => a.localeCompare(b));
 }
 
-export type SortField = 'date' | 'tag' | 'title';
+export type SortField = 'tag' | 'title';
 export type SortDirection = 'asc' | 'desc';
 
 export const sortFieldDefaults: {
   field: SortField;
   defaultDirection: SortDirection;
 }[] = [
-  { field: 'date', defaultDirection: 'desc' },
-  { field: 'tag', defaultDirection: 'asc' },
   { field: 'title', defaultDirection: 'asc' },
+  { field: 'tag', defaultDirection: 'asc' },
 ];

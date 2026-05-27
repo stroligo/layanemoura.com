@@ -1,46 +1,32 @@
-# Imagens por projeto (media / Studio)
-
-Cada projeto tem **a sua pasta** — não misturar JPGs soltos na raiz de `projects/`.
+# Imagens por projeto
 
 ```
-projects/
-  hollow-crown-realms/
-    01.jpg          ← capa (grelha + 1.ª do modal)
-    02.jpg          ← 2.ª foto do modal (opcional)
-    03.jpg
-    01.thumb.webp   ← gerado no build (não editar)
-    01.lg.jpg
-  outro-projeto/
-    01.jpg
-    02.jpg
+meu-projeto/
+  01.webp           ← master (upload JPG/PNG convertido no build; lightbox)
+  01.thumb.webp     ← grelha + miniaturas do slider (~800px)
+  01.display.webp   ← imagem grande do slider (~2000px)
 ```
 
-## Pasta automática (Studio)
+| Ficheiro | Onde |
+|----------|------|
+| `*.thumb.webp` | Grelha da home + miniaturas no modal |
+| `*.display.webp` | Imagem principal do slider |
+| `NN.webp` | Lightbox (zoom) |
 
-Ao criar ou gravar `content/projects/{slug}.yml`, o servidor cria **`public/images/projects/{slug}/`** (com `.gitkeep` para o Git).
+## Upload (Studio)
 
-No media picker do Studio, abre essa pasta e faz upload de `01.jpg`, `02.jpg`, etc.
+A cliente pode enviar **`01.jpg`**, **`01.png`** ou **`01.webp`**.
 
-**Apagar o projeto** (`content/projects/{slug}.yml`) remove automaticamente `public/images/projects/{slug}/` (em dev ao gravar; em deploy corre `npm run projects:ensure-dirs` para sincronizar).
+No **`npm run build`** (automático no deploy):
 
-```bash
-npm run projects:ensure-dirs   # criar pastas em falta manualmente
-```
+1. JPG/PNG → `NN.webp` (master WebP, transparência preservada em PNG)
+2. Gera `NN.thumb.webp` e `NN.display.webp`
 
-## Regras
+Em dev, após mudar imagens: `npm run images:optimize`
 
-| Ficheiro | Função |
-|----------|--------|
-| `{slug}/01.jpg` | Capa na grelha e primeira imagem do modal |
-| `{slug}/02.jpg`, `03.jpg`… | Restantes fotos do slideshow |
-| `*.thumb.*` / `*.lg.*` | Gerados por `npm run build` — não apagar, não subir versões antigas à mão |
-
-No YAML (`content/projects/{slug}.yml`), liste os caminhos na ordem do modal; a **primeira** é a capa:
+No YAML, use sempre:
 
 ```yaml
 images:
-  - src: /images/projects/meu-projeto/01.jpg
-  - src: /images/projects/meu-projeto/02.jpg
+  - src: /images/projects/meu-projeto/01.webp
 ```
-
-Variantes: `npm run images:optimize` (ou automático no `npm run build`).

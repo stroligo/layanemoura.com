@@ -38,7 +38,7 @@ const projectImageItem = z.object({
     input: 'media',
     label: 'Image',
     description:
-      'Upload em public/images/projects/NOME-DO-PROJETO/ (pasta criada ao gravar o YAML — use o mesmo nome do ficheiro, ex. meu-mapa.yml → meu-mapa/01.jpg).',
+      'Upload em public/images/projects/NOME-DO-PROJETO/ (pasta criada ao gravar o YAML — ex. meu-mapa.yml → meu-mapa/01.webp).',
   }),
 });
 
@@ -52,7 +52,11 @@ const projectSchema = z.object({
     description: 'Pins this project to the top of its section (Maps or More).',
   }),
   title: z.string().min(1).describe('Project title'),
-  subtitle: z.string().min(1).describe('Short subtitle / type of work'),
+  subtitle: z
+    .string()
+    .optional()
+    .default('')
+    .describe('Short subtitle / type of work (empty = hidden in UI)'),
   category: galleryGroup.describe('Gallery section: maps or more'),
   tags: z
     .array(z.string().min(1))
@@ -60,7 +64,6 @@ const projectSchema = z.object({
     .describe(
       'Classification tags (free text; e.g. travel, desert, fantasy-maps). Chips appear when used in a project.',
     ),
-  year: z.number().int().min(2000).max(2100).describe('Year completed'),
   links: z
     .array(
       z.object({

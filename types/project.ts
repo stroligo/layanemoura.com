@@ -32,10 +32,10 @@ export const defaultBehanceLinkLabels: ProjectDescriptionLocales = {
 export interface Project {
   slug: string;
   title: string;
+  /** Vazio = não mostrar subtítulo na UI */
   subtitle: string;
   /** Secção: Maps ou More */
   category: GalleryGroup;
-  year: number;
   /** Tags de classificação (ex.: fantasy-maps, travel) */
   tags: ProjectTag[];
   /** Botões no modal (rótulo EN/PT + URL). */
@@ -91,7 +91,7 @@ export type ProjectInput = Omit<Project, 'images' | 'links'> & {
 export function projectImagePath(slug: string, index = 0) {
   const clean = slug.replace(/^projects\/+/, '').replace(/\.ya?ml$/i, '');
   const pad = String(index + 1).padStart(2, '0');
-  return `/images/projects/${clean}/${pad}.jpg`;
+  return `/images/projects/${clean}/${pad}.webp`;
 }
 
 export function projectSlugFromPath(path: string) {
@@ -103,17 +103,24 @@ export function projectSlugFromPath(path: string) {
     .pop() ?? path;
 }
 
-/** `/images/projects/foo.jpg` → `/images/projects/foo/01.jpg` (convenção por pasta). */
+/** `/images/projects/foo.webp` → `/images/projects/foo/01.webp` (convenção por pasta). */
 export function migrateLegacyFlatProjectImagePath(path: string): string {
   const flat = path.match(
     /^\/images\/projects\/([^/]+)\.(jpe?g|png|webp|avif)$/i,
   );
-  if (flat) return `/images/projects/${flat[1]}/01.jpg`;
+  if (flat) return `/images/projects/${flat[1]}/01.webp`;
 
   const variantStem = path.match(
-    /^\/images\/projects\/([^/]+)\.(thumb|lg)\.(jpe?g|webp|avif)$/i,
+    /^\/images\/projects\/([^/]+)\.(thumb|display|lg)\.(jpe?g|webp|avif)$/i,
   );
-  if (variantStem) return `/images/projects/${variantStem[1]}/01.jpg`;
+  if (variantStem) return `/images/projects/${variantStem[1]}/01.webp`;
+
+  const legacyFolderJpg = path.match(
+    /^\/images\/projects\/([^/]+)\/(\d+)\.jpe?g$/i,
+  );
+  if (legacyFolderJpg) {
+    return `/images/projects/${legacyFolderJpg[1]}/${legacyFolderJpg[2]}.webp`;
+  }
 
   return path;
 }
@@ -139,6 +146,12 @@ export function resolveProjectImage(slug: string, image?: string) {
 /** Capa para a grelha e preload. */
 export function projectCoverImage(project: Pick<Project, 'images'>) {
   return project.images[0];
+}
+
+/** Título + subtítulo para aria-label / alt (subtítulo omitido se vazio). */
+export function projectDisplayLabel(project: Pick<Project, 'title' | 'subtitle'>) {
+  const sub = project.subtitle?.trim();
+  return sub ? `${project.title} — ${sub}` : project.title;
 }
 
 export function flattenProjectImageInput(
@@ -246,6 +259,7 @@ export function normalizeProject(input: ProjectInput): Project {
   return {
     ...rest,
     slug,
+    subtitle: rest.subtitle?.trim() ?? '',
     category,
     tags: resolvedTags,
     images,

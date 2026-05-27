@@ -1,0 +1,2627 @@
+{
+  "generatedAt": "2026-05-27T21:52:08.534Z",
+  "sourceDir": "MAPAS",
+  "fileCount": 151,
+  "projectCount": 62,
+  "skipped": [
+    {
+      "filename": "The Island.PSD",
+      "reason": "psd"
+    }
+  ],
+  "warnings": [],
+  "files": [
+    {
+      "slug": "aardon",
+      "title": "Aardon",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Aardon 1.jpg"
+    },
+    {
+      "slug": "aardon",
+      "title": "Aardon",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Aardon 2.JPG"
+    },
+    {
+      "slug": "aetheria",
+      "title": "Aetheria",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Aetheria.jpg"
+    },
+    {
+      "slug": "aquamorpha",
+      "title": "Aquamorpha",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Aquamorpha.PNG"
+    },
+    {
+      "slug": "atomic-scaling",
+      "title": "Atomic Scaling",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Atomic Scaling.jpg"
+    },
+    {
+      "slug": "aveloria",
+      "title": "Aveloria",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Aveloria.PNG"
+    },
+    {
+      "slug": "central-north-america",
+      "title": "Central & North America",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Central & North America 1.JPG"
+    },
+    {
+      "slug": "central-north-america",
+      "title": "Central & North America",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Central & North America 2.JPG"
+    },
+    {
+      "slug": "day-camp-in-the-park",
+      "title": "Day Camp in The Park",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Day Camp in The Park.JPG"
+    },
+    {
+      "slug": "desmenia",
+      "title": "Desmênia",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Desmênia 1.jpg"
+    },
+    {
+      "slug": "desmenia",
+      "title": "Desmênia",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Desmênia 2.PNG"
+    },
+    {
+      "slug": "desmenia",
+      "title": "Desmênia",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Desmênia 3.jpg"
+    },
+    {
+      "slug": "desmenia",
+      "title": "Desmênia",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Desmênia 4.PNG"
+    },
+    {
+      "slug": "doha",
+      "title": "Doha",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Doha.JPG"
+    },
+    {
+      "slug": "gold-hill-mining-district-west-boulder-and-mining-country",
+      "title": "Gold Hill Mining District",
+      "subtitle": "West Boulder and Mining Country",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Gold Hill Mining District - West Boulder and Mining Country 1.PNG"
+    },
+    {
+      "slug": "gold-hill-mining-district-west-boulder-and-mining-country",
+      "title": "Gold Hill Mining District",
+      "subtitle": "West Boulder and Mining Country",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Gold Hill Mining District - West Boulder and Mining Country 2.JPG"
+    },
+    {
+      "slug": "gray-university-as-above-so-below",
+      "title": "Gray University",
+      "subtitle": "As Above, So Below",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Gray University - As Above, So Below.PNG"
+    },
+    {
+      "slug": "greystar-city-bw",
+      "title": "Greystar City",
+      "subtitle": "B&W",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Greystar City - B&W 1.PNG"
+    },
+    {
+      "slug": "greystar-city-bw",
+      "title": "Greystar City",
+      "subtitle": "B&W",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Greystar City - B&W 2.jpg"
+    },
+    {
+      "slug": "greystar-city-coloured",
+      "title": "Greystar City",
+      "subtitle": "Coloured",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Greystar City - Coloured 1.jpg"
+    },
+    {
+      "slug": "greystar-city-coloured",
+      "title": "Greystar City",
+      "subtitle": "Coloured",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Greystar City - Coloured 2.PNG"
+    },
+    {
+      "slug": "helena-jason",
+      "title": "Helena & Jason",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Helena & Jason.JPG"
+    },
+    {
+      "slug": "helenica-the-world-of-crooked-crowns",
+      "title": "Helenica",
+      "subtitle": "The World of Crooked Crowns",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Helenica - The World of Crooked Crowns.jpg"
+    },
+    {
+      "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+      "title": "Illiard's Fantastic Continental Map",
+      "subtitle": "A Must Have for All Travelers",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 1.JPG"
+    },
+    {
+      "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+      "title": "Illiard's Fantastic Continental Map",
+      "subtitle": "A Must Have for All Travelers",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 2.PNG"
+    },
+    {
+      "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+      "title": "Illiard's Fantastic Continental Map",
+      "subtitle": "A Must Have for All Travelers",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 3.jpg"
+    },
+    {
+      "slug": "kushet",
+      "title": "Kushet",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Kushet.jpg"
+    },
+    {
+      "slug": "la-carte-de-notre-histoire",
+      "title": "La Carte de Notre Histoire",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/La Carte de Notre Histoire.PNG"
+    },
+    {
+      "slug": "landlock-festival",
+      "title": "Landlock Festival",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Landlock Festival 1.JPG"
+    },
+    {
+      "slug": "landlock-festival",
+      "title": "Landlock Festival",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Landlock Festival 2.JPG"
+    },
+    {
+      "slug": "landlock-festival",
+      "title": "Landlock Festival",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Landlock Festival 3.JPG"
+    },
+    {
+      "slug": "landlock-festival",
+      "title": "Landlock Festival",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Landlock Festival 4.JPG"
+    },
+    {
+      "slug": "laos-barrel-roll",
+      "title": "Laos",
+      "subtitle": "Barrel Roll",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Laos - Barrel Roll 1.JPG"
+    },
+    {
+      "slug": "laos-barrel-roll",
+      "title": "Laos",
+      "subtitle": "Barrel Roll",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Laos - Barrel Roll 2.JPG"
+    },
+    {
+      "slug": "laos-second-indochina-war",
+      "title": "Laos",
+      "subtitle": "Second Indochina War",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Laos - Second Indochina War 1.JPG"
+    },
+    {
+      "slug": "laos-second-indochina-war",
+      "title": "Laos",
+      "subtitle": "Second Indochina War",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Laos - Second Indochina War 2.JPG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Lithgow and Region 1.jpg"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Lithgow and Region 2.PNG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Lithgow and Region 3.PNG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Lithgow and Region 4.PNG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Lithgow and Region 5.PNG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Lithgow and Region 6.jpg"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Lithgow and Region 7.PNG"
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageIndex": 8,
+      "sourcePath": "MAPAS/Lithgow and Region 8.jpg"
+    },
+    {
+      "slug": "matera",
+      "title": "Matera",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Matera.JPG"
+    },
+    {
+      "slug": "meronte-coloured-version",
+      "title": "Meronte",
+      "subtitle": "Coloured Version",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Meronte - Coloured Version 1.JPG"
+    },
+    {
+      "slug": "meronte-coloured-version",
+      "title": "Meronte",
+      "subtitle": "Coloured Version",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Meronte - Coloured Version 2.JPG"
+    },
+    {
+      "slug": "meronte-white-version",
+      "title": "Meronte",
+      "subtitle": "White Version",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Meronte - White Version 1.JPG"
+    },
+    {
+      "slug": "meronte-white-version",
+      "title": "Meronte",
+      "subtitle": "White Version",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Meronte - White Version 2.JPG"
+    },
+    {
+      "slug": "new-york-jones-and-the-walk-in-the-park",
+      "title": "New York Jones",
+      "subtitle": "And The Walk in The Park",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/New York Jones - And The Walk in The Park.jpg"
+    },
+    {
+      "slug": "newlands-neighborhood",
+      "title": "Newlands Neighborhood",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Newlands Neighborhood 1.JPG"
+    },
+    {
+      "slug": "newlands-neighborhood",
+      "title": "Newlands Neighborhood",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Newlands Neighborhood 2.PNG"
+    },
+    {
+      "slug": "our-first-year",
+      "title": "Our First Year",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Our First Year.jpg"
+    },
+    {
+      "slug": "pantheon-tour-fordham-university",
+      "title": "Pantheon Tour",
+      "subtitle": "Fordham University",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Pantheon Tour - Fordham University.JPG"
+    },
+    {
+      "slug": "pasadena",
+      "title": "Pasadena",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Pasadena.jpg"
+    },
+    {
+      "slug": "patara-beack-antalya-turkey",
+      "title": "Patara Beack",
+      "subtitle": "Antalya, Turkey",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Patara Beack - Antalya, Turkey.JPG"
+    },
+    {
+      "slug": "porth-ysgo-bw",
+      "title": "Porth Ysgo",
+      "subtitle": "B&W",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Porth Ysgo - B&W 1.JPG"
+    },
+    {
+      "slug": "porth-ysgo-bw",
+      "title": "Porth Ysgo",
+      "subtitle": "B&W",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Porth Ysgo - B&W 2.JPG"
+    },
+    {
+      "slug": "porth-ysgo-bw",
+      "title": "Porth Ysgo",
+      "subtitle": "B&W",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Porth Ysgo - B&W 3.JPG"
+    },
+    {
+      "slug": "porth-ysgo-bw",
+      "title": "Porth Ysgo",
+      "subtitle": "B&W",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Porth Ysgo - B&W 4.JPG"
+    },
+    {
+      "slug": "porth-ysgo-poster",
+      "title": "Porth Ysgo",
+      "subtitle": "Poster",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Porth Ysgo - Poster 1.JPG"
+    },
+    {
+      "slug": "porth-ysgo-poster",
+      "title": "Porth Ysgo",
+      "subtitle": "Poster",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Porth Ysgo - Poster 2.JPG"
+    },
+    {
+      "slug": "porth-ysgo-poster",
+      "title": "Porth Ysgo",
+      "subtitle": "Poster",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Porth Ysgo - Poster 3.JPG"
+    },
+    {
+      "slug": "porth-ysgo-poster",
+      "title": "Porth Ysgo",
+      "subtitle": "Poster",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Porth Ysgo - Poster 4.JPG"
+    },
+    {
+      "slug": "price-renaissance-fair",
+      "title": "Price Renaissance Fair",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Price Renaissance Fair.JPG"
+    },
+    {
+      "slug": "regnum",
+      "title": "Regnum",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Regnum.jpg"
+    },
+    {
+      "slug": "route-map-of-pedros-progress-from-england-to-turkey-and-back-again",
+      "title": "Route Map of Pedro's Progress",
+      "subtitle": "From England To Turkey and Back Again",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Route Map of Pedro's Progress - From England To Turkey and Back Again.jpg"
+    },
+    {
+      "slug": "secret-valley-elemental-festival",
+      "title": "Secret Valley",
+      "subtitle": "Elemental Festival",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Secret Valley - Elemental Festival 1.JPG"
+    },
+    {
+      "slug": "secret-valley-elemental-festival",
+      "title": "Secret Valley",
+      "subtitle": "Elemental Festival",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Secret Valley - Elemental Festival 2.JPG"
+    },
+    {
+      "slug": "simbionte",
+      "title": "Simbionte",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Simbionte 1.PNG"
+    },
+    {
+      "slug": "simbionte",
+      "title": "Simbionte",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Simbionte 2.JPG"
+    },
+    {
+      "slug": "simbionte",
+      "title": "Simbionte",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Simbionte 3.jpg"
+    },
+    {
+      "slug": "simbionte",
+      "title": "Simbionte",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Simbionte 4.jpg"
+    },
+    {
+      "slug": "south-america-map",
+      "title": "South America Map",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/South America Map.jpg"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Swiss Alps 1.JPG"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Swiss Alps 2.JPG"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Swiss Alps 3.jpg"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Swiss Alps 4.JPG"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Swiss Alps 5.jpg"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Swiss Alps 6.jpg"
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Swiss Alps 7.jpg"
+    },
+    {
+      "slug": "the-eleanor-palace-bw",
+      "title": "The Eleanor Palace",
+      "subtitle": "B&W",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Eleanor Palace - B&W 1.JPG"
+    },
+    {
+      "slug": "the-eleanor-palace-bw",
+      "title": "The Eleanor Palace",
+      "subtitle": "B&W",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/The Eleanor Palace - B&W 2.JPG"
+    },
+    {
+      "slug": "the-eleanor-palace-coloured",
+      "title": "The Eleanor Palace",
+      "subtitle": "Coloured",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Eleanor Palace - Coloured 1.JPG"
+    },
+    {
+      "slug": "the-eleanor-palace-coloured",
+      "title": "The Eleanor Palace",
+      "subtitle": "Coloured",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/The Eleanor Palace - Coloured 2.JPG"
+    },
+    {
+      "slug": "the-enchanted-realm",
+      "title": "The Enchanted Realm",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Enchanted Realm.jpg"
+    },
+    {
+      "slug": "the-field",
+      "title": "The Field",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Field.JPG"
+    },
+    {
+      "slug": "the-map-of-de-sotos-downfall-1539-1543",
+      "title": "The Map of De Soto's Downfall",
+      "subtitle": "1539-1543",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Map of De Soto's Downfall - 1539-1543.JPG"
+    },
+    {
+      "slug": "the-north-pole-coloured",
+      "title": "The North Pole",
+      "subtitle": "Coloured",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The North Pole - Coloured 1.PNG"
+    },
+    {
+      "slug": "the-north-pole-coloured",
+      "title": "The North Pole",
+      "subtitle": "Coloured",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/The North Pole - Coloured 2.PNG"
+    },
+    {
+      "slug": "the-north-pole-greyscale",
+      "title": "The North Pole",
+      "subtitle": "Greyscale",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The North Pole - Greyscale 1.PNG"
+    },
+    {
+      "slug": "the-north-pole-greyscale",
+      "title": "The North Pole",
+      "subtitle": "Greyscale",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/The North Pole - Greyscale 2.PNG"
+    },
+    {
+      "slug": "the-purple-boys-in-europe",
+      "title": "The Purple Boys in Europe",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/The Purple Boys in Europe.JPG"
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Toscana 1.PNG"
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Toscana 2.JPG"
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Toscana 3.jpg"
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Toscana 4.JPG"
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Toscana 5.JPG"
+    },
+    {
+      "slug": "tours",
+      "title": "Tours",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Tours.JPG"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 1.JPG"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 2.png"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 3.JPG"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 4.jpg"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 5.jpg"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 6.JPG"
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 7.PNG"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 1.JPG"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 2.png"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 3.jpg"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 4.jpg"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 5.JPG"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 6.PNG"
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 7.JPG"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 1.jpg"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 2.PNG"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 3.jpg"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 4.JPG"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 5.PNG"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 6.JPG"
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 7.JPG"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 1.jpg"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 2.png"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 3.JPG"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 4.JPG"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 5.PNG"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 6.jpg"
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Netherfield 7.JPG"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 1.JPG"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 2.png"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 3.PNG"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 4.JPG"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 5.jpg"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 6.jpg"
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Tredegar 7.JPG"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 1.PNG"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 2.png"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 3.JPG"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 4,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 4.jpg"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 5,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 5.jpg"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 6,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 6.JPG"
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageIndex": 7,
+      "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 7.JPG"
+    },
+    {
+      "slug": "tree-house",
+      "title": "Tree House",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Tree House.jpg"
+    },
+    {
+      "slug": "tresco-island-a-proposal",
+      "title": "Tresco Island",
+      "subtitle": "A Proposal",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Tresco Island - A Proposal.PNG"
+    },
+    {
+      "slug": "vietlinh-plantation",
+      "title": "Vietlinh Plantation",
+      "subtitle": "",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Vietlinh Plantation.JPG"
+    },
+    {
+      "slug": "wales-coloured",
+      "title": "Wales",
+      "subtitle": "Coloured",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Wales - Coloured 1.PNG"
+    },
+    {
+      "slug": "wales-coloured",
+      "title": "Wales",
+      "subtitle": "Coloured",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Wales - Coloured 2.png"
+    },
+    {
+      "slug": "wales-coloured",
+      "title": "Wales",
+      "subtitle": "Coloured",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Wales - Coloured 3.png"
+    },
+    {
+      "slug": "wales-sepia",
+      "title": "Wales",
+      "subtitle": "Sepia",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Wales - Sepia 1.png"
+    },
+    {
+      "slug": "wales-sepia",
+      "title": "Wales",
+      "subtitle": "Sepia",
+      "imageIndex": 2,
+      "sourcePath": "MAPAS/Wales - Sepia 2.png"
+    },
+    {
+      "slug": "wales-sepia",
+      "title": "Wales",
+      "subtitle": "Sepia",
+      "imageIndex": 3,
+      "sourcePath": "MAPAS/Wales - Sepia 3.PNG"
+    },
+    {
+      "slug": "yellowstone-national-park-sticker",
+      "title": "Yellowstone National Park",
+      "subtitle": "Sticker",
+      "imageIndex": 1,
+      "sourcePath": "MAPAS/Yellowstone National Park - Sticker.JPG"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "aardon",
+      "title": "Aardon",
+      "subtitle": "",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "aardon",
+          "title": "Aardon",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Aardon 1.jpg"
+        },
+        {
+          "slug": "aardon",
+          "title": "Aardon",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Aardon 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "aetheria",
+      "title": "Aetheria",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "aetheria",
+          "title": "Aetheria",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Aetheria.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "aquamorpha",
+      "title": "Aquamorpha",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "aquamorpha",
+          "title": "Aquamorpha",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Aquamorpha.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "atomic-scaling",
+      "title": "Atomic Scaling",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "atomic-scaling",
+          "title": "Atomic Scaling",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Atomic Scaling.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "aveloria",
+      "title": "Aveloria",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "aveloria",
+          "title": "Aveloria",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Aveloria.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "central-north-america",
+      "title": "Central & North America",
+      "subtitle": "",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "central-north-america",
+          "title": "Central & North America",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Central & North America 1.JPG"
+        },
+        {
+          "slug": "central-north-america",
+          "title": "Central & North America",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Central & North America 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "day-camp-in-the-park",
+      "title": "Day Camp in The Park",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "day-camp-in-the-park",
+          "title": "Day Camp in The Park",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Day Camp in The Park.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "desmenia",
+      "title": "Desmênia",
+      "subtitle": "",
+      "imageCount": 4,
+      "files": [
+        {
+          "slug": "desmenia",
+          "title": "Desmênia",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Desmênia 1.jpg"
+        },
+        {
+          "slug": "desmenia",
+          "title": "Desmênia",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Desmênia 2.PNG"
+        },
+        {
+          "slug": "desmenia",
+          "title": "Desmênia",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Desmênia 3.jpg"
+        },
+        {
+          "slug": "desmenia",
+          "title": "Desmênia",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Desmênia 4.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "doha",
+      "title": "Doha",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "doha",
+          "title": "Doha",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Doha.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "gold-hill-mining-district-west-boulder-and-mining-country",
+      "title": "Gold Hill Mining District",
+      "subtitle": "West Boulder and Mining Country",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "gold-hill-mining-district-west-boulder-and-mining-country",
+          "title": "Gold Hill Mining District",
+          "subtitle": "West Boulder and Mining Country",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Gold Hill Mining District - West Boulder and Mining Country 1.PNG"
+        },
+        {
+          "slug": "gold-hill-mining-district-west-boulder-and-mining-country",
+          "title": "Gold Hill Mining District",
+          "subtitle": "West Boulder and Mining Country",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Gold Hill Mining District - West Boulder and Mining Country 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "gray-university-as-above-so-below",
+      "title": "Gray University",
+      "subtitle": "As Above, So Below",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "gray-university-as-above-so-below",
+          "title": "Gray University",
+          "subtitle": "As Above, So Below",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Gray University - As Above, So Below.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "greystar-city-bw",
+      "title": "Greystar City",
+      "subtitle": "B&W",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "greystar-city-bw",
+          "title": "Greystar City",
+          "subtitle": "B&W",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Greystar City - B&W 1.PNG"
+        },
+        {
+          "slug": "greystar-city-bw",
+          "title": "Greystar City",
+          "subtitle": "B&W",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Greystar City - B&W 2.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "greystar-city-coloured",
+      "title": "Greystar City",
+      "subtitle": "Coloured",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "greystar-city-coloured",
+          "title": "Greystar City",
+          "subtitle": "Coloured",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Greystar City - Coloured 1.jpg"
+        },
+        {
+          "slug": "greystar-city-coloured",
+          "title": "Greystar City",
+          "subtitle": "Coloured",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Greystar City - Coloured 2.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "helena-jason",
+      "title": "Helena & Jason",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "helena-jason",
+          "title": "Helena & Jason",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Helena & Jason.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "helenica-the-world-of-crooked-crowns",
+      "title": "Helenica",
+      "subtitle": "The World of Crooked Crowns",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "helenica-the-world-of-crooked-crowns",
+          "title": "Helenica",
+          "subtitle": "The World of Crooked Crowns",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Helenica - The World of Crooked Crowns.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+      "title": "Illiard's Fantastic Continental Map",
+      "subtitle": "A Must Have for All Travelers",
+      "imageCount": 3,
+      "files": [
+        {
+          "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+          "title": "Illiard's Fantastic Continental Map",
+          "subtitle": "A Must Have for All Travelers",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 1.JPG"
+        },
+        {
+          "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+          "title": "Illiard's Fantastic Continental Map",
+          "subtitle": "A Must Have for All Travelers",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 2.PNG"
+        },
+        {
+          "slug": "illiards-fantastic-continental-map-a-must-have-for-all-travelers",
+          "title": "Illiard's Fantastic Continental Map",
+          "subtitle": "A Must Have for All Travelers",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Illiard's Fantastic Continental Map - A Must Have for All Travelers 3.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "kushet",
+      "title": "Kushet",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "kushet",
+          "title": "Kushet",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Kushet.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "la-carte-de-notre-histoire",
+      "title": "La Carte de Notre Histoire",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "la-carte-de-notre-histoire",
+          "title": "La Carte de Notre Histoire",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/La Carte de Notre Histoire.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "landlock-festival",
+      "title": "Landlock Festival",
+      "subtitle": "",
+      "imageCount": 4,
+      "files": [
+        {
+          "slug": "landlock-festival",
+          "title": "Landlock Festival",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Landlock Festival 1.JPG"
+        },
+        {
+          "slug": "landlock-festival",
+          "title": "Landlock Festival",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Landlock Festival 2.JPG"
+        },
+        {
+          "slug": "landlock-festival",
+          "title": "Landlock Festival",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Landlock Festival 3.JPG"
+        },
+        {
+          "slug": "landlock-festival",
+          "title": "Landlock Festival",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Landlock Festival 4.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "laos-barrel-roll",
+      "title": "Laos",
+      "subtitle": "Barrel Roll",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "laos-barrel-roll",
+          "title": "Laos",
+          "subtitle": "Barrel Roll",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Laos - Barrel Roll 1.JPG"
+        },
+        {
+          "slug": "laos-barrel-roll",
+          "title": "Laos",
+          "subtitle": "Barrel Roll",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Laos - Barrel Roll 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "laos-second-indochina-war",
+      "title": "Laos",
+      "subtitle": "Second Indochina War",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "laos-second-indochina-war",
+          "title": "Laos",
+          "subtitle": "Second Indochina War",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Laos - Second Indochina War 1.JPG"
+        },
+        {
+          "slug": "laos-second-indochina-war",
+          "title": "Laos",
+          "subtitle": "Second Indochina War",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Laos - Second Indochina War 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "lithgow-and-region",
+      "title": "Lithgow and Region",
+      "subtitle": "",
+      "imageCount": 8,
+      "files": [
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Lithgow and Region 1.jpg"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Lithgow and Region 2.PNG"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Lithgow and Region 3.PNG"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Lithgow and Region 4.PNG"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Lithgow and Region 5.PNG"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Lithgow and Region 6.jpg"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Lithgow and Region 7.PNG"
+        },
+        {
+          "slug": "lithgow-and-region",
+          "title": "Lithgow and Region",
+          "subtitle": "",
+          "imageIndex": 8,
+          "sourcePath": "MAPAS/Lithgow and Region 8.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "matera",
+      "title": "Matera",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "matera",
+          "title": "Matera",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Matera.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "meronte-coloured-version",
+      "title": "Meronte",
+      "subtitle": "Coloured Version",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "meronte-coloured-version",
+          "title": "Meronte",
+          "subtitle": "Coloured Version",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Meronte - Coloured Version 1.JPG"
+        },
+        {
+          "slug": "meronte-coloured-version",
+          "title": "Meronte",
+          "subtitle": "Coloured Version",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Meronte - Coloured Version 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "meronte-white-version",
+      "title": "Meronte",
+      "subtitle": "White Version",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "meronte-white-version",
+          "title": "Meronte",
+          "subtitle": "White Version",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Meronte - White Version 1.JPG"
+        },
+        {
+          "slug": "meronte-white-version",
+          "title": "Meronte",
+          "subtitle": "White Version",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Meronte - White Version 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "new-york-jones-and-the-walk-in-the-park",
+      "title": "New York Jones",
+      "subtitle": "And The Walk in The Park",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "new-york-jones-and-the-walk-in-the-park",
+          "title": "New York Jones",
+          "subtitle": "And The Walk in The Park",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/New York Jones - And The Walk in The Park.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "newlands-neighborhood",
+      "title": "Newlands Neighborhood",
+      "subtitle": "",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "newlands-neighborhood",
+          "title": "Newlands Neighborhood",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Newlands Neighborhood 1.JPG"
+        },
+        {
+          "slug": "newlands-neighborhood",
+          "title": "Newlands Neighborhood",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Newlands Neighborhood 2.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "our-first-year",
+      "title": "Our First Year",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "our-first-year",
+          "title": "Our First Year",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Our First Year.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "pantheon-tour-fordham-university",
+      "title": "Pantheon Tour",
+      "subtitle": "Fordham University",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "pantheon-tour-fordham-university",
+          "title": "Pantheon Tour",
+          "subtitle": "Fordham University",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Pantheon Tour - Fordham University.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "pasadena",
+      "title": "Pasadena",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "pasadena",
+          "title": "Pasadena",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Pasadena.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "patara-beack-antalya-turkey",
+      "title": "Patara Beack",
+      "subtitle": "Antalya, Turkey",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "patara-beack-antalya-turkey",
+          "title": "Patara Beack",
+          "subtitle": "Antalya, Turkey",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Patara Beack - Antalya, Turkey.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "porth-ysgo-bw",
+      "title": "Porth Ysgo",
+      "subtitle": "B&W",
+      "imageCount": 4,
+      "files": [
+        {
+          "slug": "porth-ysgo-bw",
+          "title": "Porth Ysgo",
+          "subtitle": "B&W",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Porth Ysgo - B&W 1.JPG"
+        },
+        {
+          "slug": "porth-ysgo-bw",
+          "title": "Porth Ysgo",
+          "subtitle": "B&W",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Porth Ysgo - B&W 2.JPG"
+        },
+        {
+          "slug": "porth-ysgo-bw",
+          "title": "Porth Ysgo",
+          "subtitle": "B&W",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Porth Ysgo - B&W 3.JPG"
+        },
+        {
+          "slug": "porth-ysgo-bw",
+          "title": "Porth Ysgo",
+          "subtitle": "B&W",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Porth Ysgo - B&W 4.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "porth-ysgo-poster",
+      "title": "Porth Ysgo",
+      "subtitle": "Poster",
+      "imageCount": 4,
+      "files": [
+        {
+          "slug": "porth-ysgo-poster",
+          "title": "Porth Ysgo",
+          "subtitle": "Poster",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Porth Ysgo - Poster 1.JPG"
+        },
+        {
+          "slug": "porth-ysgo-poster",
+          "title": "Porth Ysgo",
+          "subtitle": "Poster",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Porth Ysgo - Poster 2.JPG"
+        },
+        {
+          "slug": "porth-ysgo-poster",
+          "title": "Porth Ysgo",
+          "subtitle": "Poster",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Porth Ysgo - Poster 3.JPG"
+        },
+        {
+          "slug": "porth-ysgo-poster",
+          "title": "Porth Ysgo",
+          "subtitle": "Poster",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Porth Ysgo - Poster 4.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "price-renaissance-fair",
+      "title": "Price Renaissance Fair",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "price-renaissance-fair",
+          "title": "Price Renaissance Fair",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Price Renaissance Fair.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "regnum",
+      "title": "Regnum",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "regnum",
+          "title": "Regnum",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Regnum.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "route-map-of-pedros-progress-from-england-to-turkey-and-back-again",
+      "title": "Route Map of Pedro's Progress",
+      "subtitle": "From England To Turkey and Back Again",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "route-map-of-pedros-progress-from-england-to-turkey-and-back-again",
+          "title": "Route Map of Pedro's Progress",
+          "subtitle": "From England To Turkey and Back Again",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Route Map of Pedro's Progress - From England To Turkey and Back Again.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "secret-valley-elemental-festival",
+      "title": "Secret Valley",
+      "subtitle": "Elemental Festival",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "secret-valley-elemental-festival",
+          "title": "Secret Valley",
+          "subtitle": "Elemental Festival",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Secret Valley - Elemental Festival 1.JPG"
+        },
+        {
+          "slug": "secret-valley-elemental-festival",
+          "title": "Secret Valley",
+          "subtitle": "Elemental Festival",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Secret Valley - Elemental Festival 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "simbionte",
+      "title": "Simbionte",
+      "subtitle": "",
+      "imageCount": 4,
+      "files": [
+        {
+          "slug": "simbionte",
+          "title": "Simbionte",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Simbionte 1.PNG"
+        },
+        {
+          "slug": "simbionte",
+          "title": "Simbionte",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Simbionte 2.JPG"
+        },
+        {
+          "slug": "simbionte",
+          "title": "Simbionte",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Simbionte 3.jpg"
+        },
+        {
+          "slug": "simbionte",
+          "title": "Simbionte",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Simbionte 4.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "south-america-map",
+      "title": "South America Map",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "south-america-map",
+          "title": "South America Map",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/South America Map.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "swiss-alps",
+      "title": "Swiss Alps",
+      "subtitle": "",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Swiss Alps 1.JPG"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Swiss Alps 2.JPG"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Swiss Alps 3.jpg"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Swiss Alps 4.JPG"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Swiss Alps 5.jpg"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Swiss Alps 6.jpg"
+        },
+        {
+          "slug": "swiss-alps",
+          "title": "Swiss Alps",
+          "subtitle": "",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Swiss Alps 7.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "the-eleanor-palace-bw",
+      "title": "The Eleanor Palace",
+      "subtitle": "B&W",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "the-eleanor-palace-bw",
+          "title": "The Eleanor Palace",
+          "subtitle": "B&W",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Eleanor Palace - B&W 1.JPG"
+        },
+        {
+          "slug": "the-eleanor-palace-bw",
+          "title": "The Eleanor Palace",
+          "subtitle": "B&W",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/The Eleanor Palace - B&W 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "the-eleanor-palace-coloured",
+      "title": "The Eleanor Palace",
+      "subtitle": "Coloured",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "the-eleanor-palace-coloured",
+          "title": "The Eleanor Palace",
+          "subtitle": "Coloured",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Eleanor Palace - Coloured 1.JPG"
+        },
+        {
+          "slug": "the-eleanor-palace-coloured",
+          "title": "The Eleanor Palace",
+          "subtitle": "Coloured",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/The Eleanor Palace - Coloured 2.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "the-enchanted-realm",
+      "title": "The Enchanted Realm",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "the-enchanted-realm",
+          "title": "The Enchanted Realm",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Enchanted Realm.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "the-field",
+      "title": "The Field",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "the-field",
+          "title": "The Field",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Field.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "the-map-of-de-sotos-downfall-1539-1543",
+      "title": "The Map of De Soto's Downfall",
+      "subtitle": "1539-1543",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "the-map-of-de-sotos-downfall-1539-1543",
+          "title": "The Map of De Soto's Downfall",
+          "subtitle": "1539-1543",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Map of De Soto's Downfall - 1539-1543.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "the-north-pole-coloured",
+      "title": "The North Pole",
+      "subtitle": "Coloured",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "the-north-pole-coloured",
+          "title": "The North Pole",
+          "subtitle": "Coloured",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The North Pole - Coloured 1.PNG"
+        },
+        {
+          "slug": "the-north-pole-coloured",
+          "title": "The North Pole",
+          "subtitle": "Coloured",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/The North Pole - Coloured 2.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "the-north-pole-greyscale",
+      "title": "The North Pole",
+      "subtitle": "Greyscale",
+      "imageCount": 2,
+      "files": [
+        {
+          "slug": "the-north-pole-greyscale",
+          "title": "The North Pole",
+          "subtitle": "Greyscale",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The North Pole - Greyscale 1.PNG"
+        },
+        {
+          "slug": "the-north-pole-greyscale",
+          "title": "The North Pole",
+          "subtitle": "Greyscale",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/The North Pole - Greyscale 2.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "the-purple-boys-in-europe",
+      "title": "The Purple Boys in Europe",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "the-purple-boys-in-europe",
+          "title": "The Purple Boys in Europe",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/The Purple Boys in Europe.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "toscana",
+      "title": "Toscana",
+      "subtitle": "",
+      "imageCount": 5,
+      "files": [
+        {
+          "slug": "toscana",
+          "title": "Toscana",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Toscana 1.PNG"
+        },
+        {
+          "slug": "toscana",
+          "title": "Toscana",
+          "subtitle": "",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Toscana 2.JPG"
+        },
+        {
+          "slug": "toscana",
+          "title": "Toscana",
+          "subtitle": "",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Toscana 3.jpg"
+        },
+        {
+          "slug": "toscana",
+          "title": "Toscana",
+          "subtitle": "",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Toscana 4.JPG"
+        },
+        {
+          "slug": "toscana",
+          "title": "Toscana",
+          "subtitle": "",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Toscana 5.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "tours",
+      "title": "Tours",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "tours",
+          "title": "Tours",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Tours.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-arnott-hill-park",
+      "title": "Treasure Hunt",
+      "subtitle": "Arnott Hill Park",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 1.JPG"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 2.png"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 3.JPG"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 4.jpg"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 5.jpg"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 6.JPG"
+        },
+        {
+          "slug": "treasure-hunt-arnott-hill-park",
+          "title": "Treasure Hunt",
+          "subtitle": "Arnott Hill Park",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Arnott Hill Park 7.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-carlton-hill",
+      "title": "Treasure Hunt",
+      "subtitle": "Carlton Hill",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 1.JPG"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 2.png"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 3.jpg"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 4.jpg"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 5.JPG"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 6.PNG"
+        },
+        {
+          "slug": "treasure-hunt-carlton-hill",
+          "title": "Treasure Hunt",
+          "subtitle": "Carlton Hill",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Carlton Hill 7.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-hoddesdon",
+      "title": "Treasure Hunt",
+      "subtitle": "Hoddesdon",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 1.jpg"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 2.PNG"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 3.jpg"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 4.JPG"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 5.PNG"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 6.JPG"
+        },
+        {
+          "slug": "treasure-hunt-hoddesdon",
+          "title": "Treasure Hunt",
+          "subtitle": "Hoddesdon",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Hoddesdon 7.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-netherfield",
+      "title": "Treasure Hunt",
+      "subtitle": "Netherfield",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 1.jpg"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 2.png"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 3.JPG"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 4.JPG"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 5.PNG"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 6.jpg"
+        },
+        {
+          "slug": "treasure-hunt-netherfield",
+          "title": "Treasure Hunt",
+          "subtitle": "Netherfield",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Netherfield 7.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-tredegar",
+      "title": "Treasure Hunt",
+      "subtitle": "Tredegar",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 1.JPG"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 2.png"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 3.PNG"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 4.JPG"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 5.jpg"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 6.jpg"
+        },
+        {
+          "slug": "treasure-hunt-tredegar",
+          "title": "Treasure Hunt",
+          "subtitle": "Tredegar",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Tredegar 7.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "treasure-hunt-welwyn-garden-city",
+      "title": "Treasure Hunt",
+      "subtitle": "Welwyn Garden City",
+      "imageCount": 7,
+      "files": [
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 1.PNG"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 2.png"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 3.JPG"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 4,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 4.jpg"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 5,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 5.jpg"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 6,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 6.JPG"
+        },
+        {
+          "slug": "treasure-hunt-welwyn-garden-city",
+          "title": "Treasure Hunt",
+          "subtitle": "Welwyn Garden City",
+          "imageIndex": 7,
+          "sourcePath": "MAPAS/Treasure Hunt - Welwyn Garden City 7.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "tree-house",
+      "title": "Tree House",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "tree-house",
+          "title": "Tree House",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Tree House.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "tresco-island-a-proposal",
+      "title": "Tresco Island",
+      "subtitle": "A Proposal",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "tresco-island-a-proposal",
+          "title": "Tresco Island",
+          "subtitle": "A Proposal",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Tresco Island - A Proposal.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "vietlinh-plantation",
+      "title": "Vietlinh Plantation",
+      "subtitle": "",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "vietlinh-plantation",
+          "title": "Vietlinh Plantation",
+          "subtitle": "",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Vietlinh Plantation.JPG"
+        }
+      ]
+    },
+    {
+      "slug": "wales-coloured",
+      "title": "Wales",
+      "subtitle": "Coloured",
+      "imageCount": 3,
+      "files": [
+        {
+          "slug": "wales-coloured",
+          "title": "Wales",
+          "subtitle": "Coloured",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Wales - Coloured 1.PNG"
+        },
+        {
+          "slug": "wales-coloured",
+          "title": "Wales",
+          "subtitle": "Coloured",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Wales - Coloured 2.png"
+        },
+        {
+          "slug": "wales-coloured",
+          "title": "Wales",
+          "subtitle": "Coloured",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Wales - Coloured 3.png"
+        }
+      ]
+    },
+    {
+      "slug": "wales-sepia",
+      "title": "Wales",
+      "subtitle": "Sepia",
+      "imageCount": 3,
+      "files": [
+        {
+          "slug": "wales-sepia",
+          "title": "Wales",
+          "subtitle": "Sepia",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Wales - Sepia 1.png"
+        },
+        {
+          "slug": "wales-sepia",
+          "title": "Wales",
+          "subtitle": "Sepia",
+          "imageIndex": 2,
+          "sourcePath": "MAPAS/Wales - Sepia 2.png"
+        },
+        {
+          "slug": "wales-sepia",
+          "title": "Wales",
+          "subtitle": "Sepia",
+          "imageIndex": 3,
+          "sourcePath": "MAPAS/Wales - Sepia 3.PNG"
+        }
+      ]
+    },
+    {
+      "slug": "yellowstone-national-park-sticker",
+      "title": "Yellowstone National Park",
+      "subtitle": "Sticker",
+      "imageCount": 1,
+      "files": [
+        {
+          "slug": "yellowstone-national-park-sticker",
+          "title": "Yellowstone National Park",
+          "subtitle": "Sticker",
+          "imageIndex": 1,
+          "sourcePath": "MAPAS/Yellowstone National Park - Sticker.JPG"
+        }
+      ]
+    }
+  ]
+}

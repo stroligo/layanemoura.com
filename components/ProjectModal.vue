@@ -44,18 +44,21 @@
               <ProjectDetailCarousel
                 :key="project.slug"
                 :images="project.images"
-                :alt="`${project.title} — ${project.subtitle}`"
+                :alt="projectDisplayLabel(project)"
                 class="project-modal-visual"
               />
 
               <div class="project-modal-body">
                 <p :id="metaId" class="font-inter text-xs uppercase tracking-[0.2em] text-terracotta">
-                  {{ groupLabel(project.category) }} · {{ project.year }}
+                  {{ groupLabel(project.category) }}
                 </p>
                 <h2 :id="titleId" class="mt-2 font-cormorant text-3xl text-cocoa md:text-4xl">
                   {{ project.title }}
                 </h2>
-                <p class="mt-1 font-cormorant text-xl italic text-ink-muted">
+                <p
+                  v-if="project.subtitle?.trim()"
+                  class="mt-1 font-cormorant text-xl italic text-ink-muted"
+                >
                   {{ project.subtitle }}
                 </p>
                 <div
@@ -117,7 +120,7 @@
 
 <script setup lang="ts">
 import type { Project } from '~/types/project';
-import { projectDescriptionForLocale } from '~/types/project';
+import { projectDescriptionForLocale, projectDisplayLabel } from '~/types/project';
 import { useDialogLock } from '~/composables/useDialogLock';
 import { useFocusTrap } from '~/composables/useFocusTrap';
 

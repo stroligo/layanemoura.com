@@ -28,7 +28,6 @@ export function useGalleryI18n() {
 
   const sortChoices = computed(() => {
     const directionOrder: Record<SortField, SortDirection[]> = {
-      date: ['desc', 'asc'],
       tag: ['asc', 'desc'],
       title: ['asc', 'desc'],
     };

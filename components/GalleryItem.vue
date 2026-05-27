@@ -14,10 +14,7 @@
     :disabled="dimmed"
     :aria-disabled="dimmed || undefined"
     :aria-label="
-      t('gallery.viewProject', {
-        title: project.title,
-        subtitle: project.subtitle,
-      })
+      t('gallery.viewProject', { label: projectDisplayLabel(project) })
     "
     @click="$emit('select', project)"
   >
@@ -30,12 +27,7 @@
         v-if="coverImage"
         :src="coverImage"
         variant="thumb"
-        :alt="
-          t('gallery.viewProject', {
-            title: project.title,
-            subtitle: project.subtitle,
-          })
-        "
+        :alt="t('gallery.viewProject', { label: projectDisplayLabel(project) })"
         :img-class="
           isVisible ? 'gallery-item-img gallery-item-img--visible' : 'gallery-item-img'
         "
@@ -53,7 +45,7 @@
 
 <script setup lang="ts">
 import type { Project } from '~/types/project';
-import { projectCoverImage } from '~/types/project';
+import { projectCoverImage, projectDisplayLabel } from '~/types/project';
 
 const { t } = useI18n();
 

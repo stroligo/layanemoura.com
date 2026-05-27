@@ -21,7 +21,7 @@
             type="button"
             class="image-lightbox__tool"
             :aria-label="t('modal.lightboxZoomOut')"
-            :disabled="scale <= 1"
+            :disabled="imageLoading || scale <= 1"
             @click="zoomOut"
           >
             <span aria-hidden="true">−</span>
@@ -30,7 +30,7 @@
             type="button"
             class="image-lightbox__tool"
             :aria-label="t('modal.lightboxReset')"
-            :disabled="scale === 1 && translateX === 0 && translateY === 0"
+            :disabled="imageLoading || (scale === 1 && translateX === 0 && translateY === 0)"
             @click="resetView"
           >
             <span aria-hidden="true">◎</span>
@@ -39,7 +39,7 @@
             type="button"
             class="image-lightbox__tool"
             :aria-label="t('modal.lightboxZoomIn')"
-            :disabled="scale >= 5"
+            :disabled="imageLoading || scale >= 5"
             @click="zoomIn"
           >
             <span aria-hidden="true">+</span>
@@ -59,7 +59,8 @@
       <div
         ref="viewportRef"
         class="image-lightbox__viewport"
-        :class="{ 'image-lightbox__viewport--pan': canPan }"
+        :class="{ 'image-lightbox__viewport--pan': canPan && !imageLoading }"
+        :aria-busy="imageLoading"
         tabindex="0"
         @wheel.prevent="onWheel"
         @pointerdown="onPointerDown"
@@ -67,14 +68,38 @@
         @pointerup="onPointerUp"
         @pointercancel="onPointerUp"
       >
+        <div
+          v-show="imageLoading"
+          class="image-lightbox__loading"
+          role="status"
+          aria-live="polite"
+        >
+          <img
+            src="/design/loading.png"
+            alt=""
+            class="image-lightbox__loading-spinner"
+            width="50"
+            height="50"
+            decoding="async"
+          />
+          <p class="image-lightbox__loading-text">
+            {{ t('modal.lightboxLoading') }}
+          </p>
+        </div>
+
         <img
+          ref="imageRef"
+          :key="src"
           :src="src"
           :alt="alt"
           class="image-lightbox__img"
+          :class="{ 'image-lightbox__img--ready': !imageLoading }"
           :style="transformStyle"
           decoding="async"
           fetchpriority="high"
           draggable="false"
+          @load="onImageLoad"
+          @error="onImageError"
         />
       </div>
     </div>
@@ -93,6 +118,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 const viewportRef = ref<HTMLElement | null>(null);
+const imageRef = ref<HTMLImageElement | null>(null);
 
 const {
   scale,
@@ -110,16 +136,41 @@ const {
 } = useImageZoomPan();
 
 function onWheel(event: WheelEvent) {
+  if (imageLoading.value) return;
   applyWheelZoom(event.deltaY);
+}
+
+const imageLoading = ref(true);
+
+function onImageLoad() {
+  imageLoading.value = false;
+}
+
+function onImageError() {
+  imageLoading.value = false;
+}
+
+function syncImageAlreadyLoaded() {
+  const img = imageRef.value;
+  if (img?.complete && img.naturalWidth > 0) {
+    imageLoading.value = false;
+  }
 }
 
 watch(
   () => props.src,
-  () => resetView(),
+  () => {
+    imageLoading.value = true;
+    resetView();
+    nextTick(syncImageAlreadyLoaded);
+  },
 );
 
 onMounted(() => {
   resetView();
-  viewportRef.value?.focus();
+  nextTick(() => {
+    syncImageAlreadyLoaded();
+    viewportRef.value?.focus();
+  });
 });
 </script>

@@ -22,10 +22,9 @@ function toProject(item: ProjectsCollectionItem): Project {
   return normalizeProject({
     slug,
     title: item.title,
-    subtitle: item.subtitle,
+    subtitle: item.subtitle ?? '',
     category: item.category,
     tags: row.tags,
-    year: item.year,
     links: row.links,
     behanceUrl: row.behanceUrl,
     published: item.published ?? true,
@@ -38,9 +37,7 @@ function toProject(item: ProjectsCollectionItem): Project {
 }
 
 function sortProjects(list: Project[]) {
-  return [...list].sort(
-    (a, b) => b.year - a.year || a.title.localeCompare(b.title),
-  );
+  return [...list].sort((a, b) => a.title.localeCompare(b.title));
 }
 
 async function loadFromContent(): Promise<Project[]> {

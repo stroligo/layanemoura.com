@@ -21,7 +21,5 @@ export function loadProjectsFromDiskYaml(): Project[] {
     list.push(normalizeProject({ slug, ...data }));
   }
 
-  return list.sort(
-    (a, b) => b.year - a.year || a.title.localeCompare(b.title),
-  );
+  return list.sort((a, b) => a.title.localeCompare(b.title));
 }

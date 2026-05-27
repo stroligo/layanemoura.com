@@ -25,6 +25,12 @@
     "contact:test-smtp": "tsx scripts/test-contact-smtp.ts",
     "sitemap:generate": "tsx scripts/generate-sitemap.ts",
     "projects:ensure-dirs": "tsx scripts/ensure-project-image-dirs.ts",
+    "mapas:inventory": "tsx scripts/mapas-inventory.ts",
+    "mapas:import": "tsx scripts/mapas-import.ts",
+    "mapas:generate-yml": "tsx scripts/mapas-generate-yml.ts",
+    "mapas:sync": "npm run mapas:inventory && npm run mapas:import && npm run mapas:generate-yml && npm run images:optimize",
+    "mapas:reimport-png": "tsx scripts/mapas-reimport-png.ts",
+    "projects:migrate-webp": "tsx scripts/migrate-project-images-webp.ts",
     "images:optimize": "npm run projects:ensure-dirs && tsx scripts/optimize-images.ts",
     "og:generate": "tsx scripts/generate-og-share.ts",
     "images:optimize:dry": "tsx scripts/optimize-images.ts --dry-run"

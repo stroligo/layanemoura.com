@@ -17,9 +17,6 @@ function compareProjects(
   let result = 0;
 
   switch (field) {
-    case 'date':
-      result = a.year - b.year;
-      break;
     case 'tag': {
       const labelA = a.tags.map(tagLabel).join(', ');
       const labelB = b.tags.map(tagLabel).join(', ');
@@ -41,8 +38,8 @@ export function useProjects() {
   const { activeGroup, highlightTag, selectedProject, resetGalleryHome } =
     useGalleryHomeState();
 
-  const sortField = ref<SortField>('date');
-  const sortDirection = ref<SortDirection>('desc');
+  const sortField = ref<SortField>('title');
+  const sortDirection = ref<SortDirection>('asc');
 
   function sortList(list: Project[]): Project[] {
     return [...list].sort((a, b) =>

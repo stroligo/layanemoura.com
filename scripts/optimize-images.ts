@@ -1,136 +1,170 @@
 /**
- * Gera variantes WebP + JPEG para capas em public/images/projects/.
+ * Pipeline de imagens de projeto (build + `npm run images:optimize`).
  *
- *   npm run images:optimize
- *   npm run images:optimize -- --dry-run
- *   npm run images:optimize -- --force
+ * Por imagem `NN.jpg` / `NN.png` / `NN.webp`:
+ *   1. Converte JPG/PNG → `NN.webp` (master, preserva transparência)
+ *   2. Gera `NN.thumb.webp` (~800px) — grelha + miniaturas do modal
+ *   3. Gera `NN.display.webp` (~2000px) — imagem grande do slider
  *
- * Corre automaticamente em `npm run build` (só ficheiros novos ou alterados).
- *
- * Por ficheiro fonte (ex. hollow-crown-realms/01.jpg):
- *   *.thumb.* — grelha (~800px, alta qualidade, retina)
- *   *.lg.*    — fallback legado (~2400px máx., alta qualidade)
- *
- * Modal e lightbox usam o JPG original (máxima qualidade).
- * Originais não são apagados.
+ * Lightbox usa só o master `NN.webp`.
  */
-import { existsSync, readdirSync, statSync } from 'node:fs';
-import { dirname, join, relative } from 'node:path';
+import { existsSync, readdirSync, statSync, unlinkSync } from 'node:fs';
+import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 import { generateOgShareImage } from './generate-og-share';
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const root = fileURLToPath(new URL('..', import.meta.url));
 const imagesRoot = join(root, 'public', 'images', 'projects');
 
-/** Grelha: ~2× para ecrãs retina (célula ~280–480px). */
 const THUMB_MAX = 800;
-/** Só reduz se o original for enorme; modal usa o ficheiro fonte. */
-const LG_MAX = 2400;
+const DISPLAY_MAX = 2000;
+const MASTER_QUALITY = 92;
+const THUMB_QUALITY = 88;
+const DISPLAY_QUALITY = 90;
 
-const RASTER = /\.(jpe?g|png)$/i;
-const SKIP = /\.(thumb|lg)\.(jpe?g|webp|avif)$/i;
-
-type VariantKey = 'thumb' | 'lg';
-
-const VARIANTS: Record<
-  VariantKey,
-  { max: number; webpQ: number; jpegQ: number; softMaxKb?: number }
-> = {
-  thumb: { max: THUMB_MAX, webpQ: 88, jpegQ: 90, softMaxKb: 180 },
-  lg: { max: LG_MAX, webpQ: 90, jpegQ: 92, softMaxKb: 650 },
-};
-
+const STEM_FILE = /^(\d+)\.(jpe?g|png|webp)$/i;
+const VARIANT_FILE = /\.(thumb|display|lg)\.webp$/i;
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
 
-function walk(dir: string): string[] {
-  const out: string[] = [];
+type VariantKey = 'thumb' | 'display';
+
+const VARIANTS: Record<VariantKey, { max: number; quality: number }> = {
+  thumb: { max: THUMB_MAX, quality: THUMB_QUALITY },
+  display: { max: DISPLAY_MAX, quality: DISPLAY_QUALITY },
+};
+
+function projectDirs(): string[] {
+  if (!existsSync(imagesRoot)) return [];
+  return readdirSync(imagesRoot)
+    .map((name) => join(imagesRoot, name))
+    .filter((path) => statSync(path).isDirectory());
+}
+
+function listStems(dir: string): string[] {
+  const stems = new Set<string>();
   for (const name of readdirSync(dir)) {
-    const full = join(dir, name);
-    const st = statSync(full);
-    if (st.isDirectory()) {
-      out.push(...walk(full));
-      continue;
-    }
-    if (!RASTER.test(name) || SKIP.test(name)) continue;
-    out.push(full);
+    if (VARIANT_FILE.test(name)) continue;
+    const match = name.match(STEM_FILE);
+    if (match?.[1]) stems.add(match[1]);
   }
-  return out;
+  return [...stems].sort((a, b) => Number(a) - Number(b));
 }
 
-function outPath(source: string, variant: VariantKey, format: 'webp' | 'jpeg') {
-  const base = source.replace(/\.(jpe?g|png)$/i, '');
-  const ext = format === 'webp' ? 'webp' : 'jpg';
-  return `${base}.${variant}.${ext}`;
+function uploadPath(dir: string, stem: string): string | null {
+  for (const ext of ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']) {
+    const path = join(dir, `${stem}.${ext}`);
+    if (existsSync(path)) return path;
+  }
+  return null;
 }
 
-/** Só reprocessa se o original for mais recente que todas as variantes. */
-function needsProcessing(source: string): boolean {
-  const sourceMtime = statSync(source).mtimeMs;
-  for (const key of Object.keys(VARIANTS) as VariantKey[]) {
-    for (const format of ['webp', 'jpeg'] as const) {
-      const dest = outPath(source, key, format);
-      if (!existsSync(dest)) return true;
-      if (statSync(dest).mtimeMs < sourceMtime) return true;
+function masterPath(dir: string, stem: string) {
+  return join(dir, `${stem}.webp`);
+}
+
+function variantPath(dir: string, stem: string, key: VariantKey) {
+  return join(dir, `${stem}.${key}.webp`);
+}
+
+function removeLegacyVariants(dir: string) {
+  for (const name of readdirSync(dir)) {
+    if (!VARIANT_FILE.test(name)) continue;
+    const full = join(dir, name);
+    if (!dryRun) unlinkSync(full);
+    console.log(`  removed ${relative(root, full)}`);
+  }
+}
+
+async function ensureMasterWebp(dir: string, stem: string): Promise<string> {
+  const dest = masterPath(dir, stem);
+  const upload = uploadPath(dir, stem);
+
+  if (upload) {
+    if (!dryRun) {
+      let pipeline = sharp(upload).rotate();
+      const meta = await pipeline.metadata();
+      const w = meta.width ?? 0;
+      const h = meta.height ?? 0;
+      if (w > MAX_SOURCE_SIDE || h > MAX_SOURCE_SIDE) {
+        pipeline = pipeline.resize(MAX_SOURCE_SIDE, MAX_SOURCE_SIDE, {
+          fit: 'inside',
+          withoutEnlargement: true,
+        });
+      }
+      await pipeline.webp({ quality: MASTER_QUALITY, effort: 6 }).toFile(dest);
+      unlinkSync(upload);
     }
+    console.log(
+      `  ${dryRun ? 'would convert' : 'converted'} ${relative(root, upload)} → ${relative(root, dest)}`,
+    );
+    return dest;
+  }
+
+  if (existsSync(dest)) return dest;
+
+  throw new Error(`Sem master para ${relative(imagesRoot, dir)}/${stem}`);
+}
+
+const MAX_SOURCE_SIDE = 6000;
+
+async function writeVariant(
+  master: string,
+  dest: string,
+  key: VariantKey,
+): Promise<string> {
+  const cfg = VARIANTS[key];
+  const meta = await sharp(master).metadata();
+
+  const pipeline = sharp(master).rotate().resize(cfg.max, cfg.max, {
+    fit: 'inside',
+    withoutEnlargement: true,
+  });
+
+  if (dryRun) {
+    return `  would write ${relative(root, dest)} (${key}, max ${cfg.max}px)`;
+  }
+
+  await pipeline
+    .webp({ quality: cfg.quality, effort: 6, smartSubsample: true })
+    .toFile(dest);
+
+  const kb = (statSync(dest).size / 1024).toFixed(1);
+  return `  ✓ ${relative(root, dest)} — ${kb} KB (${key}, q${cfg.quality}, ${meta.width}×${meta.height})`;
+}
+
+function needsVariants(master: string, dir: string, stem: string): boolean {
+  if (force) return true;
+  const masterMtime = statSync(master).mtimeMs;
+  for (const key of Object.keys(VARIANTS) as VariantKey[]) {
+    const dest = variantPath(dir, stem, key);
+    if (!existsSync(dest)) return true;
+    if (statSync(dest).mtimeMs < masterMtime) return true;
   }
   return false;
 }
 
-async function encodeHighQuality(
-  pipeline: sharp.Sharp,
-  dest: string,
-  format: 'webp' | 'jpeg',
-  quality: number,
-): Promise<number> {
-  const clone = pipeline.clone();
-  if (format === 'webp') {
-    await clone
-      .webp({ quality, effort: 6, smartSubsample: true })
-      .toFile(dest);
-  } else {
-    await clone
-      .jpeg({ quality, mozjpeg: true, chromaSubsampling: '4:4:4' })
-      .toFile(dest);
-  }
-  return statSync(dest).size;
-}
-
-async function processOne(source: string) {
-  const rel = relative(imagesRoot, source);
-  const meta = await sharp(source).metadata();
+async function processStem(dir: string, stem: string) {
   const results: string[] = [];
 
-  for (const [key, cfg] of Object.entries(VARIANTS) as [VariantKey, (typeof VARIANTS)[VariantKey]][]) {
-    const resized = sharp(source)
-      .rotate()
-      .resize(cfg.max, cfg.max, { fit: 'inside', withoutEnlargement: true });
-
-    for (const format of ['webp', 'jpeg'] as const) {
-      const dest = outPath(source, key, format);
-      const startQ = format === 'webp' ? cfg.webpQ : cfg.jpegQ;
-
-      if (dryRun) {
-        results.push(`  would write ${relative(root, dest)} (${key}, ${format})`);
-        continue;
-      }
-
-      const quality = startQ;
-      const bytes = await encodeHighQuality(resized, dest, format, quality);
-      const kb = (bytes / 1024).toFixed(1);
-      const overBudget =
-        cfg.softMaxKb && bytes > cfg.softMaxKb * 1024 ? ' (acima do alvo)' : '';
-      const mark =
-        cfg.softMaxKb && bytes > cfg.softMaxKb * 1024 ? '⚠' : '✓';
-      results.push(
-        `  ${mark} ${relative(root, dest)} — ${kb} KB (q${quality}, ${meta.width}×${meta.height} → max ${cfg.max}px)${overBudget}`,
-      );
-    }
+  const master = await ensureMasterWebp(dir, stem);
+  if (!dryRun && !needsVariants(master, dir, stem)) {
+    return { skipped: true, lines: [] };
   }
 
-  return { rel, results };
+  const meta = await sharp(master).metadata();
+  results.push(
+    `  master ${relative(root, master)} (${meta.width}×${meta.height})`,
+  );
+
+  for (const key of Object.keys(VARIANTS) as VariantKey[]) {
+    const dest = variantPath(dir, stem, key);
+    results.push(await writeVariant(master, dest, key));
+  }
+
+  return { skipped: false, lines: results };
 }
 
 async function main() {
@@ -143,42 +177,47 @@ async function main() {
     process.exit(1);
   }
 
-  const sources = walk(imagesRoot).sort();
-  if (!sources.length) {
-    console.log('No images found.');
-    return;
-  }
+  const dirs = projectDirs();
+  let processed = 0;
+  let skipped = 0;
+  let stemsTotal = 0;
 
   console.log(
     dryRun
-      ? `[dry-run] ${sources.length} source image(s)\n`
-      : `Optimizing ${sources.length} source image(s)…\n`,
+      ? `[dry-run] ${dirs.length} projeto(s)\n`
+      : `Otimizando imagens em ${dirs.length} projeto(s)…\n`,
   );
 
-  let processed = 0;
-  let skipped = 0;
-  let totalOut = 0;
+  for (const dir of dirs) {
+    const stems = listStems(dir);
+    if (!stems.length) continue;
 
-  for (const source of sources) {
-    const rel = relative(imagesRoot, source);
+    console.log(relative(imagesRoot, dir));
+    removeLegacyVariants(dir);
 
-    if (!dryRun && !force && !needsProcessing(source)) {
-      skipped += 1;
-      continue;
+    for (const stem of stems) {
+      stemsTotal += 1;
+      try {
+        const { skipped: skip, lines } = await processStem(dir, stem);
+        if (skip) {
+          skipped += 1;
+          console.log(`  ${stem}.webp — variantes OK`);
+        } else {
+          processed += 1;
+          console.log(`  ${stem}`);
+          for (const line of lines) console.log(line);
+        }
+      } catch (err) {
+        console.error(`  ${stem}: ${(err as Error).message}`);
+      }
     }
-
-    const { results } = await processOne(source);
-    processed += 1;
-    console.log(rel);
-    for (const line of results) console.log(line);
-    totalOut += results.length;
     console.log('');
   }
 
   if (!dryRun) {
-    const parts = [`${processed} processada(s)`];
-    if (skipped) parts.push(`${skipped} já atualizada(s)`);
-    console.log(`Imagens: ${parts.join(', ')} (${totalOut} ficheiros gerados).`);
+    console.log(
+      `Imagens: ${processed} processada(s), ${skipped} só master/variantes atuais (${stemsTotal} ficheiros).`,
+    );
   }
 }
 

@@ -26,8 +26,8 @@
         >
           <Transition name="project-slide-fade" mode="out-in">
             <img
-              :key="activeSrc"
-              :src="activeSrc"
+              :key="activeDisplaySrc"
+              :src="activeDisplaySrc"
               :alt="slideAlt"
               class="project-detail-carousel-img"
               decoding="async"
@@ -104,8 +104,8 @@
     </div>
 
     <ProjectImageLightbox
-      v-if="lightboxOpen && activeSrc"
-      :src="activeSrc"
+      v-if="lightboxOpen && activeMasterSrc"
+      :src="activeMasterSrc"
       :alt="slideAlt"
       @close="closeLightbox"
     />
@@ -114,6 +114,7 @@
 
 <script setup lang="ts">
 import { preloadAll } from '~/utils/imageLoading';
+import { imageDisplayUrl, imageThumbUrl } from '~/utils/imageVariants';
 
 const props = defineProps<{
   images: string[];
@@ -124,16 +125,25 @@ const { t } = useI18n();
 const carouselRoot = ref<HTMLElement | null>(null);
 const panelId = 'project-detail-carousel-panel';
 
+const thumbUrls = computed(() => props.images.map((src) => imageThumbUrl(src)));
+const displayUrls = computed(() =>
+  props.images.map((src) => imageDisplayUrl(src)),
+);
+
 const {
   activeIndex,
-  activeSrc,
+  activeSrc: activeDisplaySrc,
   hasMultiple,
   goTo,
   next,
   prev,
   startAutoplay,
   stopAutoplay,
-} = useProjectDetailCarousel(() => props.images);
+} = useProjectDetailCarousel(() => displayUrls.value);
+
+const activeMasterSrc = computed(
+  () => props.images[activeIndex.value] ?? props.images[0] ?? '',
+);
 
 const activeThumbId = computed(() => thumbId(activeIndex.value));
 const lightboxOpen = ref(false);
@@ -146,12 +156,12 @@ function closeLightbox() {
   lightboxOpen.value = false;
 }
 
-watch(activeSrc, () => {
+watch(activeIndex, () => {
   if (lightboxOpen.value) closeLightbox();
 });
 
 watch(
-  () => props.images,
+  displayUrls,
   (urls) => {
     if (!import.meta.client || !urls.length) return;
     preloadAll(urls);

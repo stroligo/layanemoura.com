@@ -63,7 +63,7 @@
     "filterAria": "Gallery filters",
     "sectionGroupAria": "Gallery section",
     "tagChipsAria": "Highlight by tag",
-    "viewProject": "View project: {title} — {subtitle}",
+    "viewProject": "View project: {label}",
     "tags": {
       "all": "All"
     },
@@ -75,12 +75,10 @@
     "sortBy": "Sort by",
     "sortOption": "{field}: {direction}",
     "sort": {
-      "date": "Date",
       "tag": "Tag",
       "title": "Title"
     },
     "sortDirection": {
-      "date": { "desc": "Newest first", "asc": "Oldest first" },
       "tag": { "desc": "Z → A", "asc": "A → Z" },
       "title": { "desc": "Z → A", "asc": "A → Z" }
     },
@@ -136,7 +134,8 @@
     "lightboxToolbar": "Zoom controls",
     "lightboxZoomIn": "Zoom in",
     "lightboxZoomOut": "Zoom out",
-    "lightboxReset": "Reset zoom"
+    "lightboxReset": "Reset zoom",
+    "lightboxLoading": "Loading full-resolution image…"
   },
   "floating": {
     "backToTop": "Back to top",
