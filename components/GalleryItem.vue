@@ -101,19 +101,7 @@ function onImageReady(event: Event) {
   onImageLoad(event);
 }
 
-watch(
-  () => coverImage.value,
-  () => nextTick(remeasure),
-);
-
-watch(
-  () => props.project.layout,
-  () => nextTick(remeasure),
-);
-
-onMounted(() => {
-  nextTick(remeasure);
-
+function revealIfImageReady() {
   if (!import.meta.client || !coverImage.value) return;
 
   const img = root.value?.querySelector<HTMLImageElement>('.gallery-item-img');
@@ -121,5 +109,30 @@ onMounted(() => {
     reveal();
     remeasure();
   }
+}
+
+watch(
+  () => coverImage.value,
+  () => nextTick(() => {
+    remeasure();
+    revealIfImageReady();
+  }),
+);
+
+watch(
+  () => props.project.layout,
+  () => nextTick(remeasure),
+);
+
+watch(
+  () => props.priority,
+  () => nextTick(revealIfImageReady),
+);
+
+onMounted(() => {
+  nextTick(() => {
+    remeasure();
+    revealIfImageReady();
+  });
 });
 </script>

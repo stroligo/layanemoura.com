@@ -12,23 +12,27 @@ export function useGalleryCoverImage(
   }
 
   watch(
-    () => ({
-      url: toValue(src),
-      eager: Boolean(toValue(options?.eager)),
-    }),
-    ({ url, eager }) => {
+    () => toValue(src),
+    (url) => {
       if (!url) {
         isVisible.value = false;
         return;
       }
-      // SSR + capas prioritárias: visíveis de imediato (HTML já traz a grelha)
-      if (import.meta.server || eager) {
+      // Só esconde ao trocar de imagem; não ao mudar priority (reordenação por tag).
+      if (import.meta.server || Boolean(toValue(options?.eager))) {
         isVisible.value = true;
         return;
       }
       isVisible.value = false;
     },
     { immediate: true },
+  );
+
+  watch(
+    () => Boolean(toValue(options?.eager)),
+    (eager) => {
+      if (eager) isVisible.value = true;
+    },
   );
 
   return { isVisible, reveal };

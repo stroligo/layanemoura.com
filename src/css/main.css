@@ -1540,8 +1540,7 @@
     }
 
     &.gallery-item--dimmed {
-      opacity: 0.38;
-      filter: blur(2px) saturate(0.85);
+      filter: saturate(0.6) opacity(0.6);
       pointer-events: none;
 
       &:hover {
@@ -1625,7 +1624,7 @@
   }
 
   .project-modal-panel {
-    @apply relative flex h-[calc(100dvh-1.5rem)] max-h-[calc(100dvh-1.5rem)] min-w-0 flex-1 flex-col overflow-hidden rounded-[var(--radius-ui)] bg-paper shadow-elevation-3;
+    @apply relative flex max-h-[calc(100dvh-2rem)] min-w-0 w-full flex-col overflow-x-hidden overflow-y-auto rounded-[var(--radius-ui)] bg-paper p-6 shadow-elevation-3;
     max-width: min(96vw, 1280px);
   }
 
@@ -1655,33 +1654,27 @@
   }
 
   .project-modal-close {
-    @apply absolute right-3 top-3 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-[var(--radius-ui)] bg-paper/90 font-inter text-2xl text-cocoa transition-colors hover:bg-surface hover:text-terracotta;
-  }
-
-  @media (max-width: 639px) {
-    .project-modal-close {
-      @apply right-0 top-0;
-    }
+    @apply absolute right-6 top-6 z-20 flex h-10 w-10 cursor-pointer items-center justify-center rounded-[var(--radius-ui)] bg-paper/90 font-inter text-2xl text-cocoa transition-colors hover:bg-surface hover:text-terracotta;
   }
 
   .project-modal-grid {
-    @apply grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto] md:grid-cols-[1.08fr_0.92fr] md:grid-rows-1;
+    @apply grid gap-6 md:grid-cols-[1.08fr_0.92fr] md:items-start;
   }
 
   .project-modal-visual {
-    @apply flex min-h-0 flex-1 flex-col overflow-hidden md:rounded-l-[var(--radius-ui)];
+    @apply flex flex-col md:rounded-l-[var(--radius-ui)];
   }
 
   .project-detail-carousel {
-    @apply flex min-h-0 flex-1 flex-col overflow-hidden;
+    @apply flex flex-col;
   }
 
   .project-detail-carousel-inner {
-    @apply flex min-h-0 flex-1 flex-col overflow-hidden;
+    @apply flex w-full flex-col;
   }
 
   .project-detail-carousel-stage {
-    @apply relative min-h-0 flex-1 overflow-hidden;
+    @apply relative flex max-h-[min(68dvh,780px)] items-center justify-center overflow-hidden;
   }
 
   .project-detail-carousel-zoom-trigger {
@@ -1714,11 +1707,11 @@
   }
 
   .project-detail-carousel-stage .project-detail-carousel-zoom-trigger {
-    @apply md:absolute md:inset-0 md:flex md:h-full md:w-full md:items-center md:justify-center;
+    @apply flex w-full max-w-full items-center justify-center;
   }
 
   .project-detail-carousel-img {
-    @apply absolute inset-0 m-auto block h-full max-h-full w-full max-w-full object-contain object-center;
+    @apply block h-auto w-auto max-h-[min(68dvh,780px)] max-w-full object-contain object-center;
     image-rendering: auto;
   }
 
@@ -1818,7 +1811,7 @@
   }
 
   .project-modal-body {
-    @apply min-h-0 overflow-visible p-5 md:min-h-0 md:overflow-y-auto md:p-7;
+    @apply overflow-visible p-0;
   }
 
   /* ——— Lightbox de imagem do projeto ——— */
