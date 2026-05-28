@@ -1,7 +1,7 @@
 /**
  * Pipeline de imagens de projeto (build + `npm run images:optimize`).
  *
- * Por imagem `NN.jpg` / `NN.png` / `NN.webp`:
+ * Por imagem `NN.jpg` / `NN.png` / `NN.gif` / `NN.webp`:
  *   1. Converte JPG/PNG → `NN.webp` (master, preserva transparência)
  *   2. Gera `NN.thumb.webp` (~800px) — grelha + miniaturas do modal
  *   3. Gera `NN.display.webp` (~2000px) — imagem grande do slider
@@ -23,7 +23,7 @@ const MASTER_QUALITY = 92;
 const THUMB_QUALITY = 88;
 const DISPLAY_QUALITY = 90;
 
-const STEM_FILE = /^(\d+)\.(jpe?g|png|webp)$/i;
+const STEM_FILE = /^(\d+)\.(jpe?g|png|gif|webp)$/i;
 const VARIANT_FILE = /\.(thumb|display|lg)\.webp$/i;
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -68,7 +68,7 @@ function listStems(dir: string): string[] {
 }
 
 function uploadPath(dir: string, stem: string): string | null {
-  for (const ext of ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']) {
+  for (const ext of ['jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF']) {
     const path = join(dir, `${stem}.${ext}`);
     if (existsSync(path)) return path;
   }

@@ -15,11 +15,11 @@ meu-projeto/
 
 ## Upload (Studio)
 
-A cliente pode enviar **`01.jpg`**, **`01.png`** ou **`01.webp`**.
+A cliente pode enviar **`01.jpg`**, **`01.png`**, **`01.gif`** ou **`01.webp`**.
 
 No **`npm run build`** (automático no deploy):
 
-1. JPG/PNG → `NN.webp` (master WebP, transparência preservada em PNG)
+1. JPG/PNG/GIF → `NN.webp` (master WebP; GIF animado usa o primeiro frame)
 2. Gera `NN.thumb.webp` e `NN.display.webp`
 
 Em dev, após mudar imagens: `npm run images:optimize`

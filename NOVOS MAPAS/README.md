@@ -1,6 +1,6 @@
 # Novos mapas
 
-Coloque aqui **só** os ficheiros JPG/PNG de projetos novos (ou imagens extra de um projeto existente).
+Coloque aqui **só** os ficheiros JPG, PNG ou GIF de projetos novos (ou imagens extra de um projeto existente).
 
 ## Nomes dos ficheiros
 
@@ -29,3 +29,5 @@ Pré-visualizar sem alterar nada:
 ```bash
 npm run mapas:import-novos:dry
 ```
+
+Para a secção **More**, use a pasta [`NOVOS MORE/`](../NOVOS%20MORE/) e `npm run more:import-novos`.

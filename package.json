@@ -31,6 +31,8 @@
     "mapas:sync": "npm run mapas:inventory && npm run mapas:import && npm run mapas:generate-yml && npm run images:optimize",
     "mapas:import-novos": "tsx scripts/novos-mapas-import.ts",
     "mapas:import-novos:dry": "tsx scripts/novos-mapas-import.ts --dry-run",
+    "more:import-novos": "tsx scripts/novos-more-import.ts",
+    "more:import-novos:dry": "tsx scripts/novos-more-import.ts --dry-run",
     "mapas:reimport-png": "tsx scripts/mapas-reimport-png.ts",
     "projects:migrate-webp": "tsx scripts/migrate-project-images-webp.ts",
     "images:optimize": "npm run projects:ensure-dirs && tsx scripts/optimize-images.ts",

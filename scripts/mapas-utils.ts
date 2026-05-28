@@ -31,7 +31,8 @@ export type MapasManifest = {
   projects: ManifestProject[];
 };
 
-const MAPAS_RASTER = /\.(jpe?g|png)$/i;
+/** JPG, PNG e GIF aceites em MAPAS/, NOVOS MAPAS/ e NOVOS MORE/. */
+export const MAPAS_RASTER = /\.(jpe?g|png|gif)$/i;
 const MAPAS_SKIP = /\.psd$/i;
 
 /** Nome de ficheiro em MAPAS/ ou NOVOS MAPAS/ → título, subtítulo, índice da imagem. */
@@ -43,7 +44,7 @@ export function parseMapasFilename(filename: string): {
   if (MAPAS_SKIP.test(filename)) return null;
   if (!MAPAS_RASTER.test(filename)) return null;
 
-  const stem = filename.replace(/\.(jpe?g|png)$/i, '');
+  const stem = filename.replace(/\.(jpe?g|png|gif)$/i, '');
   const numMatch = stem.match(/\s+(\d+)$/);
   const imageIndex = numMatch ? Number.parseInt(numMatch[1], 10) : 1;
   const base = numMatch ? stem.slice(0, numMatch.index).trim() : stem.trim();

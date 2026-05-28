@@ -70,7 +70,7 @@
     "sortAria": "Sort projects",
     "groups": {
       "maps": "Maps",
-      "more": "More"
+      "more": "& More"
     },
     "sortBy": "Sort by",
     "sortOption": "{field}: {direction}",
