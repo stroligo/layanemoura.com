@@ -42,7 +42,6 @@ async function main() {
       category: 'maps',
       tags,
       published: true,
-      highlight: false,
       layout,
       images,
       description,

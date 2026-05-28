@@ -28,6 +28,15 @@ const VARIANT_FILE = /\.(thumb|display|lg)\.webp$/i;
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
+const onlySlugs = (() => {
+  const arg = args.find((a) => a.startsWith('--only='));
+  if (!arg) return null;
+  return arg
+    .slice(7)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+})();
 
 type VariantKey = 'thumb' | 'display';
 
@@ -38,9 +47,14 @@ const VARIANTS: Record<VariantKey, { max: number; quality: number }> = {
 
 function projectDirs(): string[] {
   if (!existsSync(imagesRoot)) return [];
-  return readdirSync(imagesRoot)
+  let dirs = readdirSync(imagesRoot)
     .map((name) => join(imagesRoot, name))
     .filter((path) => statSync(path).isDirectory());
+  if (onlySlugs?.length) {
+    const allowed = new Set(onlySlugs);
+    dirs = dirs.filter((path) => allowed.has(path.split(/[/\\]/).pop() ?? ''));
+  }
+  return dirs;
 }
 
 function listStems(dir: string): string[] {
@@ -168,7 +182,7 @@ async function processStem(dir: string, stem: string) {
 }
 
 async function main() {
-  if (!dryRun) {
+  if (!dryRun && !onlySlugs?.length) {
     await generateOgShareImage();
   }
 

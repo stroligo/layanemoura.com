@@ -31,6 +31,35 @@ export type MapasManifest = {
   projects: ManifestProject[];
 };
 
+const MAPAS_RASTER = /\.(jpe?g|png)$/i;
+const MAPAS_SKIP = /\.psd$/i;
+
+/** Nome de ficheiro em MAPAS/ ou NOVOS MAPAS/ → título, subtítulo, índice da imagem. */
+export function parseMapasFilename(filename: string): {
+  title: string;
+  subtitle: string;
+  imageIndex: number;
+} | null {
+  if (MAPAS_SKIP.test(filename)) return null;
+  if (!MAPAS_RASTER.test(filename)) return null;
+
+  const stem = filename.replace(/\.(jpe?g|png)$/i, '');
+  const numMatch = stem.match(/\s+(\d+)$/);
+  const imageIndex = numMatch ? Number.parseInt(numMatch[1], 10) : 1;
+  const base = numMatch ? stem.slice(0, numMatch.index).trim() : stem.trim();
+
+  const dash = base.indexOf(' - ');
+  if (dash >= 0) {
+    return {
+      title: base.slice(0, dash).trim(),
+      subtitle: base.slice(dash + 3).trim(),
+      imageIndex,
+    };
+  }
+
+  return { title: base, subtitle: '', imageIndex };
+}
+
 export function slugify(text: string): string {
   const prepared = text
     .replace(/\bB\s*&\s*W\b/gi, 'BW')

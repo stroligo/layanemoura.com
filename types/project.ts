@@ -42,8 +42,8 @@ export interface Project {
   links: ProjectLinkLocales[];
   /** Visível na galeria pública */
   published: boolean;
-  /** Destaque: aparece primeiro na secção (Maps / More) */
-  highlight: boolean;
+  /** Posição no topo da secção (1 = primeiro). Vazio = ordem alfabética normal. */
+  highlight: number | null;
   /** Todas as imagens; [0] = capa na grelha. */
   images: string[];
   /** Texto do modal (EN + PT), editável no Studio / YAML */
@@ -86,7 +86,41 @@ export type ProjectInput = Omit<Project, 'images' | 'links'> & {
   thumbTo?: string;
   /** @deprecated Use `highlight` */
   featured?: boolean;
+  /** Legado booleano — migrado para número (true → 1). */
+  highlight?: number | boolean | null;
 };
+
+/** Valor numérico de destaque (1 = primeiro na grelha), ou null se não destacado. */
+export function projectHighlightOrder(
+  project: Pick<Project, 'highlight'> | { highlight?: number | boolean | null },
+): number | null {
+  const h = project.highlight;
+  if (h === true) return 1;
+  if (h === false || h == null) return null;
+  if (typeof h === 'number' && Number.isFinite(h) && h >= 1) {
+    return Math.floor(h);
+  }
+  return null;
+}
+
+export function hasProjectHighlight(
+  project: Pick<Project, 'highlight'> | { highlight?: number | boolean | null },
+): boolean {
+  return projectHighlightOrder(project) != null;
+}
+
+/** Destaques primeiro (1, 2, 3…), depois título A–Z. */
+export function compareProjectsHighlightThenTitle(a: Project, b: Project): number {
+  const ha = projectHighlightOrder(a);
+  const hb = projectHighlightOrder(b);
+  if (ha != null && hb != null) {
+    const byOrder = ha - hb;
+    return byOrder !== 0 ? byOrder : a.title.localeCompare(b.title);
+  }
+  if (ha != null) return -1;
+  if (hb != null) return 1;
+  return a.title.localeCompare(b.title);
+}
 
 export function projectImagePath(slug: string, index = 0) {
   const clean = slug.replace(/^projects\/+/, '').replace(/\.ya?ml$/i, '');
@@ -266,6 +300,9 @@ export function normalizeProject(input: ProjectInput): Project {
     description,
     links: normalizeProjectLinks(input),
     published: rawPublished ?? true,
-    highlight: rawHighlight ?? legacyFeatured ?? false,
+    highlight:
+      projectHighlightOrder({
+        highlight: rawHighlight ?? legacyFeatured ?? null,
+      }),
   };
 }

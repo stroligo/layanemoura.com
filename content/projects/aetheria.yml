@@ -1,15 +1,12 @@
 title: Aetheria
 category: maps
-tags:
-  - fantasy-maps
-published: true
-highlight: false
-layout: tall
+description:
+  en: Hand-drawn fantasy map for Aetheria. Invented coastlines, regions and hidden details invite viewers to explore an imaginary world with editorial polish.
+  pt: Mapa de fantasia desenhado à mão para Aetheria. Costas inventadas, regiões e detalhes escondidos convidam a explorar um mundo imaginário com acabamento editorial.
 images:
   - src: /images/projects/aetheria/01.webp
-description:
-  en: Hand-drawn fantasy map for Aetheria. Invented coastlines, regions and hidden
-    details invite viewers to explore an imaginary world with editorial polish.
-  pt: Mapa de fantasia desenhado à mão para Aetheria. Costas inventadas, regiões e
-    detalhes escondidos convidam a explorar um mundo imaginário com acabamento
-    editorial.
+layout: tall
+published: true
+subtitle: ""
+tags:
+  - fantasy-maps

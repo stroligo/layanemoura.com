@@ -1,7 +1,12 @@
 import type { ProjectsCollectionItem } from '@nuxt/content';
 import { projects as legacyProjects } from '~/data/projects';
 import type { Project } from '~/types/project';
-import { normalizeProject, projectSlugFromPath } from '~/types/project';
+import {
+  compareProjectsHighlightThenTitle,
+  hasProjectHighlight,
+  normalizeProject,
+  projectSlugFromPath,
+} from '~/types/project';
 import { loadProjectsFromDiskYaml } from '~/utils/loadProjectsFromDiskYaml';
 import { projectsYamlFingerprint } from '~/utils/projectsYamlFingerprint';
 
@@ -28,7 +33,7 @@ function toProject(item: ProjectsCollectionItem): Project {
     links: row.links,
     behanceUrl: row.behanceUrl,
     published: item.published ?? true,
-    highlight: item.highlight ?? false,
+    highlight: item.highlight ?? null,
     images: row.images,
     image: row.image,
     description: item.description,
@@ -88,7 +93,9 @@ export function useProjectCollection() {
   }
 
   const highlightProjects = computed(() =>
-    projects.value.filter((p) => p.published && p.highlight),
+    projects.value
+      .filter((p) => p.published && hasProjectHighlight(p))
+      .sort(compareProjectsHighlightThenTitle),
   );
 
   return {

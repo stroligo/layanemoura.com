@@ -1,5 +1,9 @@
 import type { GalleryGroup, ProjectTag, SortDirection, SortField } from '~/data/site';
 import type { Project } from '~/types/project';
+import {
+  compareProjectsHighlightThenTitle,
+  hasProjectHighlight,
+} from '~/types/project';
 
 export interface GalleryGroupBlock {
   id: GalleryGroup;
@@ -57,7 +61,7 @@ export function useProjects() {
     projects.value.filter((p) => p.published),
   );
 
-  /** Ordenação + tag ativa + destaque (highlight) no topo da secção. */
+  /** Ordenação + tag ativa + destaque (highlight 1, 2, 3…) no topo da secção. */
   function orderGroupProjects(
     list: Project[],
     groupId: GalleryGroup,
@@ -72,8 +76,10 @@ export function useProjects() {
       ordered = [...active, ...rest];
     }
 
-    const pinned = ordered.filter((p) => p.highlight);
-    const rest = ordered.filter((p) => !p.highlight);
+    const pinned = ordered
+      .filter((p) => hasProjectHighlight(p))
+      .sort(compareProjectsHighlightThenTitle);
+    const rest = ordered.filter((p) => !hasProjectHighlight(p));
     return [...pinned, ...rest];
   }
 

@@ -47,9 +47,20 @@ const projectSchema = z.object({
     label: 'Published',
     description: 'When off, the project is hidden from the public gallery.',
   }),
-  highlight: property(z.boolean().default(false)).editor({
-    label: 'Highlight',
-    description: 'Pins this project to the top of its section (Maps or More).',
+  highlight: property(
+    z
+      .union([z.number().int().min(1), z.boolean(), z.null()])
+      .optional()
+      .transform((value) => {
+        if (value === true) return 1;
+        if (typeof value === 'number' && value >= 1) return value;
+        return undefined;
+      }),
+  ).editor({
+    input: 'number',
+    label: 'Posição no topo da galeria',
+    description:
+      'Número de ordem na secção (1 = primeiro, 2 = segundo…). Deixe vazio para seguir a ordem alfabética.',
   }),
   title: z.string().min(1).describe('Project title'),
   subtitle: z

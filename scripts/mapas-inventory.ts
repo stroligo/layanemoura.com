@@ -11,39 +11,11 @@
 import { readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { projectSlugFromParts } from './mapas-utils';
+import { parseMapasFilename, projectSlugFromParts } from './mapas-utils';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const mapasDir = join(root, 'MAPAS');
 const outPath = join(root, 'scripts', 'mapas-manifest.json');
-
-const RASTER = /\.(jpe?g|png)$/i;
-const SKIP = /\.psd$/i;
-
-export function parseMapasFilename(filename: string): {
-  title: string;
-  subtitle: string;
-  imageIndex: number;
-} | null {
-  if (SKIP.test(filename)) return null;
-  if (!RASTER.test(filename)) return null;
-
-  const stem = filename.replace(/\.(jpe?g|png)$/i, '');
-  const numMatch = stem.match(/\s+(\d+)$/);
-  const imageIndex = numMatch ? Number.parseInt(numMatch[1], 10) : 1;
-  const base = numMatch ? stem.slice(0, numMatch.index).trim() : stem.trim();
-
-  const dash = base.indexOf(' - ');
-  if (dash >= 0) {
-    return {
-      title: base.slice(0, dash).trim(),
-      subtitle: base.slice(dash + 3).trim(),
-      imageIndex,
-    };
-  }
-
-  return { title: base, subtitle: '', imageIndex };
-}
 
 type ManifestFile = {
   slug: string;
@@ -77,7 +49,7 @@ function main() {
     if (!parsed) {
       skipped.push({
         filename,
-        reason: SKIP.test(filename) ? 'psd' : 'unsupported',
+        reason: /\.psd$/i.test(filename) ? 'psd' : 'unsupported',
       });
       continue;
     }

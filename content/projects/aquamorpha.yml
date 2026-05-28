@@ -1,16 +1,13 @@
 title: Aquamorpha
 category: maps
-tags:
-  - fantasy-maps
-published: true
-highlight: false
-layout: wide
+description:
+  en: Hand-drawn fantasy map for Aquamorpha. Invented coastlines, regions and hidden details invite viewers to explore an imaginary world with editorial polish.
+  pt: Mapa de fantasia desenhado à mão para Aquamorpha. Costas inventadas, regiões e detalhes escondidos convidam a explorar um mundo imaginário com acabamento editorial.
+highlight: "1"
 images:
   - src: /images/projects/aquamorpha/01.webp
-description:
-  en: Hand-drawn fantasy map for Aquamorpha. Invented coastlines, regions and
-    hidden details invite viewers to explore an imaginary world with editorial
-    polish.
-  pt: Mapa de fantasia desenhado à mão para Aquamorpha. Costas inventadas, regiões
-    e detalhes escondidos convidam a explorar um mundo imaginário com acabamento
-    editorial.
+layout: wide
+published: true
+subtitle: ""
+tags:
+  - fantasy-maps

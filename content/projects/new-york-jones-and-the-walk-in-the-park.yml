@@ -1,17 +1,12 @@
 title: New York Jones
 category: maps
-tags:
-  - travel-maps
-published: true
-highlight: false
-layout: normal
+description:
+  en: Travel-inspired illustrated map of New York Jones — And The Walk in The Park. Streets, landmarks and regional character are drawn with warmth and clarity — ideal for guides, posters and visitor materials.
+  pt: Mapa ilustrado de viagem de New York Jones — And The Walk in The Park. Ruas, marcos e identidade local desenhados com clareza e acolhimento — ideal para guias, pôsteres e materiais turísticos.
 images:
   - src: /images/projects/new-york-jones-and-the-walk-in-the-park/01.webp
-description:
-  en: Travel-inspired illustrated map of New York Jones — And The Walk in The
-    Park. Streets, landmarks and regional character are drawn with warmth and
-    clarity — ideal for guides, posters and visitor materials.
-  pt: Mapa ilustrado de viagem de New York Jones — And The Walk in The Park. Ruas,
-    marcos e identidade local desenhados com clareza e acolhimento — ideal para
-    guias, pôsteres e materiais turísticos.
+layout: normal
+published: true
 subtitle: And The Walk in The Park
+tags:
+  - travel-maps
