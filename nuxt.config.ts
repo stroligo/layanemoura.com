@@ -1,6 +1,10 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import tailwindcss from '@tailwindcss/vite';
 import { STATIC_CACHE_MAX_AGE } from './data/performance';
+import {
+  LEGACY_EXACT_REDIRECTS,
+  LEGACY_WILDCARD_REDIRECTS,
+} from './data/legacyRedirects';
 
 const studioRepositoryOwner = process.env.STUDIO_REPOSITORY_OWNER;
 const studioRepositoryRepo = process.env.STUDIO_REPOSITORY_REPO;
@@ -243,11 +247,18 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/about': { redirect: '/get-in-touch' },
-    '/contact': { redirect: '/get-in-touch' },
-    '/services': { redirect: '/' },
-    '/projects': { redirect: '/' },
-    '/projects/**': { redirect: '/' },
+    ...Object.fromEntries(
+      Object.entries(LEGACY_EXACT_REDIRECTS).map(([from, to]) => [
+        from,
+        { redirect: { to, statusCode: 301 } },
+      ]),
+    ),
+    ...Object.fromEntries(
+      Object.entries(LEGACY_WILDCARD_REDIRECTS).map(([from, to]) => [
+        from,
+        { redirect: { to, statusCode: 301 } },
+      ]),
+    ),
     // Home/contact: conteúdo do Studio — sem SWR longo (evita HTML antigo após deploy)
     '/': { swr: false },
     '/pt': { swr: false },
