@@ -24,7 +24,10 @@ const THUMB_QUALITY = 88;
 const DISPLAY_QUALITY = 90;
 
 const STEM_FILE = /^(\d+)\.(jpe?g|png|gif|webp)$/i;
+/** Ignorar variantes ao listar stems (01.webp, não 01.thumb.webp). */
 const VARIANT_FILE = /\.(thumb|display|lg)\.webp$/i;
+/** Só apagar legado `.lg.webp` — nunca thumb/display já gerados. */
+const LEGACY_VARIANT_FILE = /\.lg\.webp$/i;
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const force = args.includes('--force');
@@ -83,12 +86,12 @@ function variantPath(dir: string, stem: string, key: VariantKey) {
   return join(dir, `${stem}.${key}.webp`);
 }
 
-function removeLegacyVariants(dir: string) {
+function removeLegacyLgVariants(dir: string) {
   for (const name of readdirSync(dir)) {
-    if (!VARIANT_FILE.test(name)) continue;
+    if (!LEGACY_VARIANT_FILE.test(name)) continue;
     const full = join(dir, name);
     if (!dryRun) unlinkSync(full);
-    console.log(`  removed ${relative(root, full)}`);
+    console.log(`  removed legado ${relative(root, full)}`);
   }
 }
 
@@ -207,7 +210,7 @@ async function main() {
     if (!stems.length) continue;
 
     console.log(relative(imagesRoot, dir));
-    removeLegacyVariants(dir);
+    removeLegacyLgVariants(dir);
 
     for (const stem of stems) {
       stemsTotal += 1;
@@ -230,7 +233,7 @@ async function main() {
 
   if (!dryRun) {
     console.log(
-      `Imagens: ${processed} processada(s), ${skipped} só master/variantes atuais (${stemsTotal} ficheiros).`,
+      `Imagens: ${processed} processada(s), ${skipped} em dia (sem alteração) — ${stemsTotal} ficheiro(s) no total.`,
     );
   }
 }

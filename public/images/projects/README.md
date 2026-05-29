@@ -24,6 +24,8 @@ No **`npm run build`** (automático no deploy):
 
 Em dev, após mudar imagens: `npm run images:optimize`
 
+No deploy (`npm run build`), o script **só reprocessa** imagens novas ou cujo master mudou; variantes já no Git são ignoradas (rápido).
+
 No YAML, use sempre:
 
 ```yaml
