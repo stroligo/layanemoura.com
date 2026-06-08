@@ -1,6 +1,5 @@
 import { seoConfig } from '~/data/seo';
 import { site } from '~/data/site';
-import type { ClientReview } from '~/types/review';
 import {
   escapeJsonLd,
   normalizeSeoHeadLinks,
@@ -170,16 +169,3 @@ export function buildContactPageJsonLd(siteUrl: string, contactPath: string) {
   };
 }
 
-/** Depoimentos publicados (máx. 8) para rich results. */
-export function buildReviewsJsonLd(siteUrl: string, reviews: ClientReview[]) {
-  return reviews.slice(0, 8).map((review) => ({
-    '@type': 'Review',
-    author: { '@type': 'Person', name: review.clientName },
-    reviewBody: review.text,
-    itemReviewed: {
-      '@type': 'Person',
-      name: site.name,
-      url: siteUrl,
-    },
-  }));
-}

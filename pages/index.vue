@@ -57,7 +57,6 @@ import { galleryCoverSources } from '~/utils/imageVariants';
 import { seoConfig } from '~/data/seo';
 import {
   buildPersonJsonLd,
-  buildReviewsJsonLd,
   buildWebSiteJsonLd,
   useSiteSeo,
 } from '~/composables/useSiteSeo';
@@ -79,8 +78,6 @@ const projectsLoadFailed = computed(
 useHomeContent();
 useServiceCollection();
 useGetInTouchContent();
-const { reviews } = useReviewCollection();
-
 const {
   galleryGroups,
   activeGroup,
@@ -125,7 +122,6 @@ useSiteSeo(() => ({
   jsonLd: [
     buildWebSiteJsonLd(publicSiteUrl.value),
     buildPersonJsonLd(publicSiteUrl.value, seoConfig.defaultOgImage),
-    ...buildReviewsJsonLd(publicSiteUrl.value, reviews.value),
   ],
 }));
 </script>
